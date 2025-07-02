@@ -61,6 +61,65 @@ Os resultados serão detalhadamente apresentados em relatórios técnicos e arti
 
 ---
 
+# 📈 Resultados Experimentais
+
+## 📷 Avaliação em Imagens Estáticas
+
+Foram realizados testes qualitativos em imagens públicas de alagamentos para validar a capacidade de detecção do modelo YOLOv8 treinado em diferentes regimes de épocas (30 e 50). As imagens utilizadas foram:
+
+[BBC Brasil - Alagamentos em SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)
+
+[UOL Notícias - Jd. Pantanal após tempestade](https://noticias.uol.com.br/cotidiano/ultimas-noticias/2025/02/03/alagamentos-de-3-dias-imagens-mostram-jd-pantanal-apos-tempestade-em-sp.htm)
+
+📌 **Resultado:**
+
+Com **30 épocas**, o modelo já era capaz de detectar pessoas e socorristas com precisão razoável.
+
+Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
+
+## 🎞️ Avaliação em Vídeo
+
+Um vídeo público do YouTube foi utilizado para simular um cenário real de desastre urbano:
+
+[Vídeo utilizado no experimento](https://www.youtube.com/watch?v=QnFwDqzCwRU)
+
+📌 **Resultado:**
+
+O modelo com **30 épocas** apresentou maior estabilidade e consistência ao longo dos quadros.
+
+O modelo com **50 épocas**, embora superior para imagens, teve comportamento errático em vídeo, gerando detecções flutuantes e menos confiáveis — sugerindo possível overfitting ou limitação da generalização temporal.
+
+🧠 **Observação Técnica**:
+Treinar com mais de 50 épocas pode exigir hardware com maior capacidade de memória. Durante o experimento, o uso da conta acadêmica no Google Colab atingiu o limite de memória, reforçando a necessidade de infraestrutura mais robusta para lidar com sequências temporais (vídeos).
+
+## 📊 Gráficos e Visualizações
+
+Abaixo serão inseridos os gráficos comparativos:
+
+Precisão por número de épocas (30 vs 50)
+
+Performance por tipo de mídia (imagem vs vídeo)
+
+Matriz de confusão por classe
+
+Bounding boxes qualitativas em imagens reais
+
+⏳ _Gráficos em construção — serão inseridos até a finalização do relatório._
+
+## ✅ Conclusões Parciais
+
+**30 épocas** → melhor desempenho em vídeos, com menos ruído nas detecções.
+
+**50 épocas** → superioridade em imagens estáticas, com maior precisão espacial.
+
+🔁 **Melhorias futuras sugeridas**
+
+Ajuste de hiperparâmetros específicos para vídeo.
+
+Treinamento com dados temporais (ex: sequências ou ConvLSTM).
+
+Uso de infraestrutura com GPU dedicada (Google Colab Pro ou A100).
+
 ## 🔍 Discussão e Conclusões (a ser preenchido após a experimentação)
 
 _(Esta seção será dedicada à discussão aprofundada dos resultados obtidos, incluindo a interpretação das métricas de desempenho, a identificação de pontos fortes e fracos do modelo, e a análise de possíveis vieses nos dados. Serão abordadas as limitações inerentes à metodologia, como a sensibilidade a condições de iluminação extremas, oclusão parcial ou total dos indivíduos, e a representatividade do dataset. Além disso, serão propostas futuras linhas de pesquisa para aprimoramento do sistema, como a integração de informações contextuais (e.g., sensores multiespectrais), a otimização para implantação em dispositivos de borda para inferência em tempo real e a exploração de arquiteturas de modelos mais leves. Finalmente, será discutida a integração do `Urban Disaster Monitor` como um módulo crucial dentro da plataforma SPICI, realçando seu impacto potencial na gestão inteligente de desastres e na coordenação de equipes de resgate.)_
