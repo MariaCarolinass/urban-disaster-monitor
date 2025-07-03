@@ -128,7 +128,7 @@ _(Esta seção será dedicada à discussão aprofundada dos resultados obtidos, 
 
 ## 👥 Equipe do Projeto
 
-O desenvolvimento do `Urban Disaster Monitor` é realizado por alunos da matéria de Visão Computacional, ministrada pelo professor **Helton Maia** da ECT/UFRN:
+O desenvolvimento do `Urban Disaster Monitor` é realizado por alunos da disciplina de Visão Computacional, ministrada pelo professor **Helton Maia** da ECT/UFRN:
 
 | [![](https://github.com/jagaldino.png?size=80)](https://github.com/jagaldino) | [![](https://github.com/MariaCarolinass.png?size=80)](https://github.com/MariaCarolinass) | [![](https://github.com/heltonmaia.png?size=80)](https://github.com/heltonmaia) |
 | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
