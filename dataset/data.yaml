@@ -1,0 +1,6 @@
+
+path: dataset
+train: train
+val: val
+test: test
+names: ['people', 'rescuer']
