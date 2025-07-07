@@ -1,28 +1,26 @@
-name: Run Python script
+name: Deploy to Hugging Face
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
-
-    - name: Install Gradio
-      run: python -m pip install gradio
-
-    - name: carolinasoares
-      run: python -c 'import huggingface_hub; huggingface_hub.login(token="${{ secrets.hf_token }}")'
-
-    - name: urban_disaster_monitor
-      run: gradio deploy
+      - name: Deploy to HF Spaces
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git clone https://carolinasoares:$HF_TOKEN@huggingface.co/spaces/carolinasoares/urban_disaster_monitor space
+          rm -rf space/*
+          cp -r app/* space/
+          cd space
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Deploy automático" || echo "Nada para commitar"
+          git push
