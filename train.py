@@ -1,6 +1,5 @@
 from ultralytics import YOLO
 
-# Treinar modelo YOLOv8
 model = YOLO('yolov8n.pt')
 
 model.train(
