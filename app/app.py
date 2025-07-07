@@ -63,9 +63,22 @@ with gr.Blocks() as app:
             with gr.Column():
                 output_image = gr.Image(label="Processed Image")
                 output_predictions = gr.Textbox(label="Predictions", placeholder="Predictions will appear here...")
-
+        
         btn.click(fn=image_detection, inputs=[image, conf_threshold], outputs=[output_image, output_predictions])
-
+    
+        gr.Examples(
+            examples=[
+                ["examples/3FF53711-E6A2-4581-BF42745FCF3CB0FA_source_jpg.rf.c0621d72c8985d028f877917a33ac72f.jpg"],
+                ["examples/AAA960_jpg.rf.35e24ec331c267a980f397f8ab56ac0f.jpg"],
+                ["examples/1013_jpg.rf.8504152d4e8d767ea8c0c4f892c5d30b.jpg"],
+                ["examples/1424_jpg.rf.137de327a9a9fc5b4d4d326aae746e53.jpg"],
+                ["examples/1521_jpg.rf.b82b37d072574e59a9d6d2c67b918354.jpg"],
+                ["examples/Flood-7_jpg.rf.a71bfe309c707883299f283ca207306b.jpg"]
+            ],
+            inputs=[image, conf_threshold],
+            outputs=[output_image, output_predictions],
+            label="Example Images"
+        )
     with gr.Tab("Video"):
         with gr.Row():
             with gr.Column():
@@ -77,5 +90,12 @@ with gr.Blocks() as app:
                 output_predictions = gr.Textbox(label="Predictions", placeholder="Predictions will appear here...")
 
         btn.click(fn=video_detection, inputs=[video, conf_threshold], outputs=[output_video, output_predictions])
+
+        gr.Examples(
+            examples=[["examples/video5143238584093902399.mp4"]],
+            inputs=[video, conf_threshold],
+            outputs=[output_video, output_predictions],
+            label="Example Videos"
+        )
 
 app.launch()
