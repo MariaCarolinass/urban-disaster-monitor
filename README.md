@@ -5,8 +5,8 @@
 Sistema inteligente de visão computacional para **detecção e classificação de civis e socorristas** em cenários de desastre urbano, utilizando **YOLOv8**.
 
 <p align="center">
-  <img src="static/images/capa1.webp" alt="Capa do projeto" width="450"/> 
-  <img src="static/images/capa2.png" alt="Capa do projeto" width="450"/>
+  <img src="static/images/capa1.webp" alt="Capa do projeto" width="400"/> 
+  <img src="static/images/capa2.png" alt="Capa do projeto" width="400"/>
 </p>
 
 `YOLOv8` • `visão computacional` • `desastres naturais` • `detecção de pessoas` • `cidades inteligentes` • `socorristas` • `gradio` • `imagem e vídeo`
