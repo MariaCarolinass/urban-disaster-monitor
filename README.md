@@ -150,11 +150,15 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 
 **Imagens utilizadas:**
 
-<img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
-<img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
+<p align="center">
+  <img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
+  <img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
+</p>
 
-<img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
-<img src="static/images/teste2-saida.webp" alt="Imagem de teste 2 saída" width="400"/>
+<p align="center">
+  <img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
+  <img src="static/images/teste2-saida.webp" alt="Imagem de teste 2 saída" width="400"/>
+</p>
 
 *Fonte das imagens: [BBC Brasil - Alagamentos em SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)*
 
