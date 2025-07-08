@@ -19,12 +19,17 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 - [Introdução](#-introdução)
 - [Dataset](#-dataset)
 - [Metodologia](#-metodologia)
+  - [Aquisição e Anotação de Dados](#aquisição-e-anotação-de-dados)
+  - [Pré-processamento de Dados](#pré-processamento-de-dados)
+  - [Arquitetura do Modelo e Ferramentas](#arquitetura-do-modelo-e-ferramentas)
+  - [Treinamento e Otimização do Modelo](#treinamento-e-otimização-do-modelo)
 - [Resultados e discussões](#-resultados-e-discussões)
+  - [Análise de Resultados e Métricas](#análise-de-resultados-e-métricas)
   - [Avaliação em Imagens Estáticas](#avaliação-em-imagens-estáticas)
-  - [Avaliação em Vídeo](#️-avaliação-em-vídeo)
-  - [Gráficos e Visualizações](#-gráficos-e-visualizações)
-  - [Discussões](#discussões)
-- [Conclusões](#-conclusões)
+  - [Avaliação em Vídeo](#️avaliação-em-vídeo)
+  - [Gráficos e Visualizações](#gráficos-e-visualizações)
+  - [Discussão](#discussão)
+- [Conclusão](#-conclusão)
 - [Interface Interativa](#-interface-interativa)
 - [Tecnologias](#-tecnologias)
 - [Equipe do Projeto](#-equipe-do-projeto)
@@ -177,29 +182,25 @@ Um vídeo público do YouTube foi utilizado para simular um cenário real de des
 
 ### 📊 Gráficos e Visualizações
 
-**1. Gráfico de erro durante o treinamento**
+**1. Evolução do Loss e Matriz de Confusão**
 
 30 épocas:
 
-![Gráfico de erro durante o treinamento - 30 épocas](static/graphics/graficoerro30p.png)
+<p align="center">
+  <img src="static/graphics/graficoerro30p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
+  <img src="static/matrix/matriz-30ep.png" alt="Matriz confusão" width="450"/>
+</p>
 
 50 épocas:
 
-![Gráfico de erro durante o treinamento - 50 épocas](static/graphics/graficoerro50p.png)
+<p align="center">
+  <img src="static/graphics/graficoerro50p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
+  <img src="static/matrix/matriz-50ep.png" alt="Matriz confusão" width="450"/>
+</p>
 
-**2. Gráfico de métricas por época**
+**2. Métricas de Validação**
 
-![Gráfico de métricas por época](static/graphics/graficometricas.png)
-
-**3. Matriz confusão**
-
-30 épocas:
-
-![Matriz confusão - 30 épocas](static/matrix/matriz-30ep.png)
-
-50 épocas:
-
-![Matriz confusão - 50 épocas](static/matrix/matriz-50ep.png)
+![Gráfico de métricas](static/graphics/graficometricas.png)
 
 ### Discussão
 
