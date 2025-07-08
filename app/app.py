@@ -79,6 +79,7 @@ with gr.Blocks() as app:
             outputs=[output_image, output_predictions],
             label="Example Images"
         )
+        
     with gr.Tab("Video"):
         with gr.Row():
             with gr.Column():
