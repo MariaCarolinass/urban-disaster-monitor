@@ -187,9 +187,6 @@ Os resultados serão detalhadamente apresentados em relatórios técnicos e arti
 
 Foram realizados testes qualitativos em imagens fora do treinamento de alagamentos para validar a capacidade de detecção do modelo YOLOv8 treinado em diferentes regimes de épocas (30 e 50).
 
-- Com **30 épocas**, o modelo já era capaz de detectar pessoas e socorristas com precisão razoável.
-- Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
-
 <div align="center">
 
 <img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
@@ -202,14 +199,17 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 
 </div>
 
+- Com **30 épocas**, o modelo já era capaz de detectar pessoas e socorristas com precisão razoável.
+- Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
+
 ### 🎞️ Avaliação em Vídeo
 
 Um vídeo público do YouTube foi utilizado para simular um cenário real de desastre urbano:
 
+[Vídeo utilizado no experimento](https://www.youtube.com/watch?v=QnFwDqzCwRU)
+
 - O modelo com **30 épocas** apresentou maior estabilidade e consistência ao longo dos quadros.
 - O modelo com **50 épocas**, embora superior para imagens, teve comportamento errático em vídeo, gerando detecções flutuantes e menos confiáveis — sugerindo possível overfitting ou limitação da generalização temporal.
-
-[Vídeo utilizado no experimento](https://www.youtube.com/watch?v=QnFwDqzCwRU)
 
 **Observação**: Treinar com mais de 50 épocas pode exigir hardware com maior capacidade de memória. Durante o experimento, o uso da conta acadêmica no Google Colab atingiu o limite de memória, reforçando a necessidade de infraestrutura mais robusta para lidar com sequências temporais (vídeos).
 
