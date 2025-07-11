@@ -1,20 +1,34 @@
-# Urban Disaster Monitor: Detecção e Classificação de Pessoas em Cenários de Desastre
+<div align="center">
 
-![YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-red) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ids-NQ6EfzGgfK41BWvkIXxOkUomexo0?usp=sharing) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Status](https://img.shields.io/badge/status-MVP%20Ready-brightgreen)
+# Urban Disaster Monitor
+
+[![YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ids-NQ6EfzGgfK41BWvkIXxOkUomexo0?usp=sharing) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) ![Status](https://img.shields.io/badge/status-MVP%20Ready-brightgreen)
+
+[App](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor) | [Dataset](https://github.com/MariaCarolinass/urban-disaster-monitor/tree/main/dataset)
+[English]() | [Português]()
+
+</div>
+
+# Urban Disaster Monitor: Detecção e Classificação de Pessoas em Cenários de Desastre
 
 Sistema inteligente de visão computacional para **detecção e classificação de civis e socorristas** em cenários de desastre urbano, utilizando **YOLOv8**.
 
-<p align="center">
-  <img src="static/images/capa1.webp" alt="Capa do projeto" width="400"/> 
-  <img src="static/images/capa2.png" alt="Capa do projeto" width="400"/>
-</p>
+<div align="center">
 
-`YOLOv8` • `visão computacional` • `desastres naturais` • `detecção de pessoas` • `cidades inteligentes` • `socorristas` • `gradio` • `imagem e vídeo`
+<img src="static/images/capa1.webp" alt="Capa do projeto" width="400"/> 
+<img src="static/images/capa2.png" alt="Capa do projeto" width="400"/>
+
+</div>
+
+---
+
+🛑 Em situações de desastre urbano, cada segundo importa. Este projeto oferece uma ferramenta de visão computacional para ajudar equipes de resgate a agir com mais precisão e velocidade.
 
 ---
 
 ## 📑 Sumário
 
+- [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Funcionalidades](#-funcionalidades)
 - [Introdução](#-introdução)
 - [Dataset](#-dataset)
@@ -33,10 +47,41 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 - [Interface Interativa](#-interface-interativa)
 - [Tecnologias](#-tecnologias)
 - [Equipe do Projeto](#-equipe-do-projeto)
-- [Repositório de Dados](#-repositório-de-dados)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Como Executar](#-como-executar)
+- [Lincença](#-lincença)
 - [Referências Bibliográficas](#-referências-bibliográficas)
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+urban-disaster-monitor/
+├── app/
+│   ├── examples/
+│   ├── models/
+│   │   └── best30p.pt
+|   |   └── best50p.pt
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── README.md
+├── dataset/
+│   ├── test/
+│   ├── train/
+│   ├── val/
+│   ├── data.yaml/
+│   └── README.md
+├── notebooks/
+│   │   └── urban_disaster_monitor.ipynb
+├── static/
+│   ├── images/
+│   ├── graphics/
+│   └── matrix/
+├── config.py
+├── train.py
+├── README.md
+└── LICENSE
+```
 
 ---
 
@@ -58,32 +103,23 @@ Este projeto propõe o desenvolvimento de um **sistema inteligente de visão com
 
 Desenvolvido durante a disciplina de Visão Computacional na **Escola de Ciências e Tecnologia (ECT/UFRN)** em trabalho voluntário para o **Smart Metropolis Lab (SMLab)** do **Instituto Metrópole Digital (IMD/UFRN)**, este trabalho é parte integrante do **Projeto SPICI (Segurança Pública Integrada em Cidades Inteligentes)**. O SPICI visa criar uma plataforma inteligente para coleta, processamento e análise de imagens e informações críticas em tempo real, contribuindo para a gestão de crises e desastres por meio de tecnologias avançadas como visão computacional e inteligência artificial. O `Urban Disaster Monitor` alinha-se diretamente com os objetivos do SPICI ao fornecer uma ferramenta especializada para a identificação de pessoas em cenários de desastre, agregando valor à capacidade de resposta e tomada de decisão da plataforma.
 
-<a href="https://smlab.imd.ufrn.br/">
-  <img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis Lab" width="150"/>
-</a>
+<div align="center">
 
-<a href="https://smlab.imd.ufrn.br/projeto-spici/">
-  <img src="static/images/spici.png" alt="Logo SPICI" width="100"/>
-</a>
+<a href="https://smlab.imd.ufrn.br/"><img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis Lab" width="150"/></a><a href="https://smlab.imd.ufrn.br/projeto-spici/"><img src="static/images/spici.png" alt="Logo SPICI" width="100"/></a><a href="https://imd.ufrn.br/"><img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/></a><a href="https://www.ect.ufrn.br/"><img src="static/images/cet.png" alt="Logo IMD/UFRN" width="100"/></a>
 
-<a href="https://imd.ufrn.br/">
-  <img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/>
-</a>
-
-<a href="https://www.ect.ufrn.br/">
-  <img src="static/images/cet.png" alt="Logo IMD/UFRN" width="100"/>
-</a>
+</div>
 
 ---
 
 ## 📂 Dataset
 
 - **Total de imagens**: 2403
-- **Fontes**: dados reais + imagens sintéticas
+- **Fontes**: dados reais mais imagens sintéticas
 - **Classes**:
   - `people` (civis)
   - `rescuer` (socorristas com EPI)
-- **Anotado via**: [Roboflow](https://roboflow.com)
+- **Anotado via**: [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
+- **Formato das Anotações**: arquivos `.txt` contendo as coordenadas das *bounding boxes* e os IDs das classes, acompanhados das imagens correspondentes, seguindo a convenção de nomenclatura do YOLO.
 
 ---
 
@@ -153,19 +189,17 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 - Com **30 épocas**, o modelo já era capaz de detectar pessoas e socorristas com precisão razoável.
 - Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
 
-**Imagens utilizadas:**
+<div align="center">
 
-<p align="center">
-  <img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
-  <img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
-</p>
+<img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
+<img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
 
-<p align="center">
-  <img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
-  <img src="static/images/teste2-saida.webp" alt="Imagem de teste 2 saída" width="400"/>
-</p>
+<img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
+<img src="static/images/teste2-saida.webp" alt="Imagem de teste 2 saída" width="400"/>
 
-*Fonte das imagens: [BBC Brasil - Alagamentos em SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)*
+*Fonte: [BBC Brasil - Alagamentos em SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)*
+
+</div>
 
 ### 🎞️ Avaliação em Vídeo
 
@@ -182,29 +216,24 @@ Um vídeo público do YouTube foi utilizado para simular um cenário real de des
 
 ### 📊 Gráficos e Visualizações
 
-**1. Evolução do Loss e Matriz de Confusão**
+**30 épocas:**
 
-30 épocas:
+<div align="center">
 
-<p align="center">
-  <img src="static/graphics/graficoerro30p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
-  <img src="static/matrix/matriz-30ep.png" alt="Matriz confusão" width="450"/>
-</p>
+<img src="static/graphics/graficoerro30p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
+<img src="static/matrix/matriz-30ep.png" alt="Matriz confusão" width="500"/>
 
-50 épocas:
+</div>
 
-<p align="center">
-  <img src="static/graphics/graficoerro50p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
-  <img src="static/matrix/matriz-50ep.png" alt="Matriz confusão" width="450"/>
-</p>
+**50 épocas:**
 
-**2. Métricas de Validação**
+<div align="center">
 
-![Gráfico de métricas](static/graphics/graficometricas.png)
+<img src="static/graphics/graficoerro50p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
+<img src="static/matrix/matriz-50ep.png" alt="Matriz confusão" width="500"/>
+<img src="static/graphics/graficometricas.png" alt="Gráfico de métricas" width="500"/>
 
-### Discussão
-
-_(Esta seção será dedicada à discussão aprofundada dos resultados obtidos, incluindo a interpretação das métricas de desempenho, a identificação de pontos fortes e fracos do modelo, e a análise de possíveis vieses nos dados. Serão abordadas as limitações inerentes à metodologia, como a sensibilidade a condições de iluminação extremas, oclusão parcial ou total dos indivíduos, e a representatividade do dataset. Além disso, serão propostas futuras linhas de pesquisa para aprimoramento do sistema, como a integração de informações contextuais (e.g., sensores multiespectrais), a otimização para implantação em dispositivos de borda para inferência em tempo real e a exploração de arquiteturas de modelos mais leves. Finalmente, será discutida a integração do `Urban Disaster Monitor` como um módulo crucial dentro da plataforma SPICI, realçando seu impacto potencial na gestão inteligente de desastres e na coordenação de equipes de resgate.)_
+</div>
 
 ---
 
@@ -252,47 +281,6 @@ O desenvolvimento do `Urban Disaster Monitor` é realizado por alunos da discipl
 
 ---
 
-## 🧠 Repositório de Dados
-
-O dataset anotado e pré-processado será disponibilizado para a comunidade científica (ou referenciado através de um link permanente) após a conclusão das etapas de anotação e validação, aderindo aos princípios de ciência aberta e reprodutibilidade.
-
-- **Link Roboflow**: _(a ser adicionado)_
-- **Formato das Anotações**: YOLOv8 (arquivos `.txt` contendo as coordenadas das _bounding boxes_ e os IDs das classes, acompanhados das imagens correspondentes, seguindo a convenção de nomenclatura do YOLO).
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-urban-disaster-monitor/
-├── app/
-│   ├── examples/
-│   ├── models/
-│   │   └── best30p.pt
-|   |   └── best50p.pt
-│   ├── app.py
-│   ├── requirements.txt
-│   ├── README.md
-├── dataset/
-│   ├── test/
-│   ├── train/
-│   ├── val/
-│   ├── data.yaml/
-│   └── README.md
-├── notebooks/
-│   │   └── urban_disaster_monitor.ipynb
-├── static/
-│   ├── images/
-│   ├── graphics/
-│   └── matrix/
-├── config.py
-├── train.py
-├── README.md
-└── LICENSE
-```
-
----
-
 ## 🚀 Como Executar
 
 Baixe o repositório:
@@ -320,6 +308,12 @@ Execute o projeto:
 ```bash
 python app.py
 ```
+
+---
+
+## 📄 Lincença
+
+Urban Disaster Monitor é licenciado sob a Licença MIT encontrada no arquivo [LICENSE](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) no diretório raiz deste repositório.
 
 ---
 
