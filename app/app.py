@@ -64,34 +64,41 @@ def image_detection(image, conf_threshold):
 
     return annotated_image, predictions
 
-def video_detection(video_path, conf_threshold):
+def video_detection(video_path, conf_threshold, frame_skip=3):
     cap = cv2.VideoCapture(video_path)
     width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps    = cap.get(cv2.CAP_PROP_FPS)
 
     temp_video_path = tempfile.NamedTemporaryFile(suffix=".mp4", delete=False).name
-    width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    fps    = cap.get(cv2.CAP_PROP_FPS)
-
     out = cv2.VideoWriter(temp_video_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
 
     all_classes = set()
+    frame_count = 0
+    last_annotated_frame = None
 
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
 
-        results = model_video(frame, conf=conf_threshold)
-        annotated_frame = results[0].plot()
-
-        for c in results[0].boxes.cls:
-            class_name = results[0].names[int(c)]
-            all_classes.add(class_name)
-
+        if frame_count % frame_skip == 0:
+            results = model_video(frame, conf=conf_threshold)
+            annotated_frame = costum_bounding_box(frame, results)
+        
+            for c in results[0].boxes.cls:
+                class_name = results[0].names[int(c)]
+                all_classes.add(class_name)
+                
+            last_annotated_frame = annotated_frame
+        else:
+            if last_annotated_frame is not None:
+                annotated_frame = last_annotated_frame
+            else:
+                annotated_frame = frame
+        
         out.write(annotated_frame)
+        frame_count += 1
 
     cap.release()
     out.release()
