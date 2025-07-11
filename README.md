@@ -276,7 +276,9 @@ A interface foi desenvolvida com **Gradio** e está disponível na Hugging Face.
 
 ![Interface via Gradio](static/images/interface.png)
 
-👉 Acesse: [https://huggingface.co/spaces/carolinasoares/urban\_disaster\_monitor](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor)
+Hospedado com [Hugging Face <img src="static/images/huggingface_mini.svg" alt="huggingface" height=40>](https://huggingface.co)
+
+👉 [Acesse a interface](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor)
 
 ---
 
