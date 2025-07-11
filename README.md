@@ -16,8 +16,8 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="Capa do projeto" width="400"/> 
-<img src="static/images/capa2.png" alt="Capa do projeto" width="400"/>
+<img src="static/images/capa1.webp" alt="Capa do projeto 1" width="400"/> 
+<img src="static/images/capa2.webp" alt="Capa do projeto 2" width="400"/>
 
 </div>
 
@@ -166,6 +166,14 @@ O processo de treinamento envolve as seguintes fases, visando a otimização do 
 3.  **Validação Contínua**: O desempenho do modelo é monitorado e validado em tempo real durante o treinamento utilizando métricas de desempenho padrão da área em um conjunto de validação separado. Isso permite identificar _overfitting_ e ajustar hiperparâmetros de forma dinâmica.
 4.  **Testes e Avaliação**: Após o treinamento, o modelo é avaliado extensivamente em um conjunto de teste independente, contendo imagens reais e cenários não vistos, para verificar sua capacidade de generalização e robustez em condições adversas.
 
+<div align="center">
+
+<img src="static/images/val_batch2_pred.jpg" alt="Imagem de teste 1" width="600"/>
+
+*Etapa de treinanamento das imagens*
+
+</div>
+
 ---
 
 ## 📊 Resultados e discussões
@@ -192,6 +200,10 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 <img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
 <img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
 
+</div>
+
+<div align="center">
+
 <img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
 <img src="static/images/teste2-saida.webp" alt="Imagem de teste 2 saída" width="400"/>
 
@@ -206,7 +218,13 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 
 Um vídeo público do YouTube foi utilizado para simular um cenário real de desastre urbano:
 
+<div align="center">
+
+<img src="static/gif/ezgif-3fb8266f7c9a47.gif" alt="Exemplo de vídeo de treinamento" width="500"/>
+
 [Vídeo utilizado no experimento](https://www.youtube.com/watch?v=QnFwDqzCwRU)
+
+</div>
 
 - O modelo com **30 épocas** apresentou maior estabilidade e consistência ao longo dos quadros.
 - O modelo com **50 épocas**, embora superior para imagens, teve comportamento errático em vídeo, gerando detecções flutuantes e menos confiáveis — sugerindo possível overfitting ou limitação da generalização temporal.
