@@ -170,7 +170,7 @@ O processo de treinamento envolve as seguintes fases, visando a otimização do 
 
 <img src="static/images/val_batch2_pred.jpg" alt="Imagem de teste 1" width="600"/>
 
-*Etapa de treinanamento das imagens*
+*Etapa de treinamento das imagens*
 
 </div>
 
