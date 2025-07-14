@@ -78,6 +78,7 @@ urban-disaster-monitor/
 │   ├── images/
 │   ├── graphics/
 │   └── matrix/
+│   └── gif/
 ├── config.py
 ├── train.py
 ├── README.md
