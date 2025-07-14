@@ -181,7 +181,7 @@ O processo de treinamento envolve as seguintes fases, visando a otimização do 
 
 ### Análise de Resultados e Métricas
 
-A avaliação da eficácia do modelo será realizada através de um conjunto de métricas quantitativas e qualitativas, fornecendo uma análise abrangente do seu desempenho:
+A avaliação da eficácia do modelo foi realizada através de um conjunto de métricas quantitativas e qualitativas, fornecendo uma análise abrangente do seu desempenho:
 
 - **Métricas de Precisão Média (mAP)**:
   - **mAP@0.5**: _Mean Average Precision_ calculada com um _IoU (Intersection over Union)_ _threshold_ de 0.5. Essa métrica é comumente utilizada para avaliação rápida da precisão de detecção.
