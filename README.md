@@ -333,7 +333,7 @@ python app.py
 
 ---
 
-## 📄 Lincença
+## 📄 Licença
 
 Urban Disaster Monitor é licenciado sob a Licença MIT encontrada no arquivo [LICENSE](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) no diretório raiz deste repositório.
 
