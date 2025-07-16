@@ -49,7 +49,7 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 - [Tecnologias](#-tecnologias)
 - [Equipe do Projeto](#-equipe-do-projeto)
 - [Como Executar](#-como-executar)
-- [Lincença](#-lincença)
+- [Licença](#-licença)
 - [Referências Bibliográficas](#-referências-bibliográficas)
 
 ---
