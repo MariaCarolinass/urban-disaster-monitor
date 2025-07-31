@@ -41,8 +41,9 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 - [Resultados e discussões](#-resultados-e-discussões)
   - [Análise de Resultados e Métricas](#análise-de-resultados-e-métricas)
   - [Avaliação em Imagens Estáticas](#avaliação-em-imagens-estáticas)
-  - [Avaliação em Vídeo](#%EF%B8%8F-avaliação-em-vídeo)
-  - [Gráficos e Visualizações](#-gráficos-e-visualizações)
+  - [Avaliação em Vídeo](#avaliação-em-vídeo)
+  - [Gráficos e Visualizações](#gráficos-e-visualizações)
+  - [Trabalhos Futuros](#trabalhos-futuros)
 - [Conclusão](#-conclusão)
 - [Interface Interativa](#-interface-interativa)
 - [Tecnologias](#%EF%B8%8F-tecnologias)
@@ -214,7 +215,7 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 - Com **30 épocas**, o modelo já era capaz de detectar pessoas e socorristas com precisão razoável.
 - Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
 
-### 🎞️ Avaliação em Vídeo
+### Avaliação em Vídeo
 
 Um vídeo público do YouTube foi utilizado para simular um cenário real de desastre urbano:
 
@@ -231,9 +232,7 @@ Um vídeo público do YouTube foi utilizado para simular um cenário real de des
 
 **Observação**: Treinar com mais de 50 épocas pode exigir hardware com maior capacidade de memória. Durante o experimento, o uso da conta acadêmica no Google Colab atingiu o limite de memória, reforçando a necessidade de infraestrutura mais robusta para lidar com sequências temporais (vídeos).
 
----
-
-### 📊 Gráficos e Visualizações
+### Gráficos e Visualizações
 
 **30 épocas:**
 
@@ -253,6 +252,15 @@ Um vídeo público do YouTube foi utilizado para simular um cenário real de des
 <img src="static/graphics/graficometricas.png" alt="Gráfico de métricas" width="500"/>
 
 </div>
+
+### Trabalhos Futuros
+
+- Identificação de animais em cenários de resgate.
+- Integração com dados temporais, usando arquiteturas como ConvLSTM, para melhorar o acompanhamento de movimentações em vídeo.
+- Implementação em sistemas embarcados, como drones e câmeras urbanas, para permitir detecção em tempo real no ambiente.
+- Detecção de objetos contextuais, como destroços, veículos de resgate ou barreiras, que podem enriquecer a compreensão da cena.
+- Treinamento com dados mais diversos, incluindo imagens noturnas ou em baixa visibilidade, para aumentar a robustez do modelo.
+- Treinamento do modelo com mais épocas em ambiente dedicado.
 
 ---
 
