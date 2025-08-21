@@ -1,4 +1,4 @@
-\<div align="center"\>
+<div align="center"\>
 
 # Urban Disaster Monitor
 
@@ -8,18 +8,18 @@
 
 [English](./README.md) | [Português](./README.pt.md)
 
-\</div\>
+</div\>
 
 # Urban Disaster Monitor: Detection and Classification of People in Disaster Scenarios
 
 An intelligent computer vision system for **detecting and classifying civilians and rescuers** in urban disaster scenarios, using **YOLOv8**.
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/images/capa1.webp" alt="Project cover 1" width="400"/\>
-\<img src="static/images/capa2.webp" alt="Project cover 2" width="400"/\>
+<img src="static/images/capa1.webp" alt="Project cover 1" width="400"/\>
+<img src="static/images/capa2.webp" alt="Project cover 2" width="400"/\>
 
-\</div\>
+</div\>
 
 ---
 
@@ -105,11 +105,11 @@ This project proposes the development of an **intelligent computer vision system
 
 Developed during the Computer Vision course at the **School of Science and Technology (ECT/UFRN)** as a volunteer effort for the **Smart Metropolis Lab (SMLab)** of the **Metrópole Digital Institute (IMD/UFRN)**, this work is an integral part of the **SPICI Project (Integrated Public Safety in Smart Cities)**. SPICI aims to create an intelligent platform for collecting, processing, and analyzing images and critical information in real-time, contributing to crisis and disaster management through advanced technologies like computer vision and artificial intelligence. The `Urban Disaster Monitor` directly aligns with SPICI's objectives by providing a specialized tool for identifying people in disaster scenarios, adding value to the platform's response and decision-making capabilities.
 
-\<div align="center"\>
+<div align="center"\>
 
-\<a href="[https://smlab.imd.ufrn.br/](https://smlab.imd.ufrn.br/)"\>\<img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis Lab" width="150"/\>\</a\>\<a href="[https://smlab.imd.ufrn.br/projeto-spici/](https://smlab.imd.ufrn.br/projeto-spici/)"\>\<img src="static/images/spici.png" alt="Logo SPICI" width="100"/\>\</a\>\<a href="[https://imd.ufrn.br/](https://imd.ufrn.br/)"\>\<img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/\>\</a\>\<a href="[https://www.ect.ufrn.br/](https://www.ect.ufrn.br/)"\>\<img src="static/images/cet.png" alt="Logo IMD/UFRN" width="100"/\>\</a\>
+<a href="[https://smlab.imd.ufrn.br/](https://smlab.imd.ufrn.br/)"\>\<img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis Lab" width="150"/\>\</a\>\<a href="[https://smlab.imd.ufrn.br/projeto-spici/](https://smlab.imd.ufrn.br/projeto-spici/)"\>\<img src="static/images/spici.png" alt="Logo SPICI" width="100"/\>\</a\>\<a href="[https://imd.ufrn.br/](https://imd.ufrn.br/)"\>\<img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/\>\</a\>\<a href="[https://www.ect.ufrn.br/](https://www.ect.ufrn.br/)"\>\<img src="static/images/cet.png" alt="Logo IMD/UFRN" width="100"/\>\</a\>
 
-\</div\>
+</div\>
 
 ---
 
@@ -167,13 +167,13 @@ The training process involves the following phases, aiming to optimize the model
 3.  **Continuous Validation**: The model's performance is monitored and validated in real-time during training using standard performance metrics from the field on a separate validation set. This allows for the identification of overfitting and dynamic adjustment of hyperparameters.
 4.  **Testing and Evaluation**: After training, the model is extensively evaluated on an independent test set, containing real images and unseen scenarios, to verify its generalization ability and robustness under adverse conditions.
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/images/val_batch2_pred.jpg" alt="Test image 1" width="600"/\>
+<img src="static/images/val_batch2_pred.jpg" alt="Test image 1" width="600"/\>
 
 _Image training step_
 
-\</div\>
+</div\>
 
 ---
 
@@ -196,21 +196,21 @@ The results will be detailed in technical reports and scientific articles, inclu
 
 Qualitative tests were performed on images outside the training set, specifically of floods, to validate the detection capability of the YOLOv8 model trained with different numbers of epochs (30 and 50).
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/images/teste1.webp" alt="Test image 1" width="400"/\>
-\<img src="static/images/teste1-saida.webp" alt="Test image 1 output" width="400"/\>
+<img src="static/images/teste1.webp" alt="Test image 1" width="400"/\>
+<img src="static/images/teste1-saida.webp" alt="Test image 1 output" width="400"/\>
 
-\</div\>
+</div\>
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/images/teste2.webp" alt="Test image 2" width="400"/\>
-\<img src="static/images/teste2-saida.webp" alt="Test image 2 output" width="400"/\>
+<img src="static/images/teste2.webp" alt="Test image 2" width="400"/\>
+<img src="static/images/teste2-saida.webp" alt="Test image 2 output" width="400"/\>
 
 _Source: [BBC Brasil - Floods in SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)_
 
-\</div\>
+</div\>
 
 - With **30 epochs**, the model was already capable of detecting people and rescuers with reasonable accuracy.
 - With **50 epochs**, a clear improvement was observed in static images, with fewer false positives, correcting errors such as the incorrect identification of people on poles or in shaded areas.
@@ -219,13 +219,13 @@ _Source: [BBC Brasil - Floods in SP](https://www.bbc.com/portuguese/articles/cw0
 
 A public YouTube video was used to simulate a real urban disaster scenario:
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/gif/ezgif-3fb8266f7c9a47.gif" alt="Training video example" width="500"/\>
+<img src="static/gif/ezgif-3fb8266f7c9a47.gif" alt="Training video example" width="500"/\>
 
 [Video used in the experiment](https://www.youtube.com/watch?v=QnFwDqzCwRU)
 
-\</div\>
+</div\>
 
 - The model with **30 epochs** showed greater stability and consistency across frames.
 - The model with **50 epochs**, although superior for images, behaved erratically in video, generating fluctuating and less reliable detections—suggesting possible overfitting or a limitation in temporal generalization.
@@ -236,22 +236,22 @@ A public YouTube video was used to simulate a real urban disaster scenario:
 
 **30 epochs:**
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/graphics/graficoerro30p.png" alt="Error graph during training" width="500"/\>
-\<img src="static/matrix/matriz-30ep.png" alt="Confusion matrix" width="500"/\>
+<img src="static/graphics/graficoerro30p.png" alt="Error graph during training" width="500"/\>
+<img src="static/matrix/matriz-30ep.png" alt="Confusion matrix" width="500"/\>
 
-\</div\>
+</div\>
 
 **50 epochs:**
 
-\<div align="center"\>
+<div align="center"\>
 
-\<img src="static/graphics/graficoerro50p.png" alt="Error graph during training" width="500"/\>
-\<img src="static/matrix/matriz-50ep.png" alt="Confusion matrix" width="500"/\>
-\<img src="static/graphics/graficometricas.png" alt="Metrics graph" width="500"/\>
+<img src="static/graphics/graficoerro50p.png" alt="Error graph during training" width="500"/\>
+<img src="static/matrix/matriz-50ep.png" alt="Confusion matrix" width="500"/\>
+<img src="static/graphics/graficometricas.png" alt="Metrics graph" width="500"/\>
 
-\</div\>
+</div\>
 
 ### Future Work
 
