@@ -1,60 +1,60 @@
-<div align="center">
+\<div align="center"\>
 
 # Urban Disaster Monitor
 
-[![YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ids-NQ6EfzGgfK41BWvkIXxOkUomexo0?usp=sharing) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) ![Status](https://img.shields.io/badge/status-MVP%20Ready-brightgreen)
+[](https://www.google.com/search?q=https://docs.ultralytics.com/models/yolov8/%23yolov8-usage-examples) [](https://colab.research.google.com/drive/1ids-NQ6EfzGgfK41BWvkIXxOkUomexo0?usp=sharing) [](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
 [App](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor) | [Dataset](https://github.com/MariaCarolinass/urban-disaster-monitor/tree/main/dataset)
 
-[English](./README.md) | [Português](./README.pt.md)
+[English](https://www.google.com/search?q=) | [Português](https://www.google.com/search?q=)
 
-</div>
+\</div\>
 
-# Urban Disaster Monitor: Detecção e Classificação de Pessoas em Cenários de Desastre
+# Urban Disaster Monitor: Detection and Classification of People in Disaster Scenarios
 
-Sistema inteligente de visão computacional para **detecção e classificação de civis e socorristas** em cenários de desastre urbano, utilizando **YOLOv8**.
+An intelligent computer vision system for **detecting and classifying civilians and rescuers** in urban disaster scenarios, using **YOLOv8**.
 
-<div align="center">
+\<div align="center"\>
 
-<img src="static/images/capa1.webp" alt="Capa do projeto 1" width="400"/> 
-<img src="static/images/capa2.webp" alt="Capa do projeto 2" width="400"/>
+\<img src="static/images/capa1.webp" alt="Project cover 1" width="400"/\>
+\<img src="static/images/capa2.webp" alt="Project cover 2" width="400"/\>
 
-</div>
-
----
-
-🛑 Em situações de desastre urbano, cada segundo importa. Este projeto oferece uma ferramenta de visão computacional para ajudar equipes de resgate a agir com mais precisão e velocidade.
+\</div\>
 
 ---
 
-## 📑 Sumário
-
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Funcionalidades](#-funcionalidades)
-- [Introdução](#-introdução)
-- [Dataset](#-dataset)
-- [Metodologia](#%EF%B8%8F-metodologia)
-  - [Aquisição e Anotação de Dados](#aquisição-e-anotação-de-dados)
-  - [Pré-processamento de Dados](#pré-processamento-de-dados)
-  - [Arquitetura do Modelo e Ferramentas](#arquitetura-do-modelo-e-ferramentas)
-  - [Treinamento e Otimização do Modelo](#treinamento-e-otimização-do-modelo)
-- [Resultados e discussões](#-resultados-e-discussões)
-  - [Análise de Resultados e Métricas](#análise-de-resultados-e-métricas)
-  - [Avaliação em Imagens Estáticas](#avaliação-em-imagens-estáticas)
-  - [Avaliação em Vídeo](#avaliação-em-vídeo)
-  - [Gráficos e Visualizações](#gráficos-e-visualizações)
-  - [Trabalhos Futuros](#trabalhos-futuros)
-- [Conclusão](#-conclusão)
-- [Interface Interativa](#-interface-interativa)
-- [Tecnologias](#%EF%B8%8F-tecnologias)
-- [Equipe do Projeto](#-equipe-do-projeto)
-- [Como Executar](#-como-executar)
-- [Licença](#-licença)
-- [Referências Bibliográficas](#-referências-bibliográficas)
+🛑 In urban disaster situations, every second matters. This project offers a computer vision tool to help rescue teams act with greater precision and speed.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📑 Summary
+
+- [Project Structure](https://www.google.com/search?q=%23-project-structure)
+- [Features](https://www.google.com/search?q=%23-features)
+- [Introduction](https://www.google.com/search?q=%23-introduction)
+- [Dataset](https://www.google.com/search?q=%23-dataset)
+- [Methodology](https://www.google.com/search?q=%23%25EF%25B8%258F-methodology)
+  - [Data Acquisition and Annotation](https://www.google.com/search?q=%23data-acquisition-and-annotation)
+  - [Data Pre-processing](https://www.google.com/search?q=%23data-pre-processing)
+  - [Model Architecture and Tools](https://www.google.com/search?q=%23model-architecture-and-tools)
+  - [Model Training and Optimization](https://www.google.com/search?q=%23model-training-and-optimization)
+- [Results and Discussions](https://www.google.com/search?q=%23-results-and-discussions)
+  - [Results and Metrics Analysis](https://www.google.com/search?q=%23results-and-metrics-analysis)
+  - [Evaluation on Static Images](https://www.google.com/search?q=%23evaluation-on-static-images)
+  - [Evaluation on Video](https://www.google.com/search?q=%23evaluation-on-video)
+  - [Charts and Visualizations](https://www.google.com/search?q=%23charts-and-visualizations)
+  - [Future Work](https://www.google.com/search?q=%23future-work)
+- [Conclusion](https://www.google.com/search?q=%23-conclusion)
+- [Interactive Interface](https://www.google.com/search?q=%23-interactive-interface)
+- [Technologies](https://www.google.com/search?q=%23%25EF%25B8%258F-technologies)
+- [Project Team](https://www.google.com/search?q=%23-project-team)
+- [How to Run](https://www.google.com/search?q=%23-how-to-run)
+- [License](https://www.google.com/search?q=%23-license)
+- [Bibliographical References](https://www.google.com/search?q=%23-bibliographical-references)
+
+---
+
+## 📁 Project Structure
 
 ```
 urban-disaster-monitor/
@@ -87,210 +87,208 @@ urban-disaster-monitor/
 
 ---
 
-## 🔍 Funcionalidades
+## 🔍 Features
 
-- Detecção de pessoas em **imagens** e **vídeos**
-- Diferenciação entre **civis** e **socorristas**
-- Treinamento com **YOLOv8**
-- Interface interativa via **Gradio**
-- Visualização de **métricas e bounding boxes**
+- Detection of people in **images** and **videos**
+- Differentiation between **civilians** and **rescuers**
+- Training with **YOLOv8**
+- Interactive interface via **Gradio**
+- Visualization of **metrics and bounding boxes**
 
 ---
 
-## 📌 Introdução
+## 📌 Introduction
 
-Eventos de **desastre urbano**, como colapsos estruturais, inundações e deslizamentos de terra, impõem desafios significativos às operações de resposta e resgate. A capacidade de **identificar e categorizar rapidamente** indivíduos como civis ou socorristas em tempo real é crucial para a otimização da alocação de recursos e a minimização de fatalidades. Imagens coletadas por veículos aéreos não tripulados (VANTs), sistemas de vigilância e dispositivos móveis representam uma fonte de dados valiosa para esta finalidade.
+**Urban disaster** events, such as structural collapses, floods, and landslides, pose significant challenges to response and rescue operations. The ability to **quickly identify and categorize** individuals as civilians or rescuers in real-time is crucial for optimizing resource allocation and minimizing fatalities. Images collected by unmanned aerial vehicles (UAVs), surveillance systems, and mobile devices represent a valuable data source for this purpose.
 
-Este projeto propõe o desenvolvimento de um **sistema inteligente de visão computacional** para a **detecção e classificação discriminativa de indivíduos (civis e socorristas)** em ambientes impactados por desastres urbanos. Utilizando a arquitetura de **detecção de objetos YOLOv8 (You Only Look Once, versão 8)**, o objetivo é construir uma ferramenta robusta e eficiente capaz de fornecer suporte crítico a autoridades e equipes de emergência durante a fase de resposta a desastres.
+This project proposes the development of an **intelligent computer vision system** for the **discriminative detection and classification of individuals (civilians and rescuers)** in environments impacted by urban disasters. Using the **YOLOv8 (You Only Look Once, version 8) object detection architecture**, the goal is to build a robust and efficient tool capable of providing critical support to authorities and emergency teams during the disaster response phase.
 
-Desenvolvido durante a disciplina de Visão Computacional na **Escola de Ciências e Tecnologia (ECT/UFRN)** em trabalho voluntário para o **Smart Metropolis Lab (SMLab)** do **Instituto Metrópole Digital (IMD/UFRN)**, este trabalho é parte integrante do **Projeto SPICI (Segurança Pública Integrada em Cidades Inteligentes)**. O SPICI visa criar uma plataforma inteligente para coleta, processamento e análise de imagens e informações críticas em tempo real, contribuindo para a gestão de crises e desastres por meio de tecnologias avançadas como visão computacional e inteligência artificial. O `Urban Disaster Monitor` alinha-se diretamente com os objetivos do SPICI ao fornecer uma ferramenta especializada para a identificação de pessoas em cenários de desastre, agregando valor à capacidade de resposta e tomada de decisão da plataforma.
+Developed during the Computer Vision course at the **School of Science and Technology (ECT/UFRN)** as a volunteer effort for the **Smart Metropolis Lab (SMLab)** of the **Metrópole Digital Institute (IMD/UFRN)**, this work is an integral part of the **SPICI Project (Integrated Public Safety in Smart Cities)**. SPICI aims to create an intelligent platform for collecting, processing, and analyzing images and critical information in real-time, contributing to crisis and disaster management through advanced technologies like computer vision and artificial intelligence. The `Urban Disaster Monitor` directly aligns with SPICI's objectives by providing a specialized tool for identifying people in disaster scenarios, adding value to the platform's response and decision-making capabilities.
 
-<div align="center">
+\<div align="center"\>
 
-<a href="https://smlab.imd.ufrn.br/"><img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis Lab" width="150"/></a><a href="https://smlab.imd.ufrn.br/projeto-spici/"><img src="static/images/spici.png" alt="Logo SPICI" width="100"/></a><a href="https://imd.ufrn.br/"><img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/></a><a href="https://www.ect.ufrn.br/"><img src="static/images/cet.png" alt="Logo IMD/UFRN" width="100"/></a>
+\<a href="[https://smlab.imd.ufrn.br/](https://smlab.imd.ufrn.br/)"\>\<img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis Lab" width="150"/\>\</a\>\<a href="[https://smlab.imd.ufrn.br/projeto-spici/](https://smlab.imd.ufrn.br/projeto-spici/)"\>\<img src="static/images/spici.png" alt="Logo SPICI" width="100"/\>\</a\>\<a href="[https://imd.ufrn.br/](https://imd.ufrn.br/)"\>\<img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/\>\</a\>\<a href="[https://www.ect.ufrn.br/](https://www.ect.ufrn.br/)"\>\<img src="static/images/cet.png" alt="Logo IMD/UFRN" width="100"/\>\</a\>
 
-</div>
+\</div\>
 
 ---
 
 ## 📂 Dataset
 
-- **Total de imagens**: 2403
-- **Fontes**: dados reais mais imagens sintéticas
+- **Total images**: 2403
+- **Sources**: real data plus synthetic images
 - **Classes**:
-  - `people` (civis)
-  - `rescuer` (socorristas com EPI)
-- **Anotado via**: [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
-- **Formato das Anotações**: arquivos `.txt` contendo as coordenadas das _bounding boxes_ e os IDs das classes, acompanhados das imagens correspondentes, seguindo a convenção de nomenclatura do YOLO.
+  - `people` (civilians)
+  - `rescuer` (rescuers with PPE)
+- **Annotated via**: [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
+- **Annotation Format**: `.txt` files containing the coordinates of the _bounding boxes_ and class IDs, accompanied by the corresponding images, following YOLO's naming convention.
 
 ---
 
-## ⚙️ Metodologia
+## ⚙️ Methodology
 
-- Arquitetura: `YOLOv8s` e `YOLOv8n`
-- Aumento de dados: rotação, ruído, brilho, etc.
-- Treinamento: 30 e 50 épocas comparadas
-- Métricas principais:
+- Architecture: `YOLOv8s` and `YOLOv8n`
+- Data augmentation: rotation, noise, brightness, etc.
+- Training: 30 and 50 epochs compared
+- Main metrics:
   - `mAP@0.5`, `mAP@0.5:0.95`
   - `Precision`, `Recall`
-  - Matriz de confusão
+  - Confusion matrix
 
-### Aquisição e Anotação de Dados
+### Data Acquisition and Annotation
 
-Para o treinamento e validação do modelo, foi compilado um **dataset abrangente** composto por diversas imagens que representam cenários típicos de desastres urbanos (e.g., edifícios colapsados, áreas inundadas). As fontes incluem **repositórios públicos de imagens de desastres** e a **geração de imagens sintéticas** para complementar a variabilidade do conjunto de dados. Essa abordagem híbrida visa mitigar a escassez de dados reais de alta qualidade em ambientes de desastre.
+For model training and validation, a **comprehensive dataset** was compiled, consisting of various images representing typical urban disaster scenarios (e.g., collapsed buildings, flooded areas). The sources include **public repositories of disaster images** and the **generation of synthetic images** to supplement the dataset's variability. This hybrid approach aims to mitigate the scarcity of high-quality real data in disaster environments.
 
-A **anotação dos objetos de interesse** está sendo realizada na plataforma **Roboflow**, onde as classes primárias de interesse são definidas como:
+The **annotation of objects of interest** is being carried out on the **Roboflow** platform, where the primary classes of interest are defined as:
 
-- `People`: Indivíduos não identificados como membros de equipes de resgate.
-- `Rescuer`: Indivíduos equipados ou identificáveis como parte de equipes de emergência (e.g., bombeiros, paramédicos), frequentemente distinguíveis por uniformes, equipamentos de proteção individual (EPI) ou posturas operacionais.
+- `People`: Individuals not identified as members of rescue teams.
+- `Rescuer`: Individuals equipped or identifiable as part of emergency teams (e.g., firefighters, paramedics), often distinguishable by uniforms, personal protective equipment (PPE), or operational postures.
 
-### Pré-processamento de Dados
+### Data Pre-processing
 
-As etapas de pré-processamento são cruciais para otimizar o desempenho do modelo e garantir sua generalização:
+Pre-processing steps are crucial for optimizing model performance and ensuring its generalization:
 
-- **Redimensionamento**: Todas as imagens são escaladas para dimensões compatíveis com as entradas da arquitetura YOLOv8, balanceando a fidelidade da informação visual com a eficiência computacional.
-- **Aumento de Dados (Data Augmentation)**: Técnicas de aumento de dados (e.g., rotação, translação, espelhamento, ajuste de brilho e contraste, _blurring_ e ruído) são aplicadas para aumentar a robustez do modelo, mitigar o risco de _overfitting_ e compensar potenciais desequilíbrios entre as classes. A diversificação do dataset através do _data augmentation_ é fundamental para simular a variabilidade das condições de imagem em cenários reais de desastre.
-- **Particionamento**: O dataset é dividido em conjuntos de treino, validação e teste, tipicamente nas proporções 70%, 20% e 10%, respectivamente. Essa divisão estratificada assegura uma avaliação imparcial da capacidade de generalização do modelo para dados não vistos.
+- **Resizing**: All images are scaled to dimensions compatible with the YOLOv8 architecture's inputs, balancing visual information fidelity with computational efficiency.
+- **Data Augmentation**: Data augmentation techniques (e.g., rotation, translation, mirroring, brightness and contrast adjustment, blurring, and noise) are applied to increase the model's robustness, mitigate the risk of overfitting, and compensate for potential class imbalances. Diversifying the dataset through data augmentation is fundamental to simulating the variability of image conditions in real disaster scenarios.
+- **Partitioning**: The dataset is divided into training, validation, and test sets, typically in the proportions 70%, 20%, and 10%, respectively. This stratified division ensures an unbiased evaluation of the model's ability to generalize to unseen data.
 
-### Arquitetura do Modelo e Ferramentas
+### Model Architecture and Tools
 
-- **Modelo de Detecção**: **YOLOv8 (You Only Look Once, versão 8)**. Essa arquitetura foi selecionada por sua comprovada eficiência na detecção de objetos em tempo real, combinando alta acurácia com velocidade de inferência, características essenciais para aplicações em cenários emergenciais.
-- **Tarefa**: Detecção de Objetos (Object Detection).
-- **Frameworks e Bibliotecas**: O desenvolvimento e treinamento do modelo são realizados com **Ultralytics YOLOv8**, utilizando **PyTorch** como _backend_ de aprendizado profundo, e **OpenCV** para manipulação de imagens e pré-processamento de vídeo.
+- **Detection Model**: **YOLOv8 (You Only Look Once, version 8)**. This architecture was selected for its proven efficiency in real-time object detection, combining high accuracy with inference speed, which are essential characteristics for applications in emergency scenarios.
+- **Task**: Object Detection.
+- **Frameworks and Libraries**: The model development and training are carried out with **Ultralytics YOLOv8**, using **PyTorch** as the deep learning backend, and **OpenCV** for image manipulation and video pre-processing.
 
-### Treinamento e Otimização do Modelo
+### Model Training and Optimization
 
-O processo de treinamento envolve as seguintes fases, visando a otimização do desempenho do modelo:
+The training process involves the following phases, aiming to optimize the model's performance:
 
-1.  **Conversão de Anotações**: As anotações geradas no formato Roboflow são convertidas para o formato YOLO (`.txt`), que é o padrão de entrada para os modelos da família YOLO.
-2.  **Treinamento Iterativo**: O modelo é treinado utilizando um conjunto de parâmetros otimizados, incluindo _batch size_, taxa de aprendizado (_learning rate_) e número de _epochs_. Técnicas de agendamento da taxa de aprendizado (_learning rate schedulers_) e otimizadores (e.g., Adam, SGD) são empregadas para acelerar a convergência e melhorar a performance.
-3.  **Validação Contínua**: O desempenho do modelo é monitorado e validado em tempo real durante o treinamento utilizando métricas de desempenho padrão da área em um conjunto de validação separado. Isso permite identificar _overfitting_ e ajustar hiperparâmetros de forma dinâmica.
-4.  **Testes e Avaliação**: Após o treinamento, o modelo é avaliado extensivamente em um conjunto de teste independente, contendo imagens reais e cenários não vistos, para verificar sua capacidade de generalização e robustez em condições adversas.
+1.  **Annotation Conversion**: Annotations generated in the Roboflow format are converted to the YOLO format (`.txt`), which is the standard input for models in the YOLO family.
+2.  **Iterative Training**: The model is trained using a set of optimized parameters, including batch size, learning rate, and number of epochs. Learning rate schedulers and optimizers (e.g., Adam, SGD) are employed to accelerate convergence and improve performance.
+3.  **Continuous Validation**: The model's performance is monitored and validated in real-time during training using standard performance metrics from the field on a separate validation set. This allows for the identification of overfitting and dynamic adjustment of hyperparameters.
+4.  **Testing and Evaluation**: After training, the model is extensively evaluated on an independent test set, containing real images and unseen scenarios, to verify its generalization ability and robustness under adverse conditions.
 
-<div align="center">
+\<div align="center"\>
 
-<img src="static/images/val_batch2_pred.jpg" alt="Imagem de teste 1" width="600"/>
+\<img src="static/images/val_batch2_pred.jpg" alt="Test image 1" width="600"/\>
 
-_Etapa de treinamento das imagens_
+_Image training step_
 
-</div>
-
----
-
-## 📊 Resultados e discussões
-
-### Análise de Resultados e Métricas
-
-A avaliação da eficácia do modelo foi realizada através de um conjunto de métricas quantitativas e qualitativas, fornecendo uma análise abrangente do seu desempenho:
-
-- **Métricas de Precisão Média (mAP)**:
-  - **mAP@0.5**: _Mean Average Precision_ calculada com um _IoU (Intersection over Union)_ _threshold_ de 0.5. Essa métrica é comumente utilizada para avaliação rápida da precisão de detecção.
-  - **mAP@0.5:0.95**: _Mean Average Precision_ calculada em múltiplos _thresholds_ de _IoU_, variando de 0.5 a 0.95 em etapas de 0.05. Essa métrica oferece uma medida mais robusta e abrangente da acurácia de localização e classificação das detecções.
-- **Precisão (Precision) e Recall (Revocação)**: Avaliados por classe para compreender o desempenho individual na identificação de civis e socorristas, indicando a proporção de detecções corretas e a capacidade do modelo de encontrar todas as instâncias relevantes, respectivamente.
-- **Matriz de Confusão (Confusion Matrix)**: Essencial para visualizar e analisar os tipos de erros (falsos positivos, falsos negativos) cometidos pelo modelo, especialmente a confusão entre as classes de interesse, o que é crítico em cenários onde a distinção entre civis e socorristas é vital.
-- **Análise Qualitativa**: Serão apresentadas visualizações das _bounding boxes_ e rótulos de classe sobre as imagens de teste. Essa análise visual permite uma avaliação subjetiva da acurácia das detecções e da capacidade do modelo de lidar com variações de escala, oclusão e iluminação.
-
-Os resultados serão detalhadamente apresentados em relatórios técnicos e artigos científicos, incluindo gráficos e tabelas estatísticas, acompanhados de uma análise crítica sobre as limitações do modelo e o potencial de aplicação em contextos reais de desastre.
-
-### Avaliação em Imagens Estáticas
-
-Foram realizados testes qualitativos em imagens fora do treinamento de alagamentos para validar a capacidade de detecção do modelo YOLOv8 treinado em diferentes regimes de épocas (30 e 50).
-
-<div align="center">
-
-<img src="static/images/teste1.webp" alt="Imagem de teste 1" width="400"/>
-<img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
-
-</div>
-
-<div align="center">
-
-<img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
-<img src="static/images/teste2-saida.webp" alt="Imagem de teste 2 saída" width="400"/>
-
-_Fonte: [BBC Brasil - Alagamentos em SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)_
-
-</div>
-
-- Com **30 épocas**, o modelo já era capaz de detectar pessoas e socorristas com precisão razoável.
-- Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
-
-### Avaliação em Vídeo
-
-Um vídeo público do YouTube foi utilizado para simular um cenário real de desastre urbano:
-
-<div align="center">
-
-<img src="static/gif/ezgif-3fb8266f7c9a47.gif" alt="Exemplo de vídeo de treinamento" width="500"/>
-
-[Vídeo utilizado no experimento](https://www.youtube.com/watch?v=QnFwDqzCwRU)
-
-</div>
-
-- O modelo com **30 épocas** apresentou maior estabilidade e consistência ao longo dos quadros.
-- O modelo com **50 épocas**, embora superior para imagens, teve comportamento errático em vídeo, gerando detecções flutuantes e menos confiáveis — sugerindo possível overfitting ou limitação da generalização temporal.
-
-**Observação**: Treinar com mais de 50 épocas pode exigir hardware com maior capacidade de memória. Durante o experimento, o uso da conta acadêmica no Google Colab atingiu o limite de memória, reforçando a necessidade de infraestrutura mais robusta para lidar com sequências temporais (vídeos).
-
-### Gráficos e Visualizações
-
-**30 épocas:**
-
-<div align="center">
-
-<img src="static/graphics/graficoerro30p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
-<img src="static/matrix/matriz-30ep.png" alt="Matriz confusão" width="500"/>
-
-</div>
-
-**50 épocas:**
-
-<div align="center">
-
-<img src="static/graphics/graficoerro50p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
-<img src="static/matrix/matriz-50ep.png" alt="Matriz confusão" width="500"/>
-<img src="static/graphics/graficometricas.png" alt="Gráfico de métricas" width="500"/>
-
-</div>
-
-### Trabalhos Futuros
-
-- Identificação de animais em cenários de resgate.
-- Integração com dados temporais, usando arquiteturas como ConvLSTM, para melhorar o acompanhamento de movimentações em vídeo.
-- Implementação em sistemas embarcados, como drones e câmeras urbanas, para permitir detecção em tempo real no ambiente.
-- Detecção de objetos contextuais, como destroços, veículos de resgate ou barreiras, que podem enriquecer a compreensão da cena.
-- Treinamento com dados mais diversos, incluindo imagens noturnas ou em baixa visibilidade, para aumentar a robustez do modelo.
-- Treinamento do modelo com mais épocas em ambiente dedicado.
+\</div\>
 
 ---
 
-## ✅ Conclusão
+## 📊 Results and Discussions
 
-**30 épocas** → melhor desempenho em vídeos, com menos ruído nas detecções.
+### Results and Metrics Analysis
 
-**50 épocas** → superioridade em imagens estáticas, com maior precisão espacial.
+The model's effectiveness was evaluated through a set of quantitative and qualitative metrics, providing a comprehensive analysis of its performance:
 
-**Trabalhos futuros:**
+- **Mean Average Precision (mAP) Metrics**:
+  - **mAP@0.5**: Mean Average Precision calculated with an IoU (Intersection over Union) threshold of 0.5. This metric is commonly used for a quick assessment of detection accuracy.
+  - **mAP@0.5:0.95**: Mean Average Precision calculated over multiple IoU thresholds, ranging from 0.5 to 0.95 in steps of 0.05. This metric offers a more robust and comprehensive measure of the localization and classification accuracy of the detections.
+- **Precision and Recall**: Evaluated per class to understand individual performance in identifying civilians and rescuers, indicating the proportion of correct detections and the model's ability to find all relevant instances, respectively.
+- **Confusion Matrix**: Essential for visualizing and analyzing the types of errors (false positives, false negatives) made by the model, especially the confusion between the classes of interest, which is critical in scenarios where the distinction between civilians and rescuers is vital.
+- **Qualitative Analysis**: Visualizations of bounding boxes and class labels will be presented over the test images. This visual analysis allows for a subjective assessment of the detection accuracy and the model's ability to handle variations in scale, occlusion, and lighting.
 
-- Ajuste de hiperparâmetros específicos para vídeo.
-- Treinamento com dados temporais (ex: sequências ou ConvLSTM).
-- Uso de infraestrutura com GPU dedicada (Google Colab Pro ou A100).
+The results will be detailed in technical reports and scientific articles, including graphs and statistical tables, accompanied by a critical analysis of the model's limitations and its potential for application in real disaster contexts.
+
+### Evaluation on Static Images
+
+Qualitative tests were performed on images outside the training set, specifically of floods, to validate the detection capability of the YOLOv8 model trained with different numbers of epochs (30 and 50).
+
+\<div align="center"\>
+
+\<img src="static/images/teste1.webp" alt="Test image 1" width="400"/\>
+\<img src="static/images/teste1-saida.webp" alt="Test image 1 output" width="400"/\>
+
+\</div\>
+
+\<div align="center"\>
+
+\<img src="static/images/teste2.webp" alt="Test image 2" width="400"/\>
+\<img src="static/images/teste2-saida.webp" alt="Test image 2 output" width="400"/\>
+
+_Source: [BBC Brasil - Floods in SP](https://www.bbc.com/portuguese/articles/cw00d51k5rlo)_
+
+\</div\>
+
+- With **30 epochs**, the model was already capable of detecting people and rescuers with reasonable accuracy.
+- With **50 epochs**, a clear improvement was observed in static images, with fewer false positives, correcting errors such as the incorrect identification of people on poles or in shaded areas.
+
+### Evaluation on Video
+
+A public YouTube video was used to simulate a real urban disaster scenario:
+
+\<div align="center"\>
+
+\<img src="static/gif/ezgif-3fb8266f7c9a47.gif" alt="Training video example" width="500"/\>
+
+[Video used in the experiment](https://www.youtube.com/watch?v=QnFwDqzCwRU)
+
+\</div\>
+
+- The model with **30 epochs** showed greater stability and consistency across frames.
+- The model with **50 epochs**, although superior for images, behaved erratically in video, generating fluctuating and less reliable detections—suggesting possible overfitting or a limitation in temporal generalization.
+
+**Note**: Training with more than 50 epochs may require hardware with greater memory capacity. During the experiment, the use of the academic account on Google Colab reached the memory limit, reinforcing the need for more robust infrastructure to handle temporal sequences (videos).
+
+### Charts and Visualizations
+
+**30 epochs:**
+
+\<div align="center"\>
+
+\<img src="static/graphics/graficoerro30p.png" alt="Error graph during training" width="500"/\>
+\<img src="static/matrix/matriz-30ep.png" alt="Confusion matrix" width="500"/\>
+
+\</div\>
+
+**50 epochs:**
+
+\<div align="center"\>
+
+\<img src="static/graphics/graficoerro50p.png" alt="Error graph during training" width="500"/\>
+\<img src="static/matrix/matriz-50ep.png" alt="Confusion matrix" width="500"/\>
+\<img src="static/graphics/graficometricas.png" alt="Metrics graph" width="500"/\>
+
+\</div\>
+
+### Future Work
+
+- Identification of animals in rescue scenarios.
+- Integration with temporal data, using architectures like ConvLSTM, to improve movement tracking in video.
+- Implementation on embedded systems, such as drones and urban cameras, to enable real-time detection in the field.
+- Detection of contextual objects, such as debris, rescue vehicles, or barriers, which can enrich the understanding of the scene.
+- Training with more diverse data, including nighttime or low-visibility images, to increase the model's robustness.
+- Training the model with more epochs in a dedicated environment.
 
 ---
 
-## 💻 Interface Interativa
+## ✅ Conclusion
 
-A interface foi desenvolvida com **Gradio** e está disponível na Hugging Face.
+**30 epochs** → better performance in videos, with less noise in detections.
 
-![Interface via Gradio](static/images/interface.png)
+**50 epochs** → superiority in static images, with greater spatial accuracy.
 
-Hospedado com [Hugging Face <img src="static/images/huggingface_mini.svg" alt="huggingface" height=40>](https://huggingface.co)
+**Future work:**
 
-👉 [Acesse a interface](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor)
+- Adjustment of hyperparameters specific to video.
+- Training with temporal data (e.g., sequences or ConvLSTM).
+- Use of infrastructure with a dedicated GPU (Google Colab Pro or A100).
 
 ---
 
-## 🛠️ Tecnologias
+## 💻 Interactive Interface
+
+The interface was developed with **Gradio** and is available on Hugging Face.
+
+Hosted with [Hugging Face \<img src="static/images/huggingface_mini.svg" alt="huggingface" height=40\>](https://huggingface.co)
+
+👉 [Access the interface](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor)
+
+---
+
+## 🛠️ Technologies
 
 - [Python 3.10](https://www.python.org/)
 - [YOLOv8 (Ultralytics)](https://docs.ultralytics.com)
@@ -300,39 +298,39 @@ Hospedado com [Hugging Face <img src="static/images/huggingface_mini.svg" alt="h
 
 ---
 
-## 👥 Equipe do Projeto
+## 👥 Project Team
 
-O desenvolvimento do `Urban Disaster Monitor` é realizado por alunos da disciplina de Visão Computacional, ministrada pelo professor [Helton Maia](https://heltonmaia.com/) da ECT/UFRN:
+The development of the `Urban Disaster Monitor` is carried out by students of the Computer Vision course, taught by Professor [Helton Maia](https://heltonmaia.com/) from ECT/UFRN:
 
-| [![](https://github.com/jagaldino.png?size=80)](https://github.com/jagaldino) | [![](https://github.com/MariaCarolinass.png?size=80)](https://github.com/MariaCarolinass) | [![](https://github.com/heltonmaia.png?size=80)](https://github.com/heltonmaia) |
-| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
-|                           **jagaldino** Pesquisador                           |                             **MariaCarolinass** Pesquisadora                              |                       **heltonmaia** Professor Orientador                       |
+| [](https://github.com/jagaldino) | [](https://github.com/MariaCarolinass) | [](https://github.com/heltonmaia) |
+| :------------------------------: | :------------------------------------: | :-------------------------------: |
+|     **jagaldino** Researcher     |     **MariaCarolinass** Researcher     | **heltonmaia** Professor Advisor  |
 
 ---
 
-## 🚀 Como Executar
+## 🚀 How to Run
 
-Baixe o repositório:
+Clone the repository:
 
 ```bash
 git clone https://github.com/MariaCarolinass/urban-disaster-monitor.git
 cd urban-disaster-monitor/app
 ```
 
-Crie e ative o ambiente virtual venv:
+Create and activate the venv virtual environment:
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-Instale as bibliotecas:
+Install the libraries:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Execute o projeto:
+Run the project:
 
 ```bash
 python app.py
@@ -340,16 +338,16 @@ python app.py
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Urban Disaster Monitor é licenciado sob a Licença MIT encontrada no arquivo [LICENSE](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) no diretório raiz deste repositório.
+Urban Disaster Monitor is licensed under the MIT License found in the [LICENSE](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) file in the root directory of this repository.
 
 ---
 
-## 📚 Referências Bibliográficas
+## 📚 Bibliographical References
 
-- Projeto SPICI (Smart Platform for Images and Critical Information). Disponível em: [https://smlab.imd.ufrn.br/projeto-spici/](https://smlab.imd.ufrn.br/projeto-spici/)
-- Ultralytics. **YOLOv8 Documentation**. Disponível em: [https://docs.ultralytics.com](https://docs.ultralytics.com)
-- Roboflow. Disponível em: [https://roboflow.com](https://roboflow.com)
-- Redmon, J.; Farhadi, A. (2018). **YOLOv3: An Incremental Improvement**. _arXiv preprint arXiv:1804.02767_. Disponível em: [https://arxiv.org/abs/1804.02767](https://arxiv.org/abs/1804.02767)
-- Redmon, J.; Divvala, S.; Girshick, R.; Farhadi, A. (2016). **You Only Look Once: Unified, Real-Time Object Detection**. In: _Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)_, pp. 779-788. Disponível em: [https://arxiv.org/abs/1506.02640](https://arxiv.org/abs/1506.02640)
+- SPICI Project (Smart Platform for Images and Critical Information). Available at: [https://smlab.imd.ufrn.br/projeto-spici/](https://smlab.imd.ufrn.br/projeto-spici/)
+- Ultralytics. **YOLOv8 Documentation**. Available at: [https://docs.ultralytics.com](https://docs.ultralytics.com)
+- Roboflow. Available at: [https://roboflow.com](https://roboflow.com)
+- Redmon, J.; Farhadi, A. (2018). **YOLOv3: An Incremental Improvement**. _arXiv preprint arXiv:1804.02767_. Available at: [https://arxiv.org/abs/1804.02767](https://arxiv.org/abs/1804.02767)
+- Redmon, J.; Divvala, S.; Girshick, R.; Farhadi, A. (2016). **You Only Look Once: Unified, Real-Time Object Detection**. In: _Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)_, pp. 779-788. Available at: [https://arxiv.org/abs/1506.02640](https://arxiv.org/abs/1506.02640)
