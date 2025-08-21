@@ -6,7 +6,7 @@
 
 [App](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor) | [Dataset](https://github.com/MariaCarolinass/urban-disaster-monitor/tree/main/dataset)
 
-[English](https://www.google.com/search?q=) | [Português](https://www.google.com/search?q=)
+[English](./README.md) | [Português](./README.pt.md)
 
 \</div\>
 
