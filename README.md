@@ -2,7 +2,9 @@
 
 # Urban Disaster Monitor
 
-[![YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt) 
+<img src="static/images/logo_urban.jpg" alt="Logo project"/>
+
+[![YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
 [App](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor) | [Dataset](https://github.com/MariaCarolinass/urban-disaster-monitor/tree/main/dataset)
 
@@ -12,7 +14,7 @@
 
 # Urban Disaster Monitor: Detection and Classification of People in Disaster Scenarios
 
-An intelligent computer vision system for **detecting and classifying civilians and rescuers** in urban disaster scenarios, using **YOLOv8**.
+An intelligent computer vision system for **detecting and classifying civilians and rescuers** in urban disaster scenarios, using **YOLOv11**.
 
 <div align="center">
 

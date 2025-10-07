@@ -2,6 +2,8 @@
 
 # Urban Disaster Monitor
 
+<img src="static/images/logo_urban.jpg" alt="Logo projeto"/>
+
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
 [App](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor) | [Dataset](https://github.com/MariaCarolinass/urban-disaster-monitor/tree/main/dataset)
@@ -12,7 +14,7 @@
 
 # Urban Disaster Monitor: Detecção e Classificação de Pessoas em Cenários de Desastre
 
-Sistema inteligente de visão computacional para **detecção e classificação de civis e socorristas** em cenários de desastre urbano, utilizando **YOLOv8**.
+Sistema inteligente de visão computacional para **detecção e classificação de civis e socorristas** em cenários de desastre urbano, utilizando **YOLOv11**.
 
 <div align="center">
 
@@ -91,8 +93,8 @@ urban-disaster-monitor/
 
 - Detecção de pessoas em **imagens** e **vídeos**
 - Diferenciação entre **civis** e **socorristas**
-- Treinamento com **YOLOv8**
-- Interface interativa via **Gradio**
+- Localização de **cachorro**, **gato**, **cavalo** e **vaca**
+- Treinamento com **YOLOv11**
 - Visualização de **métricas e bounding boxes**
 
 ---
@@ -101,7 +103,7 @@ urban-disaster-monitor/
 
 Eventos de **desastre urbano**, como colapsos estruturais, inundações e deslizamentos de terra, impõem desafios significativos às operações de resposta e resgate. A capacidade de **identificar e categorizar rapidamente** indivíduos como civis ou socorristas em tempo real é crucial para a otimização da alocação de recursos e a minimização de fatalidades. Imagens coletadas por veículos aéreos não tripulados (VANTs), sistemas de vigilância e dispositivos móveis representam uma fonte de dados valiosa para esta finalidade.
 
-Este projeto propõe o desenvolvimento de um **sistema inteligente de visão computacional** para a **detecção e classificação discriminativa de indivíduos (civis e socorristas)** em ambientes impactados por desastres urbanos. Utilizando a arquitetura de **detecção de objetos YOLOv8 (You Only Look Once, versão 8)**, o objetivo é construir uma ferramenta robusta e eficiente capaz de fornecer suporte crítico a autoridades e equipes de emergência durante a fase de resposta a desastres.
+Este projeto propõe o desenvolvimento de um **sistema inteligente de visão computacional** para a **detecção e classificação discriminativa de indivíduos (civis e socorristas)** em ambientes impactados por desastres urbanos. Utilizando a arquitetura de **detecção de objetos YOLOv11 (You Only Look Once, versão 11)**, o objetivo é construir uma ferramenta robusta e eficiente capaz de fornecer suporte crítico a autoridades e equipes de emergência durante a fase de resposta a desastres.
 
 Desenvolvido durante a disciplina de Visão Computacional na **Escola de Ciências e Tecnologia (ECT/UFRN)** em trabalho voluntário para o **Smart Metropolis Lab (SMLab)** do **Instituto Metrópole Digital (IMD/UFRN)**, este trabalho é parte integrante do **Projeto SPICI (Segurança Pública Integrada em Cidades Inteligentes)**. O SPICI visa criar uma plataforma inteligente para coleta, processamento e análise de imagens e informações críticas em tempo real, contribuindo para a gestão de crises e desastres por meio de tecnologias avançadas como visão computacional e inteligência artificial. O `Urban Disaster Monitor` alinha-se diretamente com os objetivos do SPICI ao fornecer uma ferramenta especializada para a identificação de pessoas em cenários de desastre, agregando valor à capacidade de resposta e tomada de decisão da plataforma.
 
@@ -115,11 +117,15 @@ Desenvolvido durante a disciplina de Visão Computacional na **Escola de Ciênci
 
 ## 📂 Dataset
 
-- **Total de imagens**: 2403
+- **Total de imagens**: 3240
 - **Fontes**: dados reais mais imagens sintéticas
 - **Classes**:
   - `people` (civis)
   - `rescuer` (socorristas com EPI)
+  - `dog` (cachorro)
+  - `cat` (gato)
+  - `horse` (cavalo)
+  - `cow` (vaca)
 - **Anotado via**: [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
 - **Formato das Anotações**: arquivos `.txt` contendo as coordenadas das _bounding boxes_ e os IDs das classes, acompanhados das imagens correspondentes, seguindo a convenção de nomenclatura do YOLO.
 
@@ -127,12 +133,13 @@ Desenvolvido durante a disciplina de Visão Computacional na **Escola de Ciênci
 
 ## ⚙️ Metodologia
 
-- Arquitetura: `YOLOv8s` e `YOLOv8n`
+- Arquitetura: `YOLOv11n` e `YOLOv11m`
 - Aumento de dados: rotação, ruído, brilho, etc.
-- Treinamento: 30 e 50 épocas comparadas
+- Treinamento: 50 épocas comparadas
 - Métricas principais:
   - `mAP@0.5`, `mAP@0.5:0.95`
   - `Precision`, `Recall`
+  - `F1-Score máximo`
   - Matriz de confusão
 
 ### Aquisição e Anotação de Dados
@@ -143,6 +150,10 @@ A **anotação dos objetos de interesse** está sendo realizada na plataforma **
 
 - `People`: Indivíduos não identificados como membros de equipes de resgate.
 - `Rescuer`: Indivíduos equipados ou identificáveis como parte de equipes de emergência (e.g., bombeiros, paramédicos), frequentemente distinguíveis por uniformes, equipamentos de proteção individual (EPI) ou posturas operacionais.
+- `cat`: Animais domésticos presentes em cenários urbanos que podem demandar resgate ou indicar áreas residenciais.
+- `dog`: Animais domésticos, relevantes em contextos de busca e salvamento ou áreas habitadas.
+- `cow`: Animais de grande porte que podem ser encontrados em regiões urbanas periféricas ou rurais afetadas por desastres.
+- `horse`: Animais usados no apoio ao resgate ou encontrados em áreas de risco, igualmente incluídos pela sua relevância logística.
 
 ### Pré-processamento de Dados
 
@@ -154,9 +165,9 @@ As etapas de pré-processamento são cruciais para otimizar o desempenho do mode
 
 ### Arquitetura do Modelo e Ferramentas
 
-- **Modelo de Detecção**: **YOLOv8 (You Only Look Once, versão 8)**. Essa arquitetura foi selecionada por sua comprovada eficiência na detecção de objetos em tempo real, combinando alta acurácia com velocidade de inferência, características essenciais para aplicações em cenários emergenciais.
+- **Modelo de Detecção**: **YOLOv11 (You Only Look Once, versão 11)**. Essa arquitetura foi selecionada por sua comprovada eficiência na detecção de objetos em tempo real, combinando alta acurácia com velocidade de inferência, características essenciais para aplicações em cenários emergenciais.
 - **Tarefa**: Detecção de Objetos (Object Detection).
-- **Frameworks e Bibliotecas**: O desenvolvimento e treinamento do modelo são realizados com **Ultralytics YOLOv8**, utilizando **PyTorch** como _backend_ de aprendizado profundo, e **OpenCV** para manipulação de imagens e pré-processamento de vídeo.
+- **Frameworks e Bibliotecas**: O desenvolvimento e treinamento do modelo são realizados com **Ultralytics YOLOv11**, utilizando **PyTorch** como _backend_ de aprendizado profundo, e **OpenCV** para manipulação de imagens e pré-processamento de vídeo.
 
 ### Treinamento e Otimização do Modelo
 
@@ -189,12 +200,14 @@ A avaliação da eficácia do modelo foi realizada através de um conjunto de m�
 - **Precisão (Precision) e Recall (Revocação)**: Avaliados por classe para compreender o desempenho individual na identificação de civis e socorristas, indicando a proporção de detecções corretas e a capacidade do modelo de encontrar todas as instâncias relevantes, respectivamente.
 - **Matriz de Confusão (Confusion Matrix)**: Essencial para visualizar e analisar os tipos de erros (falsos positivos, falsos negativos) cometidos pelo modelo, especialmente a confusão entre as classes de interesse, o que é crítico em cenários onde a distinção entre civis e socorristas é vital.
 - **Análise Qualitativa**: Serão apresentadas visualizações das _bounding boxes_ e rótulos de classe sobre as imagens de teste. Essa análise visual permite uma avaliação subjetiva da acurácia das detecções e da capacidade do modelo de lidar com variações de escala, oclusão e iluminação.
+- **Curvas de Confiança**: Avaliação detalhada das curvas de F1, Precision e Recall em função dos thresholds de confiança, permitindo identificar o ponto ótimo de operação do modelo para balancear precisão e sensibilidade.
+- **Identificação de Gargalos**: Através da análise dos falsos positivos e falsos negativos, destacam-se as classes com maior confusão, especialmente entre "civilian" e "background", bem como desafios na detecção de animais menores como "dog" e "cat".
 
-Os resultados serão detalhadamente apresentados em relatórios técnicos e artigos científicos, incluindo gráficos e tabelas estatísticas, acompanhados de uma análise crítica sobre as limitações do modelo e o potencial de aplicação em contextos reais de desastre.
+Essa análise abrangente foi fundamental para orientar melhorias futuras no pipeline, visando maior robustez e confiabilidade do sistema em aplicações reais no monitoramento de desastres urbanos.
 
 ### Avaliação em Imagens Estáticas
 
-Foram realizados testes qualitativos em imagens fora do treinamento de alagamentos para validar a capacidade de detecção do modelo YOLOv8 treinado em diferentes regimes de épocas (30 e 50).
+Foram realizados testes qualitativos em imagens fora do treinamento de alagamentos para validar a capacidade de detecção do modelo YOLOv11 treinado em 50 épocas.
 
 <div align="center">
 
@@ -202,7 +215,7 @@ Foram realizados testes qualitativos em imagens fora do treinamento de alagament
 <img src="static/images/teste1-saida.webp" alt="Imagem de teste 1 saída" width="400"/>
 
 </div>
-
+                                 <!-- COLOCAR AS IMAGENS DE ANTES E DEPOIS DO NOVO MODELO -->
 <div align="center">
 
 <img src="static/images/teste2.webp" alt="Imagem de teste 2" width="400"/>
@@ -216,6 +229,8 @@ _Fonte: [BBC Brasil - Alagamentos em SP](https://www.bbc.com/portuguese/articles
 - Com **50 épocas**, observou-se uma melhora clara nas imagens estáticas, com menos falsos positivos, corrigindo erros como a identificação incorreta de pessoas em postes ou áreas de sombra.
 
 ### Avaliação em Vídeo
+
+<!-- CRIAR TESTE DE VÍDEO -->
 
 Um vídeo público do YouTube foi utilizado para simular um cenário real de desastre urbano:
 
@@ -236,45 +251,42 @@ Um vídeo público do YouTube foi utilizado para simular um cenário real de des
 
 **30 épocas:**
 
-<div align="center">
+YOLO11N (modelo Nano):
 
-<img src="static/graphics/graficoerro30p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
-<img src="static/matrix/matriz-30ep.png" alt="Matriz confusão" width="500"/>
-
+<div align="center"> 
+<img src="static/graphics/new_yolo11n_loss.png" alt="Gráfico de perda durante treinamento YOLO11N" width="500"/> 
+<img src="static/matrix/new_yolo11n_confusion.png" alt="Matriz de confusão YOLO11N" width="500"/> 
+<img src="static/graphics/new_yolo11n_metrics.png" alt="Gráficos de métricas YOLO11N" width="500"/> 
 </div>
 
-**50 épocas:**
+YOLO11M (modelo Medium):
 
-<div align="center">
-
-<img src="static/graphics/graficoerro50p.png" alt="Gráfico de erro durante o treinamento" width="500"/>
-<img src="static/matrix/matriz-50ep.png" alt="Matriz confusão" width="500"/>
-<img src="static/graphics/graficometricas.png" alt="Gráfico de métricas" width="500"/>
-
+<div align="center"> 
+<img src="static/graphics/new_yolo11m_loss.png" alt="Gráfico de perda durante treinamento YOLO11M" width="500"/>
+<img src="static/matrix/new_yolo11m_confusion.png" alt="Matriz de confusão YOLO11M" width="500"/> 
+<img src="static/graphics/new_yolo11m_metrics.png" alt="Gráficos de métricas YOLO11M" width="500"/> 
 </div>
 
 ### Trabalhos Futuros
 
-- Identificação de animais em cenários de resgate.
-- Integração com dados temporais, usando arquiteturas como ConvLSTM, para melhorar o acompanhamento de movimentações em vídeo.
-- Implementação em sistemas embarcados, como drones e câmeras urbanas, para permitir detecção em tempo real no ambiente.
-- Detecção de objetos contextuais, como destroços, veículos de resgate ou barreiras, que podem enriquecer a compreensão da cena.
-- Treinamento com dados mais diversos, incluindo imagens noturnas ou em baixa visibilidade, para aumentar a robustez do modelo.
-- Treinamento do modelo com mais épocas em ambiente dedicado.
+- Identificação e classificação avançada de animais em cenários de resgate, incluindo diferentes espécies e estados.
+- Integração com dados temporais, utilizando arquiteturas como ConvLSTM e Transformers, para melhorar o acompanhamento de movimentações e a estabilidade das detecções em vídeos.
+- Implementação e otimização em sistemas embarcados, como drones e câmeras urbanas, para permitir detecção eficiente e em tempo real no ambiente.
+- Expansão da detecção para objetos contextuais relevantes, como destroços, veículos de resgate, barreiras e outros elementos de cena que enriquecem a compreensão do cenário.
+- Treinamento com conjuntos de dados mais diversos, incluindo situações noturnas e condições adversas (baixa visibilidade, fumaça, chuva) para aumentar a robustez do modelo.
+- Experimentação com aumento do número de épocas de treinamento em ambientes dedicados de alta capacidade computacional para maximizar a convergência e desempenho.
+- Refinamento dos hiperparâmetros para aplicações específicas, especialmente em vídeos, visando melhor equilíbrio entre ruído e consistência temporal.
+- Desenvolvimento de pipelines para aprendizado contínuo e adaptação dinâmica a novos cenários e classes emergentes.
 
 ---
 
 ## ✅ Conclusão
 
-**30 épocas** → melhor desempenho em vídeos, com menos ruído nas detecções.
-
-**50 épocas** → superioridade em imagens estáticas, com maior precisão espacial.
-
-**Trabalhos futuros:**
-
-- Ajuste de hiperparâmetros específicos para vídeo.
-- Treinamento com dados temporais (ex: sequências ou ConvLSTM).
-- Uso de infraestrutura com GPU dedicada (Google Colab Pro ou A100).
+- Entre os modelos, **YOLO11M** se destacou por métricas superiores e melhor generalização, indicado para aplicações críticas que demandam alta precisão.
+- O modelo **YOLO11N** oferece boa performance com menor custo computacional, sendo adequado para cenários com restrição operacional, como drones e edge devices.
+- A análise reforça a importância de técnicas complementares como augmentations, balanceamento de dados e modelagem temporal para aprimorar ainda mais a robustez do Urban Disaster Monitor.
+- O uso de infraestrutura dedicada com GPU avançada (Google Colab Pro, NVIDIA A100) é recomendado para permitir treinamentos estendidos e experimentos mais complexos.
+  Essas diretrizes fundamentam o desenvolvimento contínuo do projeto, buscando impactar positivamente na capacidade de resposta rápida, segura e eficiente em situações emergenciais urbanas.
 
 ---
 
