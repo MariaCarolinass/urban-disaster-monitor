@@ -67,10 +67,6 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 urban-disaster-monitor/
 ├── app/
 │   ├── examples/
-│   ├── models/
-│   │   ├── bestyolov11l.pt
-|   |   ├── bestyolov11m.pt
-|   |   └── bestyolov11n.pt
 │   ├── app.py
 │   ├── requirements.txt
 │   ├── README.md
@@ -79,16 +75,21 @@ urban-disaster-monitor/
 │   ├── test/
 │   ├── train/
 │   ├── val/
-│   ├── data.yaml/
+│   ├── data.yaml
 │   ├── README.dataset.txt
 │   └── README.roboflow.txt
+├── models/
+│   ├── yolov11l.pt
+|   ├── yolov11m.pt
+|   └── yolov11n.pt
 ├── static/
 │   ├── gif/
 │   ├── images/
-│   └── results/
-│       ├── yolov11l/
-|       ├── yolov11m/
-|       └── yolov11n/
+│   ├── results/
+│   │   ├── yolov11l/
+│   │   ├── yolov11m/
+│   │   └── yolov11n/
+│   └── video/
 ├── README.md
 └── LICENSE
 ```
