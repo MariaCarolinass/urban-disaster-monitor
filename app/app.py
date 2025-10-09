@@ -206,11 +206,13 @@ with gr.Blocks() as app:
 
         btn.click(fn=video_detection, inputs=[video, conf_threshold, output_model], outputs=[output_video, output_predictions])
 
+        video_path = hf_hub_download("carolinasoares/urban-disaster-examples", "rescuer.mp4")
+
         gr.Examples(
-            examples=[["examples/rescuer.mp4"]],
+            examples=[[video_path]],
             inputs=[video, conf_threshold, output_model],
             outputs=[output_video, output_predictions],
             label="Example Videos"
         )
 
-app.launch()
+app.launch(allowed_paths=["/home/carol/.cache/huggingface/hub"])
