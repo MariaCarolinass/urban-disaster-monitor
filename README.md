@@ -505,7 +505,7 @@ Projeto licenciado sob [MIT License](./LICENSE.txt).
 
 ## Referências Bibliográficas
 
-- Projeto SPICI (Smart Platform for Images and Critical Information). Disponível em: [https://smlab.imd.ufrn.br/projeto-spici/](https://smlab.imd.ufrn.br/projeto-spici/)
+- Projeto SPICI (Smart Platform for Images and Critical Information). Disponível em: [https://smlab.imd.ufrn.br/spici/](https://smlab.imd.ufrn.br/spici/)
 - Ultralytics. **YOLOv8 Documentation**. Disponível em: [https://docs.ultralytics.com](https://docs.ultralytics.com)
 - Roboflow. Disponível em: [https://roboflow.com](https://roboflow.com)
 - Redmon, J.; Farhadi, A. (2018). **YOLOv3: An Incremental Improvement**. _arXiv preprint arXiv:1804.02767_. Disponível em: [https://arxiv.org/abs/1804.02767](https://arxiv.org/abs/1804.02767)
