@@ -56,7 +56,7 @@ def costum_bounding_box(image, results):
 def image_detection(image, conf_threshold, model_variant):
     image_bgr = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
-    model_image = YOLO(f"models/yolov11{model_variant[-1]}.pt")
+    model_image = YOLO(f"../models/yolov11{model_variant[-1]}.pt")
     results = model_image(image_bgr, conf=conf_threshold)
 
     image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
@@ -81,7 +81,7 @@ def video_detection(video_path, conf_threshold, model_variant, frame_skip=3):
     frame_count = 0
     last_annotated_frame = None
 
-    model_video = YOLO(f"models/yolov11{model_variant[-1]}.pt")
+    model_video = YOLO(f"../models/yolov11{model_variant[-1]}.pt")
 
     while cap.isOpened():
         ret, frame = cap.read()
