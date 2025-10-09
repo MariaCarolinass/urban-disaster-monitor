@@ -465,17 +465,27 @@ Na interface, o usuário pode:
 
 ### Como Executar
 
-Baixe o repositório e acesse a pasta `app`:
+Baixe o repositório:
 
 ```bash
 git clone https://github.com/MariaCarolinass/urban-disaster-monitor.git
+```
+
+Acesse a pasta `app`:
+
+```bash
 cd urban-disaster-monitor/app
 ```
 
-Crie e ative o ambiente virtual venv:
+Crie o ambiente virtual venv:
 
 ```bash
 python3 -m venv venv
+```
+
+Ative o ambiente virtual venv:
+
+```bash
 source venv/bin/activate
 ```
 
