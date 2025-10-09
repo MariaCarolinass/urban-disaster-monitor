@@ -28,8 +28,8 @@ jobs:
           git config --global user.email "m.carolina.soares1@gmail.com"
           git config --global user.name "mariacarolinass"
 
-          # Clona o Space com autenticação
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" clone https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2 hf_space
+          # Clona o Space com autenticação usando o token na URL
+          git clone https://user:$HF_TOKEN@huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2 hf_space
 
           # Limpa conteúdo antigo
           rm -rf hf_space/*
@@ -39,5 +39,5 @@ jobs:
 
           cd hf_space
           git add .
-          git commit -m "Update from GitHub"
-          git -c http.extraheader="Authorization: Bearer $HF_TOKEN" push
+          git commit -m "Update from GitHub" || echo "Nada para commitar"
+          git push
