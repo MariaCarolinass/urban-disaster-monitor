@@ -1,8 +1,20 @@
+import os
 import gradio as gr
 from ultralytics import YOLO
 import cv2
 import tempfile
 import numpy as np
+from huggingface_hub import hf_hub_download
+
+def get_model_path(model_variant):
+    os.makedirs("models", exist_ok=True)
+    model_map = {
+        "yolov11n": "carolinasoares/yolov11n",
+        "yolov11m": "carolinasoares/yolov11m",
+        "yolov11l": "carolinasoares/yolov11l"
+    }
+    repo_id = model_map[model_variant]
+    return hf_hub_download(repo_id=repo_id, filename=f"{model_variant}.pt", cache_dir="models")
 
 def costum_bounding_box(image, results):
     annotated_image = image.copy()
@@ -56,7 +68,9 @@ def costum_bounding_box(image, results):
 def image_detection(image, conf_threshold, model_variant):
     image_bgr = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
-    model_image = YOLO(f"../models/yolov11{model_variant[-1]}.pt")
+    weights_path = get_model_path(model_variant)
+    model_image = YOLO(weights_path)
+    
     results = model_image(image_bgr, conf=conf_threshold)
 
     image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
@@ -81,7 +95,8 @@ def video_detection(video_path, conf_threshold, model_variant, frame_skip=3):
     frame_count = 0
     last_annotated_frame = None
 
-    model_video = YOLO(f"../models/yolov11{model_variant[-1]}.pt")
+    weights_path = get_model_path(model_variant)
+    model_video = YOLO(weights_path)
 
     while cap.isOpened():
         ret, frame = cap.read()
