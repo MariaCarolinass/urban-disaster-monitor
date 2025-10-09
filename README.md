@@ -425,7 +425,7 @@ Em alguns momentos, o modelo não conseguiu detectar todos os `rescuers`, possiv
 
 Uma interface interativa foi desenvolvida utilizando a biblioteca **Gradio** para facilitar o uso do modelo treinado. A interface permite o upload de imagens e vídeos para detecção em tempo real, exibindo os resultados com as _bounding boxes_ e rótulos de classe.
 
-### 👉 [Teste a Interface](https://huggingface.co/spaces/carolinasoares/urban_disaster_monitor)
+### 👉 [Teste a Interface](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
 <div align="center">
 
