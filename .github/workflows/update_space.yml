@@ -24,14 +24,27 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          set -e  # interrompe se houver erro
+          
           git config --global user.email "m.carolina.soares1@gmail.com"
           git config --global user.name "mariacarolinass"
-          # Clona o Space
-          git clone https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2
+
+          # Clona o Space do Hugging Face
+          git clone https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2 hf_space
+
+          # Verifica se a pasta existe
+          if [ ! -d "hf_space" ]; then
+            echo "Erro: diretório hf_space não existe"
+            exit 1
+          fi
+
+          # Limpa o conteúdo antigo
           rm -rf hf_space/*
+
+          # Copia apenas o conteúdo da pasta app
           cp -r app/* hf_space/
+
           cd hf_space
           git add .
           git commit -m "Update from GitHub"
           git push
-          
