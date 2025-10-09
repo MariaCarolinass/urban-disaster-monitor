@@ -116,7 +116,7 @@ O SPICI visa criar uma plataforma inteligente para coleta, processamento e anál
 ## Detalhes do Dataset
 
 - **Total de imagens:** 3240
-- **Classes:** `civilian`, `rescuer`, `dog`, `cat`, `horse`, `cow`
+- **Classes:** 3.150 `civilian`, 1.074 `rescuer`, 531 `dog`, 637 `cat`, 811 `horse`, 749 `cow`
 - **Anotado via:** [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
 - **Formato das Anotações:** arquivos `.txt` contendo as coordenadas das _bounding boxes_ e os IDs das classes, acompanhados das imagens correspondentes, seguindo a convenção de nomenclatura do YOLO.
 - **Fontes:** dados reais mais imagens sintéticas
