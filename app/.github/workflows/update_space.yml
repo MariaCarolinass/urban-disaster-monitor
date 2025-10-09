@@ -1,26 +1,34 @@
-name: Deploy to Hugging Face
+name: Deploy to Hugging Face Space
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy to HF Spaces
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install huggingface_hub
+
+      - name: Push to HF Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git clone https://carolinasoares:$HF_TOKEN@huggingface.co/spaces/carolinasoares/urban_disaster_monitor space
-          rm -rf space/*
-          cp -r app/* space/
-          cd space
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config --global user.email "m.carolina.soares1@gmail.com"
+          git config --global user.name "mariacarolinass"
+          git clone https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2
+          cp -r * hf_space/
+          cd hf_space
           git add .
-          git commit -m "Deploy automático" || echo "Nada para commitar"
+          git commit -m "Update from GitHub"
           git push
+          
