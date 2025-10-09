@@ -1,8 +1,8 @@
 
-urban-disaster-monitor - v1 Versao1
+urban-disaster-monitor - v4 Versao2.1
 ==============================
 
-This dataset was exported via roboflow.com on June 27, 2025 at 10:48 PM GMT
+This dataset was exported via roboflow.com on October 7, 2025 at 5:00 PM GMT
 
 Roboflow is an end-to-end computer vision platform that helps you
 * collaborate with your team on computer vision projects
@@ -17,14 +17,17 @@ visit https://github.com/roboflow/notebooks
 
 To find over 100k other datasets and pre-trained models, visit https://universe.roboflow.com
 
-The dataset includes 2403 images.
-Objects are annotated in YOLOv8 format.
+The dataset includes 3240 images.
+Objects are annotated in YOLOv11 format.
 
 The following pre-processing was applied to each image:
 * Auto-orientation of pixel data (with EXIF-orientation stripping)
 * Resize to 640x640 (Stretch)
+* Auto-contrast via contrast stretching
 
-The following augmentation was applied to create 3 versions of each source image:
+The following augmentation was applied to create 2 versions of each source image:
+* Random rotation of between -15 and +15 degrees
+* Random shear of between -10° to +10° horizontally and -10° to +10° vertically
 * Salt and pepper noise was applied to 0.89 percent of pixels
 
 

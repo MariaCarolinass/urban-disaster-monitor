@@ -1,6 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
 
-path: dataset
-train: train
-val: val
-test: test
-names: ['people', 'rescuer']
+nc: 6
+names: ['cat', 'civilian', 'cow', 'dog', 'horse', 'rescuer']
+
+roboflow:
+  workspace: ufrnprojects-xlut9
+  project: urban-disaster-monitor
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/dataset/4
