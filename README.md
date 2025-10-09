@@ -38,6 +38,7 @@ Sistema inteligente de visão computacional para **detecção e classificação 
   - [Divisão do Dataset](#divisão-do-dataset)
   - [Pré-processamento e Augmentations](#pré-processamento-e-augmentations)
   - [Aquisição de Dados](#aquisição-de-dados)
+    - [Imagens públicas](#imagens-públicas)
     - [Gemini 2.5 Flash Image (Nano Banana)](#gemini-25-flash-image-nano-banana)
       - [Prompts](#prompts)
       - [Como Gerar as Imagens](#como-gerar-as-imagens)
@@ -120,6 +121,7 @@ O SPICI visa criar uma plataforma inteligente para coleta, processamento e anál
 - **Anotado via:** [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
 - **Formato das Anotações:** arquivos `.txt` contendo as coordenadas das _bounding boxes_ e os IDs das classes, acompanhados das imagens correspondentes, seguindo a convenção de nomenclatura do YOLO.
 - **Fontes:** dados reais mais imagens sintéticas
+- **Licença:** CC BY 4.0
 
 ### Divisão do Dataset
 
@@ -149,9 +151,20 @@ Para o treinamento e validação do modelo, foi compilado um **dataset abrangent
 
 As fontes incluem **repositórios públicos de imagens de desastres** e a **geração de imagens sintéticas** para complementar a variabilidade do conjunto de dados. Essa abordagem híbrida visa mitigar a escassez de dados reais de alta qualidade em ambientes de desastre.
 
+#### Imagens públicas
+
+As imagens possuem licença aberta de uso e foram retiradas de sites:
+
+- [Wikimedia Commons](https://commons.wikimedia.org/)
+- [Flickr](https://www.flickr.com/)
+- Google Images
+- [Roboflow Universe](https://universe.roboflow.com/)
+
 #### Gemini 2.5 Flash Image (Nano Banana)
 
 Foi utilizada a ferramenta de geração de imagens **Gemini 2.5 Flash Image (Nano Banana)** para criar imagens sintéticas que simulam cenários de desastre urbano. A ferramenta permite a criação de imagens realistas com controle sobre diversos parâmetros, como iluminação, ângulo de visão e composição da cena.
+
+No total foram 832 imagens geradas por Inteligência Artífical.
 
 <div align="center">
 
