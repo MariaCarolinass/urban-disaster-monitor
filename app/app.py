@@ -186,7 +186,6 @@ with gr.Blocks() as app:
                 ["examples/imagem_064-copia-_png.rf.2e109916a38a8cfe3b158303c3bfa95f.jpg"],
                 ["examples/images18_jpg.rf.c6874bfb0609dc6d52defda4e161d25e.jpg"],
                 ["examples/images219_jpg.rf.793784542da37f5a78a3837688314c97.jpg"],
-                ["examples/images370_jpg.rf.85a3305ea8647bf8aa03bf01747f3ee5.jpg"],
                 ["examples/ph_17939_63492_jpg.rf.bf0e962767adc644290645db26ab9e26.jpg"]
             ],
             inputs=[image, conf_threshold],
