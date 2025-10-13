@@ -49,11 +49,14 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 - [Análise de Resultados e Métricas](#análise-de-resultados-e-métricas)
   - [Gráficos e Visualizações](#gráficos-e-visualizações)
     - [YOLO11N (modelo Nano)](#yolo11n-modelo-nano)
+    - [YOLO11S (modelo Small)](#yolo11s-modelo-small)
     - [YOLO11M (modelo Medium)](#yolo11m-modelo-medium)
     - [YOLO11L (modelo Large)](#yolo11l-modelo-large)
 - [Teste do Modelo em Vídeo](#teste-do-modelo-em-vídeo)
-- [Trabalhos Futuros](#trabalhos-futuros)
 - [Conclusões](#conclusões)
+  - [Recomendações Gerais para os Modelos](#recomendações-gerais-para-os-modelos)
+    - [Comparativo dos Modelos Treinados](#comparativo-dos-modelos-treinados)
+  - [Trabalhos Futuros](#trabalhos-futuros)
 - [Interface Interativa](#interface-interativa)
   - [Funcionalidades da Interface](#funcionalidades-da-interface)
   - [Tecnologias Utilizadas](#tecnologias-utilizadas)
@@ -82,14 +85,16 @@ urban-disaster-monitor/
 ├── models/
 │   ├── yolov11l.pt
 |   ├── yolov11m.pt
-|   └── yolov11n.pt
+|   ├── yolov11n.pt
+|   └── yolov11s.pt
 ├── static/
 │   ├── gif/
 │   ├── images/
 │   ├── results/
 │   │   ├── yolov11l/
 │   │   ├── yolov11m/
-│   │   └── yolov11n/
+│   │   ├── yolov11n/
+|   │   └── yolov11s/
 │   └── video/
 ├── README.md
 └── LICENSE
@@ -98,7 +103,7 @@ urban-disaster-monitor/
 ## Funcionalidades
 
 - Detecção e classificação de **Civis**, **Socorristas**, **Vacas**, **Cavalos**, **Cachorros** e **Gatos**
-- Treinamento com **YOLOv11** em três versões: `n` (nano), `m` (medium) e `l` (large)
+- Treinamento com **YOLOv11** em quatro versões: `n` (nano), `s` (small) `m` (medium) e `l` (large)
 - Visualização de **métricas** e **bounding boxes**
 - Interface interativa via **Gradio** para upload e teste de imagens e vídeos
 
@@ -292,7 +297,7 @@ A **anotação dos objetos de interesse** está sendo realizada na plataforma **
 ## Arquitetura do Modelo e Ferramentas
 
 - **Modelo de Detecção:** **Ultralytics YOLOv11 (You Only Look Once, versão 11)**. Essa arquitetura foi selecionada por sua comprovada eficiência na detecção de objetos em tempo real, combinando alta acurácia com velocidade de inferência, características essenciais para aplicações em cenários emergenciais.
-- **Arquitetura:** YOLOv11 em três versões: `YOLOv11n`, `YOLOv11m` e `YOLOv11l`
+- **Arquitetura:** YOLOv11 em quatro versões: `YOLOv11n`, `YOLOv11s`, `YOLOv11m` e `YOLOv11l`
 - **Treinamento:** 50 épocas comparadas
 - **Tarefa:** Detecção de Objetos (Object Detection).
 
@@ -340,68 +345,90 @@ Essa análise abrangente foi fundamental para orientar melhorias futuras no pipe
 
 #### Gráficos e Visualizações
 
-##### YOLO11N (modelo Nano):
+##### YOLOv11N (modelo Nano):
 
-Gráficos gerados durante o treinamento e avaliação do modelo YOLO11N:
+Gráficos gerados durante o treinamento e avaliação do modelo YOLOv11N:
 
 <div align="center">
-<img src="static/results/yolov11n/loss.png" alt="Gráfico de perda durante treinamento YOLO11N" width="600"/> 
+<img src="static/results/yolov11n/loss.png" alt="Gráfico de perda durante treinamento YOLOv11N" width="600"/> 
 </div>
 
 O gráfico acima mostra a evolução da perda (_loss_) ao longo das 50 épocas de treinamento, indicando a convergência do modelo.
 
 <div align="center"> 
-<img src="static/results/yolov11n/confusion_matrix.png" alt="Matriz de confusão YOLO11N" width="600"/> 
+<img src="static/results/yolov11n/confusion_matrix.png" alt="Matriz de confusão YOLOv11N" width="800"/> 
 </div>
 
 O gráfico da matriz de confusão acima ilustra a performance do modelo na classificação das diferentes classes, destacando acertos e erros.
 
 <div align="center"> 
-<img src="static/results/yolov11n/metricas.png" alt="Gráficos de métricas YOLO11N" width="600"/> 
+<img src="static/results/yolov11n/metricas.png" alt="Gráficos de métricas YOLOv11N" width="600"/> 
 </div>
 
 O gráfico acima apresenta as métricas de precisão (_precision_), revocação (_recall_) e _mAP_ (mean Average Precision) ao longo das épocas, evidenciando a melhoria contínua do modelo.
 
-##### YOLO11M (modelo Medium):
+##### YOLOv11S (modelo Small)
 
-Gráficos gerados durante o treinamento e avaliação do modelo YOLO11M:
+Gráficos gerados durante o treinamento e avaliação do modelo YOLOv11S:
 
 <div align="center"> 
-<img src="static/results/yolov11m/loss.png" alt="Gráfico de perda durante treinamento YOLO11M" width="600"/> 
+<img src="static/results/yolov11s/loss.png" alt="Gráfico de perda durante treinamento YOLOv11S" width="600"/> 
 </div>
 
 O gráfico acima mostra a evolução da perda (_loss_) ao longo das 50 épocas de treinamento, indicando a convergência do modelo.
 
 <div align="center"> 
-<img src="static/results/yolov11m/confusion_matrix.png" alt="Matriz de confusão YOLO11M" width="600"/> 
+<img src="static/results/yolov11s/confusion_matrix.png" alt="Matriz de confusão YOLOv11S" width="800"/> 
 </div>
 
 O gráfico da matriz de confusão acima ilustra a performance do modelo na classificação das diferentes classes, destacando acertos e erros.
 
 <div align="center"> 
-<img src="static/results/yolov11m/metricas.png" alt="Gráficos de métricas YOLO11M" width="600"/> 
+<img src="static/results/yolov11s/metricas.png" alt="Gráficos de métricas YOLOv11S" width="600"/> 
 </div>
 
 O gráfico acima apresenta as métricas de precisão (_precision_), revocação (_recall_) e _mAP_ (mean Average Precision) ao longo das épocas, evidenciando a melhoria contínua do modelo.
 
-##### YOLO11L (modelo Large):
+##### YOLOv11M (modelo Medium):
 
-Gráficos gerados durante o treinamento e avaliação do modelo YOLO11L:
+Gráficos gerados durante o treinamento e avaliação do modelo YOLOv11M:
 
 <div align="center"> 
-<img src="static/results/yolov11l/loss.png" alt="Gráfico de perda durante treinamento YOLO11L" width="600"/> 
+<img src="static/results/yolov11m/loss.png" alt="Gráfico de perda durante treinamento YOLOv11M" width="600"/> 
 </div>
 
 O gráfico acima mostra a evolução da perda (_loss_) ao longo das 50 épocas de treinamento, indicando a convergência do modelo.
 
 <div align="center"> 
-<img src="static/results/yolov11l/confusion_matrix.png" alt="Matriz de confusão YOLO11L" width="600"/> 
+<img src="static/results/yolov11m/confusion_matrix.png" alt="Matriz de confusão YOLOv11M" width="800"/> 
 </div>
 
 O gráfico da matriz de confusão acima ilustra a performance do modelo na classificação das diferentes classes, destacando acertos e erros.
 
 <div align="center"> 
-<img src="static/results/yolov11l/metricas.png" alt="Gráficos de métricas YOLO11L" width="600"/> 
+<img src="static/results/yolov11m/metricas.png" alt="Gráficos de métricas YOLOv11M" width="600"/> 
+</div>
+
+O gráfico acima apresenta as métricas de precisão (_precision_), revocação (_recall_) e _mAP_ (mean Average Precision) ao longo das épocas, evidenciando a melhoria contínua do modelo.
+
+##### YOLOv11L (modelo Large):
+
+Gráficos gerados durante o treinamento e avaliação do modelo YOLOv11L:
+
+<div align="center"> 
+<img src="static/results/yolov11l/loss.png" alt="Gráfico de perda durante treinamento YOLOv11L" width="600"/> 
+</div>
+
+O gráfico acima mostra a evolução da perda (_loss_) ao longo das 50 épocas de treinamento, indicando a convergência do modelo.
+
+<div align="center"> 
+<img src="static/results/yolov11l/confusion_matrix.png" alt="Matriz de confusão YOLOv11L" width="800"/> 
+</div>
+
+O gráfico da matriz de confusão acima ilustra a performance do modelo na classificação das diferentes classes, destacando acertos e erros.
+
+<div align="center"> 
+<img src="static/results/yolov11l/metricas.png" alt="Gráficos de métricas YOLOv11L" width="600"/> 
 </div>
 
 O gráfico acima apresenta as métricas de precisão (_precision_), revocação (_recall_) e _mAP_ (mean Average Precision) ao longo das épocas, evidenciando a melhoria contínua do modelo.
@@ -424,7 +451,32 @@ O desempenho do modelo foi satisfatório, com a maioria dos `rescuers` sendo cor
 
 Em alguns momentos, o modelo não conseguiu detectar todos os `rescuers`, possivelmente devido a oclusões parciais ou ângulos desfavoráveis.
 
-## Trabalhos Futuros
+## Conclusões
+
+- O modelo **YOLOv11n** oferece boa performance com menor custo computacional, sendo adequado para cenários com restrição operacional, como drones e edge devices.
+- O modelo **YOLOv11s** demonstra melhoria significativa em relação ao modelo **YOLOv11n**, sobretudo em estabilização do aprendizado e aumento do F1 score (0.83). Mantém ainda tempos de inferência compatíveis para aplicações em tempo real em campo, como drones e câmeras inteligentes.
+- Entre os modelos, **YOLOv11m** se destacou por métricas superiores e melhor generalização, indicado para aplicações críticas que demandam alta precisão.
+- A análise reforça a importância de técnicas complementares como augmentations, balanceamento de dados e modelagem temporal para aprimorar ainda mais a robustez do Urban Disaster Monitor.
+- O uso de infraestrutura dedicada com GPU avançada (Google Colab Pro, NVIDIA A100) é recomendado para permitir treinamentos estendidos e experimentos mais complexos.
+  Essas diretrizes fundamentam o desenvolvimento contínuo do projeto, buscando impactar positivamente na capacidade de resposta rápida, segura e eficiente em situações emergenciais urbanas.
+
+### Recomendações Gerais para os Modelos
+
+- **YOLO11s:** Ideal para aplicações que necessitam de mais precisão que a variante Nano, mas que operam em ambientes com restrições moderadas de hardware, como drones e câmeras urbanas inteligentes.
+- **YOLO11m:** Modelo indicado para ambientes de produção, com uma boa combinação de performance e custo computacional.
+- **YOLO11l:** Para cenários que demandam a máxima precisão, compatível com ambientes que dispõem de infraestrutura robusta.
+- **YOLO11n:** Perfeito para dispositivos com limitações extremas, onde rapidez e eficiência energética são prioridades.
+
+#### Comparativo dos Modelos Treinados
+
+| Modelo    | mAP@0.5:0.95 | Parâmetros (M) | FLOPs (B) | Tempo Inferência CPU (ms) | Tempo Inferência GPU (TensorRT, ms) | Uso Recomendado                   |
+|-----------|--------------|---------------|-----------|--------------------------|------------------------------------|----------------------------------|
+| YOLOv11n  | ~39.5%       | 2.6           | 6.5       | 56.1                     | 1.5                                | Dispositivos de borda (edge)      |
+| YOLOv11s  | ~47.0%       | 9.4           | 21.5      | 90.0                     | 2.5                                | Drones, câmeras inteligentes      |
+| YOLOv11m  | ~51.5%       | 20.1          | 68.0      | 183.2                    | 4.7                                | Produção equilibrada              |
+| YOLOv11l  | ~53.4%       | 25.3          | 86.9      | 238.6                    | 6.2                                | Máxima precisão (alto custo)     |
+
+### Trabalhos Futuros
 
 - Identificação e classificação avançada de animais em cenários de resgate, incluindo diferentes espécies e estados.
 - Integração com dados temporais, utilizando arquiteturas como ConvLSTM e Transformers, para melhorar o acompanhamento de movimentações e a estabilidade das detecções em vídeos.
@@ -434,14 +486,6 @@ Em alguns momentos, o modelo não conseguiu detectar todos os `rescuers`, possiv
 - Experimentação com aumento do número de épocas de treinamento em ambientes dedicados de alta capacidade computacional para maximizar a convergência e desempenho.
 - Refinamento dos hiperparâmetros para aplicações específicas, especialmente em vídeos, visando melhor equilíbrio entre ruído e consistência temporal.
 - Desenvolvimento de pipelines para aprendizado contínuo e adaptação dinâmica a novos cenários e classes emergentes.
-
-## Conclusões
-
-- Entre os modelos, **YOLO11M** se destacou por métricas superiores e melhor generalização, indicado para aplicações críticas que demandam alta precisão.
-- O modelo **YOLO11N** oferece boa performance com menor custo computacional, sendo adequado para cenários com restrição operacional, como drones e edge devices.
-- A análise reforça a importância de técnicas complementares como augmentations, balanceamento de dados e modelagem temporal para aprimorar ainda mais a robustez do Urban Disaster Monitor.
-- O uso de infraestrutura dedicada com GPU avançada (Google Colab Pro, NVIDIA A100) é recomendado para permitir treinamentos estendidos e experimentos mais complexos.
-  Essas diretrizes fundamentam o desenvolvimento contínuo do projeto, buscando impactar positivamente na capacidade de resposta rápida, segura e eficiente em situações emergenciais urbanas.
 
 ## Interface Interativa
 
