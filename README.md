@@ -505,7 +505,7 @@ Hospedado com **[Hugging Face <img src="static/images/huggingface_mini.svg" alt=
 
 Na interface, o usuário pode:
 
-- Selecionar o modelo desejado (YOLOv11n, YOLOv11m, YOLOv11l).
+- Selecionar o modelo desejado (YOLOv11n, YOLOv11s, YOLOv11m, YOLOv11l).
 - Fazer upload de imagens ou vídeos.
 - Ajustar o nível de confiança (_confidence threshold_) para as detecções.
 - Visualizar os resultados com as detecções destacadas.
