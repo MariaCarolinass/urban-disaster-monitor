@@ -12,7 +12,7 @@ Português | [English](./README-en.md)
 
 # Urban Disaster Monitor: Detecção e Classificação de Pessoas em Cenários de Desastre
 
-Sistema inteligente de visão computacional para **detecção e classificação de civis e socorristas** em cenários de desastre urbano, utilizando **YOLOv11**.
+Sistema inteligente de visão computacional para **detecção e classificação de civis, animais e socorristas** em cenários de desastre urbano, utilizando **YOLOv11**.
 
 <div align="center">
 
