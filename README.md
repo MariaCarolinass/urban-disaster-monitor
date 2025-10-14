@@ -478,7 +478,6 @@ Em alguns momentos, o modelo não conseguiu detectar todos os `rescuers`, possiv
 
 ### Trabalhos Futuros
 
-- Identificação e classificação avançada de animais em cenários de resgate, incluindo diferentes espécies e estados.
 - Integração com dados temporais, utilizando arquiteturas como ConvLSTM e Transformers, para melhorar o acompanhamento de movimentações e a estabilidade das detecções em vídeos.
 - Implementação e otimização em sistemas embarcados, como drones e câmeras urbanas, para permitir detecção eficiente e em tempo real no ambiente.
 - Expansão da detecção para objetos contextuais relevantes, como destroços, veículos de resgate, barreiras e outros elementos de cena que enriquecem a compreensão do cenário.
