@@ -169,7 +169,7 @@ As imagens possuem licença aberta de uso e foram retiradas de sites:
 
 Foi utilizada a ferramenta de geração de imagens **Gemini 2.5 Flash Image (Nano Banana)** para criar imagens sintéticas que simulam cenários de desastre urbano. A ferramenta permite a criação de imagens realistas com controle sobre diversos parâmetros, como iluminação, ângulo de visão e composição da cena.
 
-No total foram 832 imagens geradas por Inteligência Artífical.
+No total foram 832 imagens geradas por Inteligência Artificial.
 
 <div align="center">
 
