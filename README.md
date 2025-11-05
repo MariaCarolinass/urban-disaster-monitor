@@ -16,9 +16,9 @@ Sistema inteligente de visão computacional para **detecção e classificação 
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="Capa do projeto 1" width="300"/> 
-<img src="static/images/capa2.webp" alt="Capa do projeto 1" width="300"/> 
-<img src="static/images/capa3.webp" alt="Capa do projeto 1" width="300"/> 
+<img src="static/images/capa1.webp" alt="Capa do projeto 1" width="250"/> 
+<img src="static/images/capa2.webp" alt="Capa do projeto 1" width="250"/> 
+<img src="static/images/capa3.webp" alt="Capa do projeto 1" width="250"/> 
 
 </div>
 
