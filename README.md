@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="static/images/logo1.png" alt="Logo projeto" width="500"/><br>
+<img src="static/images/logo1.png" alt="Logo projeto" width="600"/><br>
 
 [![YOLOv11](https://img.shields.io/badge/YOLOv11-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
@@ -164,8 +164,8 @@ Coletadas de fontes com licença aberta ou compartilhável:
 
 <div align="center">
 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d.jpg" alt="Pessoas resgatando vacas inundadas" width="300"/> 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d_annotated.webp" alt="Pessoas resgatando vacas inundadas - anotado" width="300"/> 
+<img src="static/images/230714-india-flooding-mb-0831-d3a66d.jpg" alt="Pessoas resgatando vacas inundadas" width="400"/> 
+<img src="static/images/230714-india-flooding-mb-0831-d3a66d_annotated.webp" alt="Pessoas resgatando vacas inundadas - anotado" width="400"/> 
 
 </div>
 
@@ -184,8 +184,8 @@ Cada imagem foi revisada manualmente. As amostras sintéticas complementam as re
 
 <div align="center">
 
-<img src="static/images/gemini.jpg" alt="Imagem gerada" width="300"/>
-<img src="static/images/gemini_result.webp" alt="Imagem gerada classificada" width="300"/>
+<img src="static/images/gemini.jpg" alt="Imagem gerada" width="400"/>
+<img src="static/images/gemini_result.webp" alt="Imagem gerada classificada" width="400"/>
 
 </div><br>
 
@@ -263,7 +263,7 @@ A avaliação do modelo foi realizada com métricas padrão de detecção de obj
 As quatro variantes treinadas (nano, small, medium, large) apresentam desempenho próximo: YOLOv11n alcançou 85,27%, YOLOv11s 86,88%, YOLOv11m 86,18% e YOLOv11l 86,12%. A diferença entre o melhor (small) e o pior (nano) não ultrapassou 1,61%, indicando que mesmo a versão mais compacta mantém boa acurácia, relevante para cenários com restrição de hardware.
 
 <div align="center">
-<img src="static/images/metricas0.5.png" alt="mAP@0.5 por variante" width="500"/>
+<img src="static/images/metricas0.5.png" alt="mAP@0.5 por variante" width="700"/>
 </div>
 
 ### Resultados por classe
@@ -271,7 +271,7 @@ As quatro variantes treinadas (nano, small, medium, large) apresentam desempenho
 O gráfico abaixo compara o mAP@0.5 por classe nas diferentes variantes. A classe `dog` obteve o menor desempenho entre todas, mas permaneceu acima de 70% com o modelo small. As classes de pessoas (`civilian`, `rescuer`) e animais de grande porte (`cow`, `horse`) tendem a performar melhor, possivelmente por maior visibilidade e área ocupada na imagem. 
 
 <div align="center">
-<img src="static/images/metricas-classes.png" alt="mAP@0.5 por classe" width="700"/>
+<img src="static/images/metricas-classes.png" alt="mAP@0.5 por classe" width="900"/>
 </div>
 
 ### Treino customizado vs. COCO pré-treinado
@@ -288,14 +288,14 @@ Para validar o impacto do treino específico de domínio, comparou-se o **YOLOv1
 O modelo customizado supera o pré-treinado em recall e em ambas as métricas mAP, destacando o ganho em qualidade de localização (IoU mais rígidos) e na detecção de pessoas e animais em cenários de inundação. A análise qualitativa aponta gargalos como confusão entre `civilian` e `background` e dificuldade em animais menores (`dog`, `cat`).
 
 <div align="center">
-<img src="static/images/metricas-yolo.png" alt="Resultado do modelo customizado" width="500"/>
+<img src="static/images/metricas-yolo.png" alt="Resultado do modelo customizado" width="700"/>
 </div>
 
 *Comparação qualitativa:* à esquerda, saída do modelo pré-treinado em COCO; à direita, do modelo customizado. O treino específico melhora detecções em cenas de desastre.
 
 <div align="center">
-<img src="static/images/modelo-coco.png" alt="Modelo COCO" width="300"/>
-<img src="static/images/modelo-customizado.png" alt="Modelo customizado" width="300"/>
+<img src="static/images/modelo-coco.png" alt="Modelo COCO" width="400"/>
+<img src="static/images/modelo-customizado.png" alt="Modelo customizado" width="400"/>
 </div>
 
 ### Simulação em vídeo
@@ -305,7 +305,7 @@ Um [vídeo público do YouTube](https://www.youtube.com/watch?v=QnFwDqzCwRU) foi
 O **YOLOv11m** foi aplicado ao vídeo com confiança mínima de **0,75**, para avaliar a detecção e classificação de indivíduos em movimento sob diferentes condições de iluminação e ângulos de câmera.
 
 <div align="center">
-<img src="static/gif/rescuer.gif" alt="Exemplo de vídeo de treinamento" width="500"/>
+<img src="static/gif/rescuer.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
 </div><br>
 
 **Resultados:** O desempenho foi satisfatório, a maioria dos `rescuers` foi corretamente identificada, demonstrando a eficácia do Urban Disaster Monitor em cenários dinâmicos. Em alguns momentos, o modelo não detectou todos os socorristas, possivelmente por oclusões parciais ou ângulos desfavoráveis. Foram observados falsos positivos ocasionais (ex.: objeto classificado como `dog` com confiança até 0,8), indicando a necessidade de diversificar o dataset e refinar hiperparâmetros para maior robustez em vídeo.
