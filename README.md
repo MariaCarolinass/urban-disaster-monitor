@@ -18,8 +18,8 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="300"/> 
-<img src="static/images/capa2.webp" alt="Bombeiros erguendo um cavalo" width="300"/> 
+<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="400"/> 
+<img src="static/images/capa2.webp" alt="Bombeiros erguendo um cavalo" width="400"/> 
 
 </div><br>
 
