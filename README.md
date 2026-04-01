@@ -408,8 +408,8 @@ python app.py
 
 ## License
 
-[MIT License](./LICENSE.txt)
-
+- Code: MIT License
+- Dataset: CC BY 4.0 (see dataset source for details)
 
 ## References
 
