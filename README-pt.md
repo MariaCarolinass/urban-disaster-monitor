@@ -408,8 +408,8 @@ python app.py
 
 ## Licença
 
-[MIT License](./LICENSE.txt)
-
+- Código: MIT License
+- Base de dados: CC BY 4.0
 
 ## Referências Bibliográficas
 
