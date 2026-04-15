@@ -4,7 +4,7 @@
 
 [![YOLOv11](https://img.shields.io/badge/YOLOv11-ultralytics-green)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Dataset: CC BY 4.0](https://img.shields.io/badge/Dataset-CC%20BY%204.0-blue.svg)
 
-[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
+[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
 [Português](./README-pt.md) | English
 
