@@ -1,20 +1,20 @@
-# Código de Conduta
+# Code of Conduct
 
-Este projeto adota um padrão simples de convivência para manter um ambiente colaborativo.
+This project adopts a simple code of conduct to maintain a collaborative environment.
 
-## Esperado
+## Expected
 
-- Respeito e cordialidade em discussões e reviews
-- Feedback objetivo, focado no código e no problema
-- Boa fé ao reportar bugs e sugerir melhorias
+- Respect and courtesy in discussions and reviews
+- Objective feedback, focused on the code and the problem
+- Good faith when reporting bugs and suggesting improvements
 
-## Não será tolerado
+## Not tolerated
 
-- Assédio, discriminação ou ataques pessoais
-- Exposição de dados sensíveis (tokens, credenciais, informações privadas)
-- Detalhes de exploração de vulnerabilidades em issues públicas
+- Harassment, discrimination, or personal attacks
+- Exposure of sensitive data (tokens, credentials, private information)
+- Details about vulnerability exploitation in public issues
 
-## Aplicação
+## Enforcement
 
-Mantenedores podem remover conteúdo, bloquear usuários ou encerrar discussões que violem estas regras.
+Maintainers may remove content, block users, or close discussions that violate these rules.
 
