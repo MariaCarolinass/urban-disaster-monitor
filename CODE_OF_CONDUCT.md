@@ -12,7 +12,7 @@ Este projeto adota um padrão simples de convivência para manter um ambiente co
 
 - Assédio, discriminação ou ataques pessoais
 - Exposição de dados sensíveis (tokens, credenciais, informações privadas)
-- Detalhes de exploração de vulnerabilidades em issues públicas (ver `SECURITY.md`)
+- Detalhes de exploração de vulnerabilidades em issues públicas
 
 ## Aplicação
 
