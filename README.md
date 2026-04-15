@@ -18,8 +18,7 @@ In urban disaster situations, every second counts. This project offers a compute
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="People in flood" width="400"/> 
-<img src="static/images/capa2.webp" alt="Firefighters lifting a horse" width="400"/> 
+<img src="static/images/capa1.webp" alt="People in flood" width="700"/> 
 
 </div><br>
 
