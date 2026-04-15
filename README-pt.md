@@ -2,7 +2,7 @@
 
 <img src="static/images/logo1.png" alt="Logo projeto" width="600"/><br>
 
-[![YOLOv11](https://img.shields.io/badge/YOLOv11-ultralytics-red)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Dataset: CC BY 4.0](https://img.shields.io/badge/Dataset-CC%20BY%204.0-blue.svg)
+[![YOLOv11](https://img.shields.io/badge/YOLOv11-ultralytics-green)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Dataset: CC BY 4.0](https://img.shields.io/badge/Dataset-CC%20BY%204.0-blue.svg)
 
 [Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
@@ -18,8 +18,7 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="400"/> 
-<img src="static/images/capa2.webp" alt="Bombeiros erguendo um cavalo" width="400"/> 
+<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="700"/> 
 
 </div><br>
 
