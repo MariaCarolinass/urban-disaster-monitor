@@ -9,10 +9,10 @@ from huggingface_hub import hf_hub_download
 def get_model_path(model_variant):
     os.makedirs("models", exist_ok=True)
     model_map = {
-        "yolov11n": "carolinasoares/yolov11n",
-        "yolov11s": "carolinasoares/yolov11s",
-        "yolov11m": "carolinasoares/yolov11m",
-        "yolov11l": "carolinasoares/yolov11l"
+        "yolov26n": "carolinasoares/yolov26n",
+        "yolov26s": "carolinasoares/yolov26s",
+        "yolov26m": "carolinasoares/yolov26m",
+        "yolov26l": "carolinasoares/yolov26l"
     }
     repo_id = model_map[model_variant]
     return hf_hub_download(repo_id=repo_id, filename=f"{model_variant}.pt", cache_dir="models")
@@ -139,7 +139,7 @@ with gr.Blocks() as app:
             with gr.Column():
                 image = gr.Image(label="Upload an Image", type="pil")
                 conf_threshold = gr.Slider(label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30)
-                output_model = gr.Dropdown(["yolov11n", "yolov11s", "yolov11m", "yolov11l"], label="Select Model", info="Select the YOLOv11 model variant to use.", value="yolov11m")
+                output_model = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="Select Model", info="Select the YOLOv26 model variant to use.", value="yolov26m")
                 btn = gr.Button("Process Image", variant="primary")
             with gr.Column():
                 output_image = gr.Image(label="Processed Image")
@@ -199,7 +199,7 @@ with gr.Blocks() as app:
             with gr.Column():
                 video = gr.Video(label="Upload a Video", autoplay=True)
                 conf_threshold = gr.Slider(label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30)
-                output_model = gr.Dropdown(["yolov11n", "yolov11s", "yolov11m", "yolov11l"], label="Select Model", info="Select the YOLOv11 model variant to use.", value="yolov11m")
+                output_model = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="Select Model", info="Select the YOLOv26 model variant to use.", value="yolov26m")
                 btn = gr.Button("Process Video", variant="primary")
             with gr.Column():
                 output_video = gr.Video(label="Processed Video", autoplay=True)
