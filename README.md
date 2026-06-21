@@ -2,7 +2,7 @@
 
 <img src="static/images/logo1.png" alt="Project logo" width="600"/><br>
 
-[![YOLOv11](https://img.shields.io/badge/YOLOv11-ultralytics-red)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
+[![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
 [Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
@@ -12,7 +12,7 @@
 
 # Urban Disaster Monitor
 
-### Detection and classification of civilians, animals and rescuers in urban disaster scenarios using YOLOv11
+### Detection and classification of civilians, animals and rescuers in urban disaster scenarios using YOLOv26
 
 In urban disaster situations, every second counts. This project offers a computer vision tool to help rescue teams act with greater precision and speed.
 
@@ -52,10 +52,10 @@ In urban disaster situations, every second counts. This project offers a compute
 │   ├── README.dataset.txt
 │   └── README.roboflow.txt
 ├── models
-│   ├── yolov11l
-│   ├── yolov11m
-│   ├── yolov11n
-│   └── yolov11s
+│   ├── yolov26l
+│   ├── yolov26m
+│   ├── yolov26n
+│   └── yolov26s
 └── static
     ├── gif
     ├── images
@@ -97,7 +97,7 @@ In urban disaster situations, every second counts. This project offers a compute
 
 ## About the project
 
-**Urban Disaster Monitor** is a computer vision system for detecting and classifying **individuals** (Civilians and Rescuers) and **animals** (Cows, Horses, Dogs and Cats) in urban disaster scenarios. In situations of structural collapse, floods or landslides, quickly identifying civilians and rescuers in real time is crucial to optimize resources and reduce fatalities. The system uses **YOLOv11** to support emergency teams during disaster response.
+**Urban Disaster Monitor** is a computer vision system for detecting and classifying **individuals** (Civilians and Rescuers) and **animals** (Cows, Horses, Dogs and Cats) in urban disaster scenarios. In situations of structural collapse, floods or landslides, quickly identifying civilians and rescuers in real time is crucial to optimize resources and reduce fatalities. The system uses **YOLOv26** to support emergency teams during disaster response.
 
 ### Features
 
@@ -207,7 +207,7 @@ Example prompts:
 
 ## Annotations and Model
 
-Annotations were performed on the **Roboflow** platform and converted to YOLO format. The YOLOv11 model is trained on the six classes defined below, with continuous validation and evaluation on an independent test set.
+Annotations were performed on the **Roboflow** platform and converted to YOLO format. The YOLOv26 model is trained on the six classes defined below, with continuous validation and evaluation on an independent test set.
 
 ### Classes (Roboflow)
 
@@ -222,7 +222,7 @@ Annotations were performed on the **Roboflow** platform and converted to YOLO fo
 
 The model uses **YOLO** (You Only Look Once), a reference in real-time object detection: it formulates the task as a single regression problem that predicts bounding boxes and class probabilities directly from the image, enabling end-to-end optimization and high inference speed.
 
-**YOLOv11** (Ultralytics) is the latest version, with compatibility for conversion between frameworks. Trained variants: YOLOv11n (nano), YOLOv11s (small), YOLOv11m (medium) and YOLOv11l (large).
+**YOLOv26** (Ultralytics) is the latest version, with compatibility for conversion between frameworks. Trained variants: YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) and YOLOv26l (large).
 
 ### Training pipeline
 
@@ -238,13 +238,13 @@ Training was performed on **Google Colab** using **NVIDIA T4** GPUs. Example cal
 ```python
 from ultralytics import YOLO
 
-model = YOLO('yolov11n.pt')
+model = YOLO('yolov26n.pt')
 model.train(
     data='dataset/data.yaml',
     epochs=50,
     imgsz=640,
     batch=16,
-    name='yolov11n'
+    name='yolov26n'
 )
 ```
 
@@ -260,10 +260,10 @@ Model evaluation was performed with standard object detection metrics: **mAP@0.5
 
 ### Results by variant (mAP@0.5)
 
-The four trained variants (nano, small, medium, large) show similar performance: YOLOv11n reached 85.27%, YOLOv11s 86.88%, YOLOv11m 86.18% and YOLOv11l 86.12%. The gap between the best (small) and worst (nano) did not exceed 1.61%, indicating that even the most compact version maintains good accuracy, which is relevant for hardware-constrained scenarios.
+The four trained variants (nano, small, medium, large) show similar performance: YOLOv26n reached 85.27%, YOLOv26s 86.88%, YOLOv26m 86.18% and YOLOv26l 86.12%. The gap between the best (small) and worst (nano) did not exceed 1.61%, indicating that even the most compact version maintains good accuracy, which is relevant for hardware-constrained scenarios.
 
 <div align="center">
-<img src="static/images/metricas0.5.png" alt="mAP@0.5 by variant" width="700"/>
+<img src="static/images/yolo26map05.png" alt="mAP@0.5 by variant" width="700"/>
 </div>
 
 ### Results by class
@@ -271,24 +271,24 @@ The four trained variants (nano, small, medium, large) show similar performance:
 The chart below compares mAP@0.5 per class across the different variants. The `dog` class had the lowest performance overall but remained above 70% with the small model. Person classes (`civilian`, `rescuer`) and large animals (`cow`, `horse`) tend to perform better, possibly due to greater visibility and area occupied in the image. 
 
 <div align="center">
-<img src="static/images/metricas-classes.png" alt="mAP@0.5 by class" width="900"/>
+<img src="static/images/metricasclasseyolo26.png" alt="mAP@0.5 by class" width="900"/>
 </div>
 
 ### Custom training vs. COCO pre-trained
 
-To validate the impact of domain-specific training, **custom YOLOv11m** was compared with the **COCO pre-trained** version. COCO evaluation was restricted to the 4 animal classes in our dataset plus one aggregated *person* class (civilian + rescuer):
+To validate the impact of domain-specific training, **custom YOLOv26m** was compared with the **COCO pre-trained** version. COCO evaluation was restricted to the 4 animal classes in our dataset plus one aggregated *person* class (civilian + rescuer):
 
 | Metric | Custom | COCO pre-trained |
 |---------|-------------|-------------------|
-| Precision | 0.87 | 0.87 |
-| Recall | 0.77 | 0.71 |
-| mAP@0.5 | 0.86 | 0.80 |
-| mAP@0.5–0.95 | 0.52 | 0.42 |
+| Precision | 0.861 | 0.881 |
+| Recall | 0.800 | 0.701 |
+| mAP@0.5 | 0.865 | 0.798 |
+| mAP@0.5–0.95 | 0.520 | 0.402 |
 
 The custom model outperforms the pre-trained one in recall and in both mAP metrics, highlighting gains in localization quality (stricter IoU) and in detecting people and animals in flood scenarios. Qualitative analysis points to bottlenecks such as confusion between `civilian` and `background` and difficulty with smaller animals (`dog`, `cat`).
 
 <div align="center">
-<img src="static/images/metricas-yolo.png" alt="Custom model result" width="700"/>
+<img src="static/images/customyolo26.png" alt="Custom model result" width="700"/>
 </div>
 
 *Qualitative comparison:* left, output of the COCO pre-trained model; right, custom model. Domain-specific training improves detections in disaster scenes.
@@ -302,7 +302,7 @@ The custom model outperforms the pre-trained one in recall and in both mAP metri
 
 A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used to simulate a real urban disaster scenario, with scenes of firefighters (`rescuer`) in flood areas. The video also contains an animal (goat) not included in the model's classes and therefore not identified.
 
-**YOLOv11m** was applied to the video with a minimum confidence of **0.75**, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
+**YOLOv26m** was applied to the video with a minimum confidence of **0.75**, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
 
 <div align="center">
 <img src="static/gif/rescuer.gif" alt="Training video example" width="600"/>
@@ -314,10 +314,10 @@ A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used t
 
 ## Conclusions and recommendations by model
 
-- **YOLOv11n:** Good performance with lower computational cost; suitable for drones and edge devices with resource constraints. Priority on speed and energy efficiency.
-- **YOLOv11s:** Significant improvement over Nano, especially in learning stability and F1 score (~0.83). Inference times suitable for real-time applications on drones and smart urban cameras.
-- **YOLOv11m:** Superior metrics and better generalization; recommended for production and critical applications requiring high precision.
-- **YOLOv11l:** Maximum precision among variants; compatible with environments that have robust infrastructure.
+- **YOLOv26n:** Good performance with lower computational cost; suitable for drones and edge devices with resource constraints. Priority on speed and energy efficiency.
+- **YOLOv26s:** Significant improvement over Nano, especially in learning stability and F1 score (~0.83). Inference times suitable for real-time applications on drones and smart urban cameras.
+- **YOLOv26m:** Superior metrics and better generalization; recommended for production and critical applications requiring high precision.
+- **YOLOv26l:** Maximum precision among variants; compatible with environments that have robust infrastructure.
 
 The analysis reinforces the role of augmentations, data balancing and temporal modeling to increase robustness. For extended training and more complex experiments, dedicated GPU infrastructure is recommended (e.g., Google Colab Pro, NVIDIA A100).
 
@@ -348,7 +348,7 @@ The application is available on **Hugging Face Spaces**. No installation require
 
 ### Features
 
-- **Model:** choose among YOLOv11n, YOLOv11s, YOLOv11m or YOLOv11l
+- **Model:** choose among YOLOv26n, YOLOv26s, YOLOv26m or YOLOv26l
 - **Upload:** images or videos
 - **Confidence:** adjust the _confidence threshold_ to filter detections
 - **Visualization:** _bounding boxes_ and labels by class (civilian, rescuer, dog, cat, horse, cow)
