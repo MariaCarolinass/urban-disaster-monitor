@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Maria Carolina de Sousa"
+  given-names: "Soares"
+- family-names: "João Arthur Galdino"
+  given-names: "das Neves"
+title: "urban-disaster-monitor"
+version: 1.0.0
+date-released: 2026-04-01
+url: "https://github.com/MariaCarolinass/urban-disaster-monitor"

@@ -4,7 +4,7 @@
 
 [![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
-[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
+[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
 Português | [English](./README.md)
 
@@ -18,8 +18,7 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="400"/> 
-<img src="static/images/capa2.webp" alt="Bombeiros erguendo um cavalo" width="400"/> 
+<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="700"/> 
 
 </div><br>
 
@@ -408,8 +407,8 @@ python app.py
 
 ## Licença
 
-[MIT License](./LICENSE.txt)
-
+- Código: MIT License
+- Base de dados: CC BY 4.0
 
 ## Referências Bibliográficas
 

@@ -4,7 +4,7 @@
 
 [![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
-[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
+[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
 [Português](./README-pt.md) | English
 
@@ -18,8 +18,7 @@ In urban disaster situations, every second counts. This project offers a compute
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="People in flood" width="400"/> 
-<img src="static/images/capa2.webp" alt="Firefighters lifting a horse" width="400"/> 
+<img src="static/images/capa1.webp" alt="People in flood" width="700"/> 
 
 </div><br>
 
@@ -406,10 +405,20 @@ python app.py
 | :---------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 |                           **João Galdino**                           |                             **Carolina Soares**                | 
 
+## Star History
+
+<a href="https://www.star-history.com/?repos=MariaCarolinass%2Furban-disaster-monitor&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=MariaCarolinass/urban-disaster-monitor&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=MariaCarolinass/urban-disaster-monitor&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=MariaCarolinass/urban-disaster-monitor&type=date&legend=top-left" />
+ </picture>
+</a>
+
 ## License
 
-[MIT License](./LICENSE.txt)
-
+- Code: MIT License
+- Dataset: CC BY 4.0 (see dataset source for details)
 
 ## References
 
