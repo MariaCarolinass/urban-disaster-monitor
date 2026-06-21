@@ -163,8 +163,8 @@ Collected from sources with open or shareable licenses:
 
 <div align="center">
 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d.jpg" alt="People rescuing flooded cows" width="400"/> 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d_annotated.webp" alt="People rescuing flooded cows - annotated" width="400"/> 
+<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0.jpg" alt="People rescuing flooded cows" width="400"/> 
+<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0_annotated.webp" alt="People rescuing flooded cows - annotated" width="400"/> 
 
 </div>
 
@@ -183,8 +183,8 @@ Each image was manually reviewed. The synthetic samples complement the real ones
 
 <div align="center">
 
-<img src="static/images/gemini.jpg" alt="Generated image" width="400"/>
-<img src="static/images/gemini_result.webp" alt="Generated image classified" width="400"/>
+<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini.jpg" alt="Generated image" width="400"/>
+<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini_result.webp" alt="Generated image classified" width="400"/>
 
 </div><br>
 
@@ -288,13 +288,6 @@ The custom model outperforms the pre-trained one in recall and in both mAP metri
 
 <div align="center">
 <img src="static/images/customyolo26.png" alt="Custom model result" width="700"/>
-</div>
-
-*Qualitative comparison:* left, output of the COCO pre-trained model; right, custom model. Domain-specific training improves detections in disaster scenes.
-
-<div align="center">
-<img src="static/images/modelo-coco.png" alt="COCO model" width="400"/>
-<img src="static/images/modelo-customizado.png" alt="Custom model" width="400"/>
 </div>
 
 ### Video simulation

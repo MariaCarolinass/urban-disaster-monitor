@@ -163,8 +163,8 @@ Coletadas de fontes com licença aberta ou compartilhável:
 
 <div align="center">
 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d.jpg" alt="Pessoas resgatando vacas inundadas" width="400"/> 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d_annotated.webp" alt="Pessoas resgatando vacas inundadas - anotado" width="400"/> 
+<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0.jpg" alt="People rescuing flooded cows" width="400"/> 
+<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0_annotated.webp" alt="People rescuing flooded cows - annotated" width="400"/> 
 
 </div>
 
@@ -183,8 +183,8 @@ Cada imagem foi revisada manualmente. As amostras sintéticas complementam as re
 
 <div align="center">
 
-<img src="static/images/gemini.jpg" alt="Imagem gerada" width="400"/>
-<img src="static/images/gemini_result.webp" alt="Imagem gerada classificada" width="400"/>
+<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini.jpg" alt="Generated image" width="400"/>
+<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini_result.webp" alt="Generated image classified" width="400"/>
 
 </div><br>
 
@@ -288,13 +288,6 @@ O modelo customizado supera o pré-treinado em recall e em ambas as métricas mA
 
 <div align="center">
 <img src="static/images/customyolo26.png" alt="Resultado do modelo customizado" width="700"/>
-</div>
-
-*Comparação qualitativa:* à esquerda, saída do modelo pré-treinado em COCO; à direita, do modelo customizado. O treino específico melhora detecções em cenas de desastre.
-
-<div align="center">
-<img src="static/images/modelo-coco.png" alt="Modelo COCO" width="400"/>
-<img src="static/images/modelo-customizado.png" alt="Modelo customizado" width="400"/>
 </div>
 
 ### Simulação em vídeo
