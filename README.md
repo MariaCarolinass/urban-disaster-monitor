@@ -35,6 +35,7 @@ In urban disaster situations, every second counts. This project offers a compute
 │   ├── coco-vs-yolo-comparison.ipynb
 │   ├── generative-images-synthetic-gemini.ipynb
 │   ├── metrics-and-comparison-yolo-models.ipynb
+│   ├── yolo11-vs-yolo26-comparison.ipynb
 │   ├── simulation-video-yolo.ipynb
 │   └── training-yolo-dataset.ipynb
 ├── dataset
@@ -79,6 +80,7 @@ In urban disaster situations, every second counts. This project offers a compute
   - [Training pipeline](#training-pipeline)
   - [Training environment (Colab + T4 GPU)](#training-environment-colab--t4-gpu)
 - [Metrics and results](#metrics-and-results)
+  - [YOLOv11 vs. YOLOv26 comparison](#yolov11-vs-yolov26-comparison)
   - [Results by variant](#results-by-variant-map05)
   - [Results by class](#results-by-class)
   - [Custom training vs. COCO pre-trained](#custom-training-vs-coco-pre-trained)
@@ -254,8 +256,19 @@ model.train(
 Model evaluation was performed with standard object detection metrics: **mAP@0.5** (mean average precision at IoU 0.5), **mAP@0.5:0.95** (multiple IoU thresholds, more stringent), **Precision**, **Recall** and **confusion matrix** for per-class error analysis.
 
 - [Model comparison notebook](./notebooks/metrics-and-comparison-yolo-models.ipynb)
+- [YOLOv11 vs YOLOv26 comparison notebook](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
 - [Model vs. COCO comparison notebook](./notebooks/coco-vs-yolo-comparison.ipynb)
 - [Trained model results](./models)
+
+### YOLOv11 vs. YOLOv26 comparison
+
+To compare the two training generations on equal footing, the chart below uses the best `mAP@0.5` achieved by each variant in its `results.csv`, taken from tags `yolo11-v1.0.0` and `yolo26-v1.0.0`. YOLOv26 leads on the medium and large models, while YOLOv11 stays slightly ahead on nano and small.
+
+<div align="center">
+<img src="static/images/yolo11-vs-yolo26-map-comparison.png" alt="YOLOv11 vs YOLOv26 comparison" width="700"/>
+</div>
+
+Best overall result: **YOLOv26l** with **89.19% mAP@0.5**.
 
 ### Results by variant (mAP@0.5)
 
