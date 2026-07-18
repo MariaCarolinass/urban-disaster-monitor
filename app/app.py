@@ -1,21 +1,55 @@
 import os
+from pathlib import Path
+
 import gradio as gr
-from ultralytics import YOLO
 import cv2
 import tempfile
 import numpy as np
 from huggingface_hub import hf_hub_download
+from ultralytics import YOLO
+
+
+YOLO_MODEL_MAP = {
+    "yolov26n": "carolinasoares/yolov26n",
+    "yolov26s": "carolinasoares/yolov26s",
+    "yolov26m": "carolinasoares/yolov26m",
+    "yolov26l": "carolinasoares/yolov26l",
+}
+
+RFDTR_CHECKPOINT = Path(__file__).resolve().parent.parent / "models" / "rfdetrnano" / "checkpoint_best_total.pth"
+
+CLASS_COLORS = {
+    0: (255, 0, 0),      # vermelho
+    1: (255, 255, 0),    # amarelo
+    2: (0, 255, 0),      # verde
+    3: (0, 0, 255),      # azul
+    4: (255, 0, 255),    # magenta
+    5: (0, 255, 255),    # ciano
+}
+
+FONT_COLORS = {
+    0: (255, 255, 255),  # branco
+    1: (0, 0, 0),        # preto
+    2: (0, 0, 0),        # preto
+    3: (255, 255, 255),  # branco
+    4: (255, 255, 255),  # branco
+    5: (0, 0, 0),        # preto
+}
 
 def get_model_path(model_variant):
     os.makedirs("models", exist_ok=True)
-    model_map = {
-        "yolov26n": "carolinasoares/yolov26n",
-        "yolov26s": "carolinasoares/yolov26s",
-        "yolov26m": "carolinasoares/yolov26m",
-        "yolov26l": "carolinasoares/yolov26l"
-    }
-    repo_id = model_map[model_variant]
+    repo_id = YOLO_MODEL_MAP[model_variant]
     return hf_hub_download(repo_id=repo_id, filename=f"{model_variant}.pt", cache_dir="models")
+
+def get_rfdetr_model():
+    try:
+        from rfdetr import RFDETRNano
+    except ImportError as exc:
+        raise RuntimeError(
+            "RF-DETR is not installed. Run `pip install -r app/requirements.txt` first."
+        ) from exc
+
+    return RFDETRNano(pretrain_weights=str(RFDTR_CHECKPOINT))
 
 def costum_bounding_box(image, results):
     annotated_image = image.copy()
@@ -25,28 +59,10 @@ def costum_bounding_box(image, results):
 
     class_names = results[0].names
 
-    class_colors = {
-        0: (255, 0, 0),      # vermelho
-        1: (255, 255, 0),    # amarelo
-        2: (0, 255, 0),      # verde
-        3: (0, 0, 255),      # azul
-        4: (255, 0, 255),    # magenta
-        5: (0, 255, 255),    # ciano
-    }
-
-    font_colors = {
-        0: (255, 255, 255),  # branco
-        1: (0, 0, 0),        # preto
-        2: (0, 0, 0),        # preto
-        3: (255, 255, 255),  # branco
-        4: (255, 255, 255),  # branco
-        5: (0, 0, 0),        # preto
-    }
-
     for box in results[0].boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
-        box_color = class_colors.get(int(box.cls[0]), (255, 255, 255))  # fallback: branco
-        text_color = font_colors.get(int(box.cls[0]), (0, 0, 0))        # fallback: preto
+        box_color = CLASS_COLORS.get(int(box.cls[0]), (255, 255, 255))  # fallback: branco
+        text_color = FONT_COLORS.get(int(box.cls[0]), (0, 0, 0))        # fallback: preto
         label = f"{class_names[int(box.cls[0])]} {float(box.conf[0]):.2f}"
 
         (text_w, text_h), _ = cv2.getTextSize(label, font, font_scale, thickness)
@@ -65,25 +81,99 @@ def costum_bounding_box(image, results):
 
     return annotated_image
 
+def _get_rfdetr_class_name(detections, index):
+    data = getattr(detections, "data", None)
+    if isinstance(data, dict):
+        class_names = data.get("class_name")
+        if class_names is not None:
+            return str(class_names[index])
 
-def image_detection(image, conf_threshold, model_variant):
+    class_ids = getattr(detections, "class_id", None)
+    if class_ids is not None:
+        return str(int(class_ids[index]))
+
+    return "object"
+
+def rfdetr_bounding_box(image, detections):
+    annotated_image = image.copy()
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    font_scale = 0.5
+    thickness = 1
+
+    boxes = getattr(detections, "xyxy", None)
+    confidences = getattr(detections, "confidence", None)
+    class_ids = getattr(detections, "class_id", None)
+
+    if boxes is None or len(boxes) == 0:
+        return annotated_image
+
+    for index, box in enumerate(boxes):
+        x1, y1, x2, y2 = map(int, box)
+        class_id = int(class_ids[index]) if class_ids is not None else None
+        box_color = CLASS_COLORS.get(class_id, (255, 255, 255))
+        text_color = FONT_COLORS.get(class_id, (0, 0, 0))
+
+        class_name = _get_rfdetr_class_name(detections, index)
+        if confidences is not None:
+            label = f"{class_name} {float(confidences[index]):.2f}"
+        else:
+            label = class_name
+
+        (text_w, text_h), _ = cv2.getTextSize(label, font, font_scale, thickness)
+        text_x = x1
+        text_y = y1 if y1 - text_h < 0 else y1
+        bg_tl = (text_x, text_y - text_h)
+        bg_br = (text_x + text_w, text_y)
+
+        cv2.rectangle(annotated_image, bg_tl, bg_br, box_color, -1)
+        cv2.putText(annotated_image, label, (text_x, text_y - 2), font, font_scale, text_color, thickness, cv2.LINE_AA)
+        cv2.rectangle(annotated_image, (x1, y1), (x2, y2), box_color, 2)
+
+    return annotated_image
+
+
+def image_detection(image, conf_threshold, backend, yolo_variant):
     image_bgr = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
-    weights_path = get_model_path(model_variant)
-    model_image = YOLO(weights_path)
-    
-    results = model_image(image_bgr, conf=conf_threshold)
+    if backend == "YOLOv26":
+        weights_path = get_model_path(yolo_variant)
+        model_image = YOLO(weights_path)
+        results = model_image(image_bgr, conf=conf_threshold)
 
+        image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
+        annotated_image = costum_bounding_box(image_rgb, results)
+
+        detected_classes = set(int(box.cls[0]) for box in results[0].boxes)
+        class_names = results[0].names
+        predictions = ", ".join(sorted([class_names[i] for i in detected_classes]))
+        return annotated_image, predictions
+
+    model_image = get_rfdetr_model()
     image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
-    annotated_image = costum_bounding_box(image_rgb, results)
+    detections = model_image.predict(image_rgb, threshold=conf_threshold)
+    annotated_image = rfdetr_bounding_box(image_rgb, detections)
 
-    detected_classes = set(int(box.cls[0]) for box in results[0].boxes)
-    class_names = results[0].names
-    predictions = ", ".join(sorted([class_names[i] for i in detected_classes]))
+    class_names = []
+    seen = set()
+    data = getattr(detections, "data", None)
+    if isinstance(data, dict) and data.get("class_name") is not None:
+        for class_name in data["class_name"]:
+            if class_name not in seen:
+                seen.add(class_name)
+                class_names.append(str(class_name))
+    else:
+        class_ids = getattr(detections, "class_id", None)
+        if class_ids is not None:
+            for class_id in class_ids:
+                class_name = str(int(class_id))
+                if class_name not in seen:
+                    seen.add(class_name)
+                    class_names.append(class_name)
 
+    predictions = ", ".join(sorted(class_names)) if class_names else "Nenhuma classe detectada"
     return annotated_image, predictions
 
-def video_detection(video_path, conf_threshold, model_variant, frame_skip=3):
+def video_detection(video_path, conf_threshold, backend, yolo_variant, frame_skip=3):
     cap = cv2.VideoCapture(video_path)
     width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -96,8 +186,11 @@ def video_detection(video_path, conf_threshold, model_variant, frame_skip=3):
     frame_count = 0
     last_annotated_frame = None
 
-    weights_path = get_model_path(model_variant)
-    model_video = YOLO(weights_path)
+    if backend == "YOLOv26":
+        weights_path = get_model_path(yolo_variant)
+        model_video = YOLO(weights_path)
+    else:
+        model_video = get_rfdetr_model()
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -105,13 +198,30 @@ def video_detection(video_path, conf_threshold, model_variant, frame_skip=3):
             break
 
         if frame_count % frame_skip == 0:
-            results = model_video(frame, conf=conf_threshold)
-            annotated_frame = costum_bounding_box(frame, results)
-        
-            for c in results[0].boxes.cls:
-                class_name = results[0].names[int(c)]
-                all_classes.add(class_name)
-                
+            if backend == "YOLOv26":
+                results = model_video(frame, conf=conf_threshold)
+                annotated_frame = costum_bounding_box(frame, results)
+
+                for c in results[0].boxes.cls:
+                    class_name = results[0].names[int(c)]
+                    all_classes.add(class_name)
+            else:
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                detections = model_video.predict(frame_rgb, threshold=conf_threshold)
+                annotated_frame = rfdetr_bounding_box(frame_rgb, detections)
+
+                data = getattr(detections, "data", None)
+                if isinstance(data, dict) and data.get("class_name") is not None:
+                    for class_name in data["class_name"]:
+                        all_classes.add(str(class_name))
+                else:
+                    class_ids = getattr(detections, "class_id", None)
+                    if class_ids is not None:
+                        for class_id in class_ids:
+                            all_classes.add(str(int(class_id)))
+
+                annotated_frame = cv2.cvtColor(annotated_frame, cv2.COLOR_RGB2BGR)
+
             last_annotated_frame = annotated_frame
         else:
             if last_annotated_frame is not None:
@@ -139,13 +249,18 @@ with gr.Blocks() as app:
             with gr.Column():
                 image = gr.Image(label="Upload an Image", type="pil")
                 conf_threshold = gr.Slider(label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30)
-                output_model = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="Select Model", info="Select the YOLOv26 model variant to use.", value="yolov26m")
+                backend = gr.Radio(["YOLOv26", "RF-DETR Nano"], label="Model family", value="YOLOv26")
+                yolo_variant = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="YOLOv26 variant", info="Used when the model family is YOLOv26.", value="yolov26m")
                 btn = gr.Button("Process Image", variant="primary")
             with gr.Column():
                 output_image = gr.Image(label="Processed Image")
                 output_predictions = gr.Textbox(label="Predictions", placeholder="Predictions will appear here...")
 
-        btn.click(fn=image_detection, inputs=[image, conf_threshold, output_model], outputs=[output_image, output_predictions])
+        btn.click(
+            fn=image_detection,
+            inputs=[image, conf_threshold, backend, yolo_variant],
+            outputs=[output_image, output_predictions],
+        )
     
         gr.Examples(
             examples=[
@@ -199,21 +314,26 @@ with gr.Blocks() as app:
             with gr.Column():
                 video = gr.Video(label="Upload a Video", autoplay=True)
                 conf_threshold = gr.Slider(label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30)
-                output_model = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="Select Model", info="Select the YOLOv26 model variant to use.", value="yolov26m")
+                backend = gr.Radio(["YOLOv26", "RF-DETR Nano"], label="Model family", value="YOLOv26")
+                yolo_variant = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="YOLOv26 variant", info="Used when the model family is YOLOv26.", value="yolov26m")
                 btn = gr.Button("Process Video", variant="primary")
             with gr.Column():
                 output_video = gr.Video(label="Processed Video", autoplay=True)
                 output_predictions = gr.Textbox(label="Predictions", placeholder="Predictions will appear here...")
 
-        btn.click(fn=video_detection, inputs=[video, conf_threshold, output_model], outputs=[output_video, output_predictions])
+        btn.click(
+            fn=video_detection,
+            inputs=[video, conf_threshold, backend, yolo_variant],
+            outputs=[output_video, output_predictions],
+        )
 
-        video_path = hf_hub_download("carolinasoares/urban-disaster-examples", "rescuer.mp4")
+        video_path = hf_hub_download("carolinasoares/urban-disaster-examples", "rescue_simulation.mp4")
 
         gr.Examples(
             examples=[[video_path]],
-            inputs=[video, conf_threshold, output_model],
+            inputs=[video, conf_threshold],
             outputs=[output_video, output_predictions],
             label="Example Videos"
         )
 
-app.launch(allowed_paths=["/home/carol/.cache/huggingface/hub"])
+app.launch(allowed_paths=["/home/carol/.cache/huggingface/hub", "/home/carol/urban-disaster-monitor"])
