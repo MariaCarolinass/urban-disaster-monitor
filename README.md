@@ -35,6 +35,7 @@ In urban disaster situations, every second counts. This project offers a compute
 │   ├── coco-vs-yolo-comparison.ipynb
 │   ├── generative-images-synthetic-gemini.ipynb
 │   ├── metrics-and-comparison-yolo-models.ipynb
+│   ├── yolo11-vs-yolo26-comparison.ipynb
 │   ├── simulation-video-yolo.ipynb
 │   └── training-yolo-dataset.ipynb
 ├── dataset
@@ -79,6 +80,7 @@ In urban disaster situations, every second counts. This project offers a compute
   - [Training pipeline](#training-pipeline)
   - [Training environment (Colab + T4 GPU)](#training-environment-colab--t4-gpu)
 - [Metrics and results](#metrics-and-results)
+  - [YOLOv11 vs. YOLOv26 comparison](#yolov11-vs-yolov26-comparison)
   - [Results by variant](#results-by-variant-map05)
   - [Results by class](#results-by-class)
   - [Custom training vs. COCO pre-trained](#custom-training-vs-coco-pre-trained)
@@ -163,8 +165,8 @@ Collected from sources with open or shareable licenses:
 
 <div align="center">
 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d.jpg" alt="People rescuing flooded cows" width="400"/> 
-<img src="static/images/230714-india-flooding-mb-0831-d3a66d_annotated.webp" alt="People rescuing flooded cows - annotated" width="400"/> 
+<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0.jpg" alt="People rescuing flooded cows" width="400"/> 
+<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0_annotated.webp" alt="People rescuing flooded cows - annotated" width="400"/> 
 
 </div>
 
@@ -183,8 +185,8 @@ Each image was manually reviewed. The synthetic samples complement the real ones
 
 <div align="center">
 
-<img src="static/images/gemini.jpg" alt="Generated image" width="400"/>
-<img src="static/images/gemini_result.webp" alt="Generated image classified" width="400"/>
+<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini.jpg" alt="Generated image" width="400"/>
+<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini_result.webp" alt="Generated image classified" width="400"/>
 
 </div><br>
 
@@ -254,8 +256,19 @@ model.train(
 Model evaluation was performed with standard object detection metrics: **mAP@0.5** (mean average precision at IoU 0.5), **mAP@0.5:0.95** (multiple IoU thresholds, more stringent), **Precision**, **Recall** and **confusion matrix** for per-class error analysis.
 
 - [Model comparison notebook](./notebooks/metrics-and-comparison-yolo-models.ipynb)
+- [YOLOv11 vs YOLOv26 comparison notebook](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
 - [Model vs. COCO comparison notebook](./notebooks/coco-vs-yolo-comparison.ipynb)
 - [Trained model results](./models)
+
+### YOLOv11 vs. YOLOv26 comparison
+
+To compare the two training generations on equal footing, the chart below uses the best `mAP@0.5` achieved by each variant in its `results.csv`, taken from tags `yolo11-v1.0.0` and `yolo26-v1.0.0`. YOLOv26 leads on the medium and large models, while YOLOv11 stays slightly ahead on nano and small.
+
+<div align="center">
+<img src="static/images/yolo11-vs-yolo26-map-comparison.png" alt="YOLOv11 vs YOLOv26 comparison" width="700"/>
+</div>
+
+Best overall result: **YOLOv26l** with **89.19% mAP@0.5**.
 
 ### Results by variant (mAP@0.5)
 
@@ -290,13 +303,6 @@ The custom model outperforms the pre-trained one in recall and in both mAP metri
 <img src="static/images/customyolo26.png" alt="Custom model result" width="700"/>
 </div>
 
-*Qualitative comparison:* left, output of the COCO pre-trained model; right, custom model. Domain-specific training improves detections in disaster scenes.
-
-<div align="center">
-<img src="static/images/modelo-coco.png" alt="COCO model" width="400"/>
-<img src="static/images/modelo-customizado.png" alt="Custom model" width="400"/>
-</div>
-
 ### Video simulation
 
 A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used to simulate a real urban disaster scenario, with scenes of firefighters (`rescuer`) in flood areas. The video also contains an animal (goat) not included in the model's classes and therefore not identified.
@@ -304,7 +310,7 @@ A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used t
 **YOLOv26m** was applied to the video with a minimum confidence of **0.75**, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
 
 <div align="center">
-<img src="static/gif/rescuer.gif" alt="Training video example" width="600"/>
+<img src="static/gif/rescue_simulation_yolo26m.gif" alt="Training video example" width="600"/>
 </div><br>
 
 **Results:** Performance was satisfactory; most `rescuers` were correctly identified, demonstrating the effectiveness of Urban Disaster Monitor in dynamic scenarios. At times the model did not detect all rescuers, possibly due to partial occlusions or unfavorable angles. Occasional false positives were observed (e.g., object classified as `dog` with confidence up to 0.8), indicating the need to diversify the dataset and refine hyperparameters for greater robustness in video.
