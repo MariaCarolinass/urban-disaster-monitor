@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 
 import gradio as gr
 import cv2
@@ -16,7 +15,8 @@ YOLO_MODEL_MAP = {
     "yolov26l": "carolinasoares/yolov26l",
 }
 
-RFDTR_CHECKPOINT = Path(__file__).resolve().parent.parent / "models" / "rfdetrnano" / "checkpoint_best_total.pth"
+RFDETR_REPO_ID = "carolinasoares/urban-disaster-rfdetrnano"
+RFDETR_CHECKPOINT_FILE = "checkpoint_best_total.pth"
 
 CLASS_COLORS = {
     0: (255, 0, 0),      # vermelho
@@ -49,7 +49,13 @@ def get_rfdetr_model():
             "RF-DETR is not installed. Run `pip install -r app/requirements.txt` first."
         ) from exc
 
-    return RFDETRNano(pretrain_weights=str(RFDTR_CHECKPOINT))
+    os.makedirs("models", exist_ok=True)
+    weights_path = hf_hub_download(
+        repo_id=RFDETR_REPO_ID,
+        filename=RFDETR_CHECKPOINT_FILE,
+        cache_dir="models",
+    )
+    return RFDETRNano(pretrain_weights=weights_path)
 
 def costum_bounding_box(image, results):
     annotated_image = image.copy()
