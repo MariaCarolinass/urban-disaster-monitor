@@ -15,7 +15,10 @@ YOLO_MODEL_MAP = {
     "yolov26l": "carolinasoares/yolov26l",
 }
 
-RFDETR_REPO_ID = "carolinasoares/urban-disaster-rfdetrnano"
+RFDETR_REPO_MAP = {
+    "nano": "carolinasoares/urban-disaster-rfdetrnano",
+    "medium": "carolinasoares/urban-disaster-rfdetrmedium",
+}
 RFDETR_CHECKPOINT_FILE = "checkpoint_best_total.pth"
 
 CLASS_COLORS = {
@@ -41,21 +44,25 @@ def get_model_path(model_variant):
     repo_id = YOLO_MODEL_MAP[model_variant]
     return hf_hub_download(repo_id=repo_id, filename=f"{model_variant}.pt", cache_dir="models")
 
-def get_rfdetr_model():
+def get_rfdetr_model(variant="nano"):
     try:
-        from rfdetr import RFDETRNano
+        if variant == "nano":
+            from rfdetr import RFDETRNano as _ModelClass
+        else:
+            from rfdetr import RFDETRMedium as _ModelClass
     except ImportError as exc:
         raise RuntimeError(
             "RF-DETR is not installed. Run `pip install -r app/requirements.txt` first."
         ) from exc
 
     os.makedirs("models", exist_ok=True)
+    repo_id = RFDETR_REPO_MAP.get(variant, RFDETR_REPO_MAP["nano"])
     weights_path = hf_hub_download(
-        repo_id=RFDETR_REPO_ID,
+        repo_id=repo_id,
         filename=RFDETR_CHECKPOINT_FILE,
         cache_dir="models",
     )
-    return RFDETRNano(pretrain_weights=weights_path)
+    return _ModelClass(pretrain_weights=weights_path)
 
 def costum_bounding_box(image, results):
     annotated_image = image.copy()
@@ -153,8 +160,15 @@ def image_detection(image, conf_threshold, backend, yolo_variant):
         class_names = results[0].names
         predictions = ", ".join(sorted([class_names[i] for i in detected_classes]))
         return annotated_image, predictions
+    
+    if backend == "RF-DETR Nano":
+        rf_variant = "nano"
+    elif backend == "RF-DETR Medium":
+        rf_variant = "medium"
+    else:
+        rf_variant = "nano"
 
-    model_image = get_rfdetr_model()
+    model_image = get_rfdetr_model(variant=rf_variant)
     image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
     detections = model_image.predict(image_rgb, threshold=conf_threshold)
     annotated_image = rfdetr_bounding_box(image_rgb, detections)
@@ -196,7 +210,14 @@ def video_detection(video_path, conf_threshold, backend, yolo_variant, frame_ski
         weights_path = get_model_path(yolo_variant)
         model_video = YOLO(weights_path)
     else:
-        model_video = get_rfdetr_model()
+        if backend == "RF-DETR Nano":
+            rf_variant = "nano"
+        elif backend == "RF-DETR Medium":
+            rf_variant = "medium"
+        else:
+            rf_variant = "nano"
+
+        model_video = get_rfdetr_model(variant=rf_variant)
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -334,9 +355,10 @@ with gr.Blocks() as app:
         )
 
         video_path = hf_hub_download("carolinasoares/urban-disaster-examples", "rescue_simulation.mp4")
+        video_path2 = hf_hub_download("carolinasoares/urban-disaster-examples", "rescuer.mp4")
 
         gr.Examples(
-            examples=[[video_path]],
+            examples=[[video_path], [video_path2]],
             inputs=[video, conf_threshold],
             outputs=[output_video, output_predictions],
             label="Example Videos"
