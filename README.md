@@ -272,7 +272,7 @@ Best overall result: **YOLOv26l** with **89.19% mAP@0.5**.
 
 ### Results by variant (mAP@0.5)
 
-The four trained variants (nano, small, medium, large) show similar performance: YOLOv26n reached 85.27%, YOLOv26s 86.88%, YOLOv26m 86.18% and YOLOv26l 86.12%. The gap between the best (small) and worst (nano) did not exceed 1.61%, indicating that even the most compact version maintains good accuracy, which is relevant for hardware-constrained scenarios.
+The four trained variants (nano, small, medium, large) show the following mAP@0.5 results based on training logs: YOLOv26n obtained 82.23%, YOLOv26s 86.12%, YOLOv26m 86.28% and YOLOv26l 88.71%. The difference between the best (large) and the worst (nano) is 6.48%, indicating that larger variants provide gains in precision at the cost of increased computational requirements.
 
 <div align="center">
 <img src="static/images/yolo26map05.png" alt="mAP@0.5 by variant" width="700"/>
@@ -305,22 +305,22 @@ The custom model outperforms the pre-trained one in recall and in both mAP metri
 
 ### Video simulation
 
-A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used to simulate a real urban disaster scenario, with scenes of firefighters (`rescuer`) in flood areas. The video also contains an animal (goat) not included in the model's classes and therefore not identified.
+A [public YouTube video](https://youtube.com/shorts/6PuaEPbOhJU?is=ZqVyJ1tB-tI3sHXP) was used to simulate a real urban disaster scenario, with scenes of firefighters (`rescuer`) in flood areas. The video also contains an animal (goat) not included in the model's classes and therefore not identified.
 
-**YOLOv26m** was applied to the video with a minimum confidence of **0.75**, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
+**YOLOv26m** was applied to the video, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
 
 <div align="center">
 <img src="static/gif/rescue_simulation_yolo26m.gif" alt="Training video example" width="600"/>
 </div><br>
 
-**Results:** Performance was satisfactory; most `rescuers` were correctly identified, demonstrating the effectiveness of Urban Disaster Monitor in dynamic scenarios. At times the model did not detect all rescuers, possibly due to partial occlusions or unfavorable angles. Occasional false positives were observed (e.g., object classified as `dog` with confidence up to 0.8), indicating the need to diversify the dataset and refine hyperparameters for greater robustness in video.
+**Results:** In the new video, `YOLOv26` correctly detects most `civilian` and `rescuer` instances, demonstrating good identification in dynamic scenarios. However, challenges remain in low-light segments where detections can be missed or exhibit reduced confidence.
 
 [Video simulation notebook](./notebooks/simulation-video-yolo.ipynb)
 
 ## Conclusions and recommendations by model
 
 - **YOLOv26n:** Good performance with lower computational cost; suitable for drones and edge devices with resource constraints. Priority on speed and energy efficiency.
-- **YOLOv26s:** Significant improvement over Nano, especially in learning stability and F1 score (~0.83). Inference times suitable for real-time applications on drones and smart urban cameras.
+- **YOLOv26s:** Significant improvement over Nano. Inference times suitable for real-time applications on drones and smart urban cameras.
 - **YOLOv26m:** Superior metrics and better generalization; recommended for production and critical applications requiring high precision.
 - **YOLOv26l:** Maximum precision among variants; compatible with environments that have robust infrastructure.
 
