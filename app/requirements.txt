@@ -50,7 +50,7 @@ opencv-python==4.11.0.86
 orjson==3.11.6
 packaging==25.0
 pandas==2.3.0
-pillow==12.2.0
+pillow==12.3.0
 psutil==7.0.0
 py-cpuinfo==9.0.0
 pydantic==2.11.7
