@@ -145,7 +145,7 @@ def rfdetr_bounding_box(image, detections):
     return annotated_image
 
 
-def image_detection(image, conf_threshold, backend, yolo_variant):
+def image_detection(image, conf_threshold, backend, yolo_variant, rfdetr_variant):
     image_bgr = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
     if backend == "YOLOv26":
@@ -161,10 +161,8 @@ def image_detection(image, conf_threshold, backend, yolo_variant):
         predictions = ", ".join(sorted([class_names[i] for i in detected_classes]))
         return annotated_image, predictions
     
-    if backend == "RF-DETR Nano":
-        rf_variant = "nano"
-    elif backend == "RF-DETR Medium":
-        rf_variant = "medium"
+    if backend == "RF-DETR":
+        rf_variant = rfdetr_variant
     else:
         rf_variant = "nano"
 
@@ -193,7 +191,7 @@ def image_detection(image, conf_threshold, backend, yolo_variant):
     predictions = ", ".join(sorted(class_names)) if class_names else "Nenhuma classe detectada"
     return annotated_image, predictions
 
-def video_detection(video_path, conf_threshold, backend, yolo_variant, frame_skip=3):
+def video_detection(video_path, conf_threshold, backend, yolo_variant, rfdetr_variant, frame_skip=3):
     cap = cv2.VideoCapture(video_path)
     width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -210,13 +208,7 @@ def video_detection(video_path, conf_threshold, backend, yolo_variant, frame_ski
         weights_path = get_model_path(yolo_variant)
         model_video = YOLO(weights_path)
     else:
-        if backend == "RF-DETR Nano":
-            rf_variant = "nano"
-        elif backend == "RF-DETR Medium":
-            rf_variant = "medium"
-        else:
-            rf_variant = "nano"
-
+        rf_variant = rfdetr_variant
         model_video = get_rfdetr_model(variant=rf_variant)
 
     while cap.isOpened():
@@ -276,8 +268,9 @@ with gr.Blocks() as app:
             with gr.Column():
                 image = gr.Image(label="Upload an Image", type="pil")
                 conf_threshold = gr.Slider(label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30)
-                backend = gr.Radio(["YOLOv26", "RF-DETR Nano"], label="Model family", value="YOLOv26")
+                backend = gr.Radio(["YOLOv26", "RF-DETR"], label="Model family", value="YOLOv26")
                 yolo_variant = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="YOLOv26 variant", info="Used when the model family is YOLOv26.", value="yolov26m")
+                rfdetr_variant = gr.Dropdown(["nano", "medium"], label="RF-DETR variant", info="Used when the model family is RF-DETR.", value="nano", visible=False)
                 btn = gr.Button("Process Image", variant="primary")
             with gr.Column():
                 output_image = gr.Image(label="Processed Image")
@@ -285,9 +278,15 @@ with gr.Blocks() as app:
 
         btn.click(
             fn=image_detection,
-            inputs=[image, conf_threshold, backend, yolo_variant],
+            inputs=[image, conf_threshold, backend, yolo_variant, rfdetr_variant],
             outputs=[output_image, output_predictions],
         )
+
+        # Toggle visibility of variant dropdowns depending on selected backend
+        def _toggle_variants(selected):
+            return (gr.update(visible=selected == "YOLOv26"), gr.update(visible=selected != "YOLOv26"))
+
+        backend.change(fn=_toggle_variants, inputs=[backend], outputs=[yolo_variant, rfdetr_variant])
     
         gr.Examples(
             examples=[
@@ -341,8 +340,9 @@ with gr.Blocks() as app:
             with gr.Column():
                 video = gr.Video(label="Upload a Video", autoplay=True)
                 conf_threshold = gr.Slider(label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30)
-                backend = gr.Radio(["YOLOv26", "RF-DETR Nano"], label="Model family", value="YOLOv26")
+                backend = gr.Radio(["YOLOv26", "RF-DETR"], label="Model family", value="YOLOv26")
                 yolo_variant = gr.Dropdown(["yolov26n", "yolov26s", "yolov26m", "yolov26l"], label="YOLOv26 variant", info="Used when the model family is YOLOv26.", value="yolov26m")
+                rfdetr_variant = gr.Dropdown(["nano", "medium"], label="RF-DETR variant", info="Used when the model family is RF-DETR.", value="nano", visible=False)
                 btn = gr.Button("Process Video", variant="primary")
             with gr.Column():
                 output_video = gr.Video(label="Processed Video", autoplay=True)
@@ -350,9 +350,15 @@ with gr.Blocks() as app:
 
         btn.click(
             fn=video_detection,
-            inputs=[video, conf_threshold, backend, yolo_variant],
+            inputs=[video, conf_threshold, backend, yolo_variant, rfdetr_variant],
             outputs=[output_video, output_predictions],
         )
+
+        # Toggle visibility of variant dropdowns depending on selected backend (video tab)
+        def _toggle_variants_video(selected):
+            return (gr.update(visible=selected == "YOLOv26"), gr.update(visible=selected != "YOLOv26"))
+
+        backend.change(fn=_toggle_variants_video, inputs=[backend], outputs=[yolo_variant, rfdetr_variant])
 
         video_path = hf_hub_download("carolinasoares/urban-disaster-examples", "rescue_simulation.mp4")
         video_path2 = hf_hub_download("carolinasoares/urban-disaster-examples", "rescuer.mp4")
