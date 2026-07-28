@@ -272,7 +272,7 @@ Melhor resultado geral: **YOLOv26l** com **89,19% de mAP@0.5**.
 
 ### Resultados por variante (mAP@0.5)
 
-As quatro variantes treinadas (nano, small, medium, large) apresentam desempenho próximo: YOLOv26n alcançou 85,27%, YOLOv26s 86,88%, YOLOv26m 86,18% e YOLOv26l 86,12%. A diferença entre o melhor (small) e o pior (nano) não ultrapassou 1,61%, indicando que mesmo a versão mais compacta mantém boa acurácia, relevante para cenários com restrição de hardware.
+As quatro variantes treinadas (nano, small, medium, large) apresentam desempenho em mAP@0.5 conforme os resultados de treino: YOLOv26n obteve 82,23%, YOLOv26s 86,12%, YOLOv26m 86,28% e YOLOv26l 88,71%. A diferença entre o melhor (large) e o pior (nano) é de 6,48%, mostrando que variantes maiores trazem ganho de precisão à custa de maior custo computacional.
 
 <div align="center">
 <img src="static/images/yolo26map05.png" alt="mAP@0.5 por variante" width="700"/>
@@ -305,22 +305,22 @@ O modelo customizado supera o pré-treinado em recall e em ambas as métricas mA
 
 ### Simulação em vídeo
 
-Um [vídeo público do YouTube](https://www.youtube.com/watch?v=QnFwDqzCwRU) foi utilizado para simular um cenário real de desastre urbano, com cenas de bombeiros (`rescuer`) em áreas de inundação. O vídeo contém ainda um animal (cabra) não incluído nas classes do modelo e, portanto, não é identificado.
+Um [vídeo público do YouTube](https://youtube.com/shorts/6PuaEPbOhJU?is=ZqVyJ1tB-tI3sHXP) do Corpo de Bombeiros Militar de Santa Catarina foi utilizado para simular um cenário real de desastre urbano, com cenas de bombeiros (`rescuer`) em áreas de inundação regastando uma pessoa.
 
-O **YOLOv26m** foi aplicado ao vídeo com confiança mínima de **0,75**, para avaliar a detecção e classificação de indivíduos em movimento sob diferentes condições de iluminação e ângulos de câmera.
+O **YOLOv26m** foi aplicado ao vídeo, para avaliar a detecção e classificação de indivíduos em movimento sob diferentes condições de iluminação e ângulos de câmera.
 
 <div align="center">
 <img src="static/gif/rescue_simulation_yolo26m.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
 </div><br>
 
-**Resultados:** O desempenho foi satisfatório, a maioria dos `rescuers` foi corretamente identificada, demonstrando a eficácia do Urban Disaster Monitor em cenários dinâmicos. Em alguns momentos, o modelo não detectou todos os socorristas, possivelmente por oclusões parciais ou ângulos desfavoráveis. Foram observados falsos positivos ocasionais (ex.: objeto classificado como `dog` com confiança até 0,8), indicando a necessidade de diversificar o dataset e refinar hiperparâmetros para maior robustez em vídeo.
+**Resultados:** No novo vídeo, o `YOLOv26` detecta corretamente a maioria de `civilian` e `rescuer`, demonstrando boa capacidade de identificação em cenários dinâmicos. Ainda assim, persistem dificuldades em trechos com baixa luminosidade, onde detecções podem ser perdidas ou apresentar confiança reduzida.
 
 [Notebook de simulação em vídeo](./notebooks/simulation-video-yolo.ipynb)
 
 ## Conclusões e recomendações por modelo
 
 - **YOLOv26n:** Boa performance com menor custo computacional; adequado para drones e edge devices com restrições de recursos. Prioridade em rapidez e eficiência energética.
-- **YOLOv26s:** Melhoria significativa em relação ao Nano, sobretudo em estabilização do aprendizado e F1 score (~0,83). Tempos de inferência adequados para aplicações em tempo real em drones e câmeras urbanas inteligentes.
+- **YOLOv26s:** Melhoria significativa em relação ao Nano, sobretudo em estabilização do aprendizado. Tempos de inferência adequados para aplicações em tempo real em drones e câmeras urbanas inteligentes.
 - **YOLOv26m:** Métricas superiores e melhor generalização; indicado para produção e aplicações críticas que demandam alta precisão.
 - **YOLOv26l:** Máxima precisão entre as variantes; compatível com ambientes que dispõem de infraestrutura robusta.
 
