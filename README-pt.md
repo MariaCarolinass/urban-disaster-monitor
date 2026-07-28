@@ -2,7 +2,7 @@
 
 <img src="static/images/logo1.png" alt="Logo projeto" width="600"/><br>
 
-[![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/pt/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
+[![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/) [![RF--DETR](https://img.shields.io/badge/RF--DETR-Roboflow-6C47FF)](https://github.com/roboflow/rf-detr) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
 [Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
@@ -12,7 +12,7 @@ Português | [English](./README.md)
 
 # Urban Disaster Monitor
 
-### Detecção e classificação de civis, animais e socorristas em cenários de desastre urbano, utilizando YOLOv26
+### Detecção e classificação de civis, animais e socorristas em cenários de desastre urbano, utilizando YOLOv26 e RF-DETR
 
 Em situações de desastre urbano, cada segundo importa. Este projeto oferece uma ferramenta de visão computacional para ajudar equipes de resgate a agir com mais precisão e velocidade.
 
@@ -37,6 +37,7 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 │   ├── metrics-and-comparison-yolo-models.ipynb
 │   ├── yolo11-vs-yolo26-comparison.ipynb
 │   ├── simulation-video-yolo.ipynb
+│   ├── training-rfdetr-dataset.ipynb
 │   └── training-yolo-dataset.ipynb
 ├── dataset
 │   ├── test
@@ -55,7 +56,9 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 │   ├── yolov26l
 │   ├── yolov26m
 │   ├── yolov26n
-│   └── yolov26s
+│   ├── yolov26s
+│   ├── rfdetrmedium
+│   └── rfdetrnano
 └── static
     ├── gif
     ├── images
@@ -74,18 +77,20 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
   - [Aquisição de dados](#aquisição-de-dados)
     - [Imagens públicas](#imagens-públicas)
     - [Imagens sintéticas (Gemini 2.5 Flash Image)](#imagens-sintéticas-gemini-25-flash-image)
-- [Anotações e Modelo](#anotações-e-modelo)
+- [Anotações e modelos](#anotações-e-modelos)
   - [Classes (Roboflow)](#classes-roboflow)
-  - [Arquitetura](#arquitetura)
+  - [Arquiteturas](#arquiteturas)
   - [Fluxo de treinamento](#fluxo-de-treinamento)
   - [Ambiente de treinamento (Colab + GPU T4)](#ambiente-de-treinamento-colab--gpu-t4)
 - [Métricas e resultados](#métricas-e-resultados)
+  - [RF-DETR: Nano vs. Medium](#rf-detr-nano-vs-medium)
+  - [RF-DETR Medium vs. YOLOv26m](#rf-detr-medium-vs-yolov26m)
   - [Comparação YOLOv11 vs. YOLOv26](#comparação-yolov11-vs-yolov26)
   - [Resultados por variante](#resultados-por-variante-map05)
   - [Resultados por classe](#resultados-por-classe)
   - [Treino customizado vs. COCO pré-treinado](#treino-customizado-vs-coco-pré-treinado)
   - [Simulação em vídeo](#simulação-em-vídeo)
-- [Conclusões e recomendações por modelo](#conclusões-e-recomendações-por-modelo)
+- [Conclusões e recomendações por família e modelo](#conclusões-e-recomendações-por-família-e-modelo)
   - [Trabalhos futuros](#trabalhos-futuros)
 - [Interface Interativa](#interface-interativa)
   - [Testar online](#testar-online)
@@ -98,13 +103,14 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 
 ## Sobre o projeto
 
-O **Urban Disaster Monitor** é um sistema de visão computacional para detecção e classificação de **indivíduos** (Civis e Socorristas) e **animais** (Vacas, Cavalos, Cachorros e Gatos) em cenários de desastres urbanos. Em situações de colapso estrutural, inundações ou deslizamentos, identificar rapidamente civis e socorristas em tempo real é crucial para otimizar recursos e reduzir fatalidades. O sistema utiliza **YOLOv26** para fornecer suporte às equipes de emergência durante a resposta a desastres.
+O **Urban Disaster Monitor** é um sistema de visão computacional para detecção e classificação de **indivíduos** (Civis e Socorristas) e **animais** (Vacas, Cavalos, Cachorros e Gatos) em cenários de desastres urbanos. Em situações de colapso estrutural, inundações ou deslizamentos, identificar rapidamente civis e socorristas em tempo real é crucial para otimizar recursos e reduzir fatalidades. O sistema disponibiliza as famílias **YOLOv26** e **RF-DETR**, permitindo equilibrar velocidade, custo computacional e qualidade de detecção conforme o cenário operacional.
 
 ### Funcionalidades
 
 - Detecção e classificação de **Civis**, **Socorristas**, **Vacas**, **Cavalos**, **Cachorros** e **Gatos**
 - Visualização de **métricas** e **bounding boxes**
 - Interface interativa via **Gradio** para upload e teste de imagens e vídeos
+- Seleção entre YOLOv26 (Nano, Small, Medium e Large) e RF-DETR (Nano e Medium)
 
 ### Contexto institucional
 
@@ -206,9 +212,9 @@ Exemplos de prompts:
 
 [Notebook de geração de imagens sintéticas](./notebooks/generative-images-synthetic-gemini.ipynb)
 
-## Anotações e Modelo
+## Anotações e modelos
 
-As anotações foram realizadas na plataforma **Roboflow** e convertidas para o formato YOLO. O modelo YOLOv26 é treinado nas seis classes definidas abaixo, com validação contínua e avaliação em conjunto de teste independente.
+As anotações foram realizadas na plataforma **Roboflow**. As duas famílias de detectores são treinadas para as seis classes abaixo, com validação contínua e avaliação em conjunto independente. Os artefatos de cada experimento — configuração, métricas e visualizações — estão em [`models/`](./models).
 
 ### Classes (Roboflow)
 
@@ -219,22 +225,25 @@ As anotações foram realizadas na plataforma **Roboflow** e convertidas para o 
 | `cat`, `dog` | Animais domésticos em cenários urbanos |
 | `cow`, `horse` | Animais de grande porte em áreas rurais/urbanas periféricas |
 
-### Arquitetura
+### Arquiteturas
 
-O modelo utiliza **YOLO** (You Only Look Once), referência em detecção de objetos em tempo real: formula a tarefa como um único problema de regressão que prediz bounding boxes e probabilidades de classe diretamente da imagem, permitindo otimização end-to-end e alta velocidade de inferência.
+O projeto compara duas abordagens complementares de detecção de objetos:
 
-**YOLOv26** (Ultralytics) é a versão mais recente, com compatibilidade para conversão entre frameworks. Variantes treinadas: YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) e YOLOv26l (large).
+- **YOLOv26** (Ultralytics): detector de estágio único orientado a inferência em tempo real. Foram treinadas as variantes YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) e YOLOv26l (large).
+- **RF-DETR** (Roboflow): detector baseado em Transformer. Foram treinadas as variantes RF-DETR Nano e RF-DETR Medium, ambas com as mesmas classes do dataset.
+
+A interface permite escolher a família e a variante antes de processar uma imagem ou vídeo; os pesos são obtidos automaticamente dos repositórios do projeto no Hugging Face.
 
 ### Fluxo de treinamento
 
-1. **Conversão:** anotações Roboflow para formato YOLO (`.txt`)
-2. **Treino iterativo:** parâmetros acima; otimizadores Adam ou SGD
-3. **Validação contínua:** métricas em tempo real, detecção de *overfitting*, early stopping
-4. **Avaliação final:** conjunto de teste independente para verificar generalização
+1. **Preparação:** exportação das anotações do Roboflow e organização das seis classes do projeto.
+2. **Treino por variante:** YOLOv26n/s/m/l e RF-DETR Nano/Medium com seus respectivos parâmetros.
+3. **Validação contínua:** métricas por época, curvas de perda e análise de *overfitting*.
+4. **Avaliação final:** métricas globais, resultados por classe e inspeção qualitativa das detecções.
 
 ### Ambiente de treinamento (Colab + GPU T4)
 
-O treinamento foi realizado no **Google Colab** utilizando GPUs **NVIDIA T4**. Exemplo de chamada com Ultralytics:
+Os experimentos de YOLOv26 foram realizados no **Google Colab** utilizando GPUs **NVIDIA T4**. Os treinos de RF-DETR registram 50 épocas, *batch* efetivo 16 por acumulação de gradientes e resolução de 384 px (Nano) ou 576 px (Medium). Exemplo de chamada com Ultralytics:
 
 ```python
 from ultralytics import YOLO
@@ -258,7 +267,45 @@ A avaliação do modelo foi realizada com métricas padrão de detecção de obj
 - [Notebook de comparação de modelos](./notebooks/metrics-and-comparison-yolo-models.ipynb)
 - [Notebook de comparação YOLOv11 vs YOLOv26](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
 - [Notebook de comparação de modelo vs. COCO](./notebooks/coco-vs-yolo-comparison.ipynb)
+- [Notebook de treinamento e avaliação no conjunto de testes com RF-DETR](./notebooks/pt-br/training-rfdetr-dataset.ipynb)
 - [Resultados dos modelos treinados](./models)
+
+### RF-DETR: Nano vs. Medium
+
+As variantes RF-DETR foram treinadas por 50 épocas no mesmo problema de seis classes. A tabela reúne o melhor resultado de validação registrado nos arquivos de métricas; o Medium superou o Nano em todas as métricas globais.
+
+| Variante | Precisão | Recall | F1 | mAP@0.5 |
+|----------|---------:|-------:|---:|--------:|
+| RF-DETR Nano | 91,15% | 81,95% | 84,16% | 86,85% |
+| RF-DETR Medium | **92,88%** | **86,61%** | **88,95%** | **91,97%** |
+
+<div align="center">
+<img src="static/images/internal_comparison_rfdetr.png" alt="Comparação de precisão, recall, F1 e mAP@0.5 entre RF-DETR Nano e Medium" width="900"/>
+</div>
+
+Na análise por classe, o Medium também obteve os maiores valores de mAP@0.5. `horse` e `rescuer` foram as classes com os resultados mais altos; `civilian`, `cat` e `dog` permanecem como oportunidades para ampliar os dados e a diversidade de cenários.
+
+<div align="center">
+<img src="static/images/internal_map_class_comparison.png" alt="Comparação de mAP@0.5 por classe entre RF-DETR Nano e Medium" width="900"/>
+</div>
+
+Os gráficos de treinamento, matriz de confusão e comparações detalhadas podem ser consultados em [`models/rfdetrnano`](./models/rfdetrnano) e [`models/rfdetrmedium`](./models/rfdetrmedium).
+
+### RF-DETR Medium vs. YOLOv26m
+
+Na comparação registrada para as variantes Medium, o **RF-DETR Medium** supera o **YOLOv26m** nas métricas globais avaliadas. O ganho é mais expressivo em `mAP@0.5:0.95` (56,27% contra 51,90%), métrica mais rigorosa para a qualidade de localização das caixas.
+
+<div align="center">
+<img src="models/rfdetrmedium/comparison_map.png" alt="Comparação de mAP entre RF-DETR Medium e YOLOv26m" width="700"/>
+</div>
+
+Também apresenta maior precisão (92,88% vs. 89,64%), recall (86,61% vs. 81,05%) e F1 (88,95% vs. 84,40%). Esses resultados indicam o RF-DETR Medium como a opção de maior acurácia entre as duas variantes Medium comparadas.
+
+<div align="center">
+<img src="models/rfdetrmedium/comparison_prf1.png" alt="Comparação de precisão, recall e F1 entre RF-DETR Medium e YOLOv26m" width="800"/>
+</div>
+
+> **Nota de reprodutibilidade:** a comparação foi realizada no mesmo conjunto de testes, com modelos treinados para as mesmas seis classes do Urban Disaster Monitor. Os valores correspondem à melhor época registrada de cada variante; as configurações, curvas e resultados completos estão em [`models/rfdetrmedium`](./models/rfdetrmedium) e [`models/yolov26m`](./models/yolov26m).
 
 ### Comparação YOLOv11 vs. YOLOv26
 
@@ -272,7 +319,7 @@ Melhor resultado geral: **YOLOv26l** com **89,19% de mAP@0.5**.
 
 ### Resultados por variante (mAP@0.5)
 
-As quatro variantes treinadas (nano, small, medium, large) apresentam desempenho em mAP@0.5 conforme os resultados de treino: YOLOv26n obteve 82,23%, YOLOv26s 86,12%, YOLOv26m 86,28% e YOLOv26l 88,71%. A diferença entre o melhor (large) e o pior (nano) é de 6,48%, mostrando que variantes maiores trazem ganho de precisão à custa de maior custo computacional.
+Considerando o melhor `mAP@0.5` registrado em cada `results.csv`, as quatro variantes treinadas apresentam os seguintes resultados: YOLOv26n 82,67%, YOLOv26s 86,67%, YOLOv26m 87,74% e YOLOv26l 89,19%. A variante large obteve a maior acurácia, enquanto a nano permanece como alternativa compacta para cenários com restrição de hardware.
 
 <div align="center">
 <img src="static/images/yolo26map05.png" alt="mAP@0.5 por variante" width="700"/>
@@ -310,19 +357,21 @@ Um [vídeo público do YouTube](https://youtube.com/shorts/6PuaEPbOhJU?is=ZqVyJ1
 O **YOLOv26m** foi aplicado ao vídeo, para avaliar a detecção e classificação de indivíduos em movimento sob diferentes condições de iluminação e ângulos de câmera.
 
 <div align="center">
-<img src="static/gif/rescue_simulation_yolo26m.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
+<img src="static/gif/rescuer_simulation_yolo26m.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
 </div><br>
 
 **Resultados:** No novo vídeo, o `YOLOv26` detecta corretamente a maioria de `civilian` e `rescuer`, demonstrando boa capacidade de identificação em cenários dinâmicos. Ainda assim, persistem dificuldades em trechos com baixa luminosidade, onde detecções podem ser perdidas ou apresentar confiança reduzida.
 
 [Notebook de simulação em vídeo](./notebooks/simulation-video-yolo.ipynb)
 
-## Conclusões e recomendações por modelo
+## Conclusões e recomendações por família e modelo
 
 - **YOLOv26n:** Boa performance com menor custo computacional; adequado para drones e edge devices com restrições de recursos. Prioridade em rapidez e eficiência energética.
 - **YOLOv26s:** Melhoria significativa em relação ao Nano, sobretudo em estabilização do aprendizado. Tempos de inferência adequados para aplicações em tempo real em drones e câmeras urbanas inteligentes.
 - **YOLOv26m:** Métricas superiores e melhor generalização; indicado para produção e aplicações críticas que demandam alta precisão.
 - **YOLOv26l:** Máxima precisão entre as variantes; compatível com ambientes que dispõem de infraestrutura robusta.
+- **RF-DETR Nano:** Alternativa compacta baseada em Transformer, adequada quando se busca menor custo dentro da família RF-DETR.
+- **RF-DETR Medium:** Melhor resultado entre os RF-DETR treinados (**91,97% de mAP@0.5**); recomendado quando a prioridade é a qualidade de detecção e há mais capacidade computacional.
 
 A análise reforça o papel de augmentations, balanceamento de dados e modelagem temporal para aumentar a robustez. Para treinos estendidos e experimentos mais complexos, recomenda-se infraestrutura dedicada com GPU (ex.: Google Colab Pro, NVIDIA A100).
 
@@ -353,7 +402,7 @@ A aplicação está disponível no **Hugging Face Spaces**. Não é necessário 
 
 ### Funcionalidades
 
-- **Modelo:** escolha entre YOLOv26n, YOLOv26s, YOLOv26m ou YOLOv26l
+- **Família e modelo:** escolha YOLOv26 (n, s, m ou l) ou RF-DETR (Nano ou Medium)
 - **Upload:** imagens ou vídeos
 - **Confiança:** ajuste do _confidence threshold_ para filtrar detecções
 - **Visualização:** _bounding boxes_ e rótulos por classe (civilian, rescuer, dog, cat, horse, cow)
@@ -361,7 +410,7 @@ A aplicação está disponível no **Hugging Face Spaces**. Não é necessário 
 
 ### Tecnologias
 
-[Python](https://www.python.org/) · [Gradio](https://gradio.app/) · [Ultralytics YOLO](https://docs.ultralytics.com) · [PyTorch](https://pytorch.org/) · [OpenCV](https://opencv.org/) · [NumPy](https://numpy.org/)
+[Python](https://www.python.org/) · [Gradio](https://gradio.app/) · [Ultralytics YOLO](https://docs.ultralytics.com) · [RF-DETR](https://github.com/roboflow/rf-detr) · [PyTorch](https://pytorch.org/) · [OpenCV](https://opencv.org/) · [NumPy](https://numpy.org/)
 
 ### Executar localmente
 

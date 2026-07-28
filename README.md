@@ -2,7 +2,7 @@
 
 <img src="static/images/logo1.png" alt="Project logo" width="600"/><br>
 
-[![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/models/yolov8/#yolov8-usage-examples) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
+[![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/) [![RF--DETR](https://img.shields.io/badge/RF--DETR-Roboflow-6C47FF)](https://github.com/roboflow/rf-detr) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
 [Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
@@ -12,7 +12,7 @@
 
 # Urban Disaster Monitor
 
-### Detection and classification of civilians, animals and rescuers in urban disaster scenarios using YOLOv26
+### Detection and classification of civilians, animals and rescuers in urban disaster scenarios using YOLOv26 and RF-DETR
 
 In urban disaster situations, every second counts. This project offers a computer vision tool to help rescue teams act with greater precision and speed.
 
@@ -37,6 +37,7 @@ In urban disaster situations, every second counts. This project offers a compute
 │   ├── metrics-and-comparison-yolo-models.ipynb
 │   ├── yolo11-vs-yolo26-comparison.ipynb
 │   ├── simulation-video-yolo.ipynb
+│   ├── training-rfdetr-dataset.ipynb
 │   └── training-yolo-dataset.ipynb
 ├── dataset
 │   ├── test
@@ -55,7 +56,9 @@ In urban disaster situations, every second counts. This project offers a compute
 │   ├── yolov26l
 │   ├── yolov26m
 │   ├── yolov26n
-│   └── yolov26s
+│   ├── yolov26s
+│   ├── rfdetrmedium
+│   └── rfdetrnano
 └── static
     ├── gif
     ├── images
@@ -74,18 +77,20 @@ In urban disaster situations, every second counts. This project offers a compute
   - [Data acquisition](#data-acquisition)
     - [Public images](#public-images)
     - [Synthetic images (Gemini 2.5 Flash Image)](#synthetic-images-gemini-25-flash-image)
-- [Annotations and Model](#annotations-and-model)
+- [Annotations and models](#annotations-and-models)
   - [Classes (Roboflow)](#classes-roboflow)
-  - [Architecture](#architecture)
+  - [Architectures](#architectures)
   - [Training pipeline](#training-pipeline)
   - [Training environment (Colab + T4 GPU)](#training-environment-colab--t4-gpu)
 - [Metrics and results](#metrics-and-results)
+  - [RF-DETR: Nano vs. Medium](#rf-detr-nano-vs-medium)
+  - [RF-DETR Medium vs. YOLOv26m](#rf-detr-medium-vs-yolov26m)
   - [YOLOv11 vs. YOLOv26 comparison](#yolov11-vs-yolov26-comparison)
   - [Results by variant](#results-by-variant-map05)
   - [Results by class](#results-by-class)
   - [Custom training vs. COCO pre-trained](#custom-training-vs-coco-pre-trained)
   - [Video simulation](#video-simulation)
-- [Conclusions and recommendations by model](#conclusions-and-recommendations-by-model)
+- [Conclusions and recommendations by family and model](#conclusions-and-recommendations-by-family-and-model)
   - [Future work](#future-work)
 - [Interactive Interface](#interactive-interface)
   - [Test online](#test-online)
@@ -98,13 +103,14 @@ In urban disaster situations, every second counts. This project offers a compute
 
 ## About the project
 
-**Urban Disaster Monitor** is a computer vision system for detecting and classifying **individuals** (Civilians and Rescuers) and **animals** (Cows, Horses, Dogs and Cats) in urban disaster scenarios. In situations of structural collapse, floods or landslides, quickly identifying civilians and rescuers in real time is crucial to optimize resources and reduce fatalities. The system uses **YOLOv26** to support emergency teams during disaster response.
+**Urban Disaster Monitor** is a computer vision system for detecting and classifying **individuals** (Civilians and Rescuers) and **animals** (Cows, Horses, Dogs and Cats) in urban disaster scenarios. In situations of structural collapse, floods or landslides, quickly identifying civilians and rescuers in real time is crucial to optimize resources and reduce fatalities. The system provides the **YOLOv26** and **RF-DETR** model families, balancing speed, computational cost and detection quality according to the operational scenario.
 
 ### Features
 
 - Detection and classification of **Civilians**, **Rescuers**, **Cows**, **Horses**, **Dogs** and **Cats**
 - **Metrics** and **bounding boxes** visualization
 - Interactive **Gradio** interface for uploading and testing images and videos
+- Selection between YOLOv26 (Nano, Small, Medium and Large) and RF-DETR (Nano and Medium)
 
 ### Institutional context
 
@@ -206,9 +212,9 @@ Example prompts:
 
 [Synthetic image generation notebook](./notebooks/generative-images-synthetic-gemini.ipynb)
 
-## Annotations and Model
+## Annotations and models
 
-Annotations were performed on the **Roboflow** platform and converted to YOLO format. The YOLOv26 model is trained on the six classes defined below, with continuous validation and evaluation on an independent test set.
+Annotations were performed on the **Roboflow** platform. Both detector families are trained on the six classes below, with continuous validation and independent-set evaluation. Each experiment's artifacts — configuration, metrics and visualizations — are available in [`models/`](./models).
 
 ### Classes (Roboflow)
 
@@ -219,22 +225,25 @@ Annotations were performed on the **Roboflow** platform and converted to YOLO fo
 | `cat`, `dog` | Domestic animals in urban scenarios |
 | `cow`, `horse` | Large animals in rural/peripheral urban areas |
 
-### Architecture
+### Architectures
 
-The model uses **YOLO** (You Only Look Once), a reference in real-time object detection: it formulates the task as a single regression problem that predicts bounding boxes and class probabilities directly from the image, enabling end-to-end optimization and high inference speed.
+The project compares two complementary object-detection approaches:
 
-**YOLOv26** (Ultralytics) is the latest version, with compatibility for conversion between frameworks. Trained variants: YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) and YOLOv26l (large).
+- **YOLOv26** (Ultralytics): a single-stage detector designed for real-time inference. The trained variants are YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) and YOLOv26l (large).
+- **RF-DETR** (Roboflow): a Transformer-based detector. RF-DETR Nano and RF-DETR Medium were trained on the same dataset classes.
+
+The interface lets users select the model family and variant before processing an image or video; weights are downloaded automatically from the project's Hugging Face repositories.
 
 ### Training pipeline
 
-1. **Conversion:** Roboflow annotations to YOLO format (`.txt`)
-2. **Iterative training:** parameters above; Adam or SGD optimizers
-3. **Continuous validation:** real-time metrics, *overfitting* detection, early stopping
-4. **Final evaluation:** independent test set to verify generalization
+1. **Preparation:** export Roboflow annotations and organize the project's six classes.
+2. **Training per variant:** YOLOv26n/s/m/l and RF-DETR Nano/Medium with their respective parameters.
+3. **Continuous validation:** per-epoch metrics, loss curves and *overfitting* analysis.
+4. **Final evaluation:** global metrics, per-class results and qualitative inspection of detections.
 
 ### Training environment (Colab + T4 GPU)
 
-Training was performed on **Google Colab** using **NVIDIA T4** GPUs. Example call with Ultralytics:
+YOLOv26 experiments were performed on **Google Colab** using **NVIDIA T4** GPUs. RF-DETR runs record 50 epochs, an effective batch size of 16 through gradient accumulation, and an input resolution of 384 px (Nano) or 576 px (Medium). Example call with Ultralytics:
 
 ```python
 from ultralytics import YOLO
@@ -258,7 +267,45 @@ Model evaluation was performed with standard object detection metrics: **mAP@0.5
 - [Model comparison notebook](./notebooks/metrics-and-comparison-yolo-models.ipynb)
 - [YOLOv11 vs YOLOv26 comparison notebook](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
 - [Model vs. COCO comparison notebook](./notebooks/coco-vs-yolo-comparison.ipynb)
+- [RF-DETR training and test evaluation notebook](./notebooks/training-rfdetr-dataset.ipynb)
 - [Trained model results](./models)
+
+### RF-DETR: Nano vs. Medium
+
+The RF-DETR variants were trained for 50 epochs on the same six-class problem. The table summarizes the best validation result recorded in the metrics files; Medium outperformed Nano on every global metric.
+
+| Variant | Precision | Recall | F1 | mAP@0.5 |
+|---------|----------:|-------:|---:|--------:|
+| RF-DETR Nano | 91.15% | 81.95% | 84.16% | 86.85% |
+| RF-DETR Medium | **92.88%** | **86.61%** | **88.95%** | **91.97%** |
+
+<div align="center">
+<img src="static/images/internal_comparison_rfdetr.png" alt="Precision, recall, F1 and mAP@0.5 comparison between RF-DETR Nano and Medium" width="900"/>
+</div>
+
+In the per-class analysis, Medium also achieved the highest mAP@0.5 values. `horse` and `rescuer` were the strongest classes, while `civilian`, `cat` and `dog` remain opportunities to expand the data and scenario diversity.
+
+<div align="center">
+<img src="static/images/internal_map_class_comparison.png" alt="Per-class mAP@0.5 comparison between RF-DETR Nano and Medium" width="900"/>
+</div>
+
+Training charts, confusion matrices and detailed comparisons are available in [`models/rfdetrnano`](./models/rfdetrnano) and [`models/rfdetrmedium`](./models/rfdetrmedium).
+
+### RF-DETR Medium vs. YOLOv26m
+
+In the recorded comparison of the Medium variants, **RF-DETR Medium** outperforms **YOLOv26m** on the evaluated global metrics. The largest gain is in `mAP@0.5:0.95` (56.27% vs. 51.90%), a stricter metric for bounding-box localization quality.
+
+<div align="center">
+<img src="models/rfdetrmedium/comparison_map.png" alt="mAP comparison between RF-DETR Medium and YOLOv26m" width="700"/>
+</div>
+
+It also achieves higher precision (92.88% vs. 89.64%), recall (86.61% vs. 81.05%) and F1 score (88.95% vs. 84.40%). These results position RF-DETR Medium as the more accurate option of the two Medium variants compared.
+
+<div align="center">
+<img src="models/rfdetrmedium/comparison_prf1.png" alt="Precision, recall and F1 comparison between RF-DETR Medium and YOLOv26m" width="800"/>
+</div>
+
+> **Reproducibility note:** the comparison was performed on the same test set, using models trained on the same six Urban Disaster Monitor classes. Values correspond to the best recorded epoch of each variant; complete configurations, curves and results are available in [`models/rfdetrmedium`](./models/rfdetrmedium) and [`models/yolov26m`](./models/yolov26m).
 
 ### YOLOv11 vs. YOLOv26 comparison
 
@@ -272,7 +319,7 @@ Best overall result: **YOLOv26l** with **89.19% mAP@0.5**.
 
 ### Results by variant (mAP@0.5)
 
-The four trained variants (nano, small, medium, large) show the following mAP@0.5 results based on training logs: YOLOv26n obtained 82.23%, YOLOv26s 86.12%, YOLOv26m 86.28% and YOLOv26l 88.71%. The difference between the best (large) and the worst (nano) is 6.48%, indicating that larger variants provide gains in precision at the cost of increased computational requirements.
+Considering the best `mAP@0.5` recorded in each `results.csv`, the four trained variants achieved: YOLOv26n 82.67%, YOLOv26s 86.67%, YOLOv26m 87.74% and YOLOv26l 89.19%. The large variant achieved the highest accuracy, while Nano remains a compact option for hardware-constrained scenarios.
 
 <div align="center">
 <img src="static/images/yolo26map05.png" alt="mAP@0.5 by variant" width="700"/>
@@ -310,19 +357,21 @@ A [public YouTube video](https://youtube.com/shorts/6PuaEPbOhJU?is=ZqVyJ1tB-tI3s
 **YOLOv26m** was applied to the video, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
 
 <div align="center">
-<img src="static/gif/rescue_simulation_yolo26m.gif" alt="Training video example" width="600"/>
+<img src="static/gif/rescuer_simulation_yolo26m.gif" alt="Training video example" width="600"/>
 </div><br>
 
 **Results:** In the new video, `YOLOv26` correctly detects most `civilian` and `rescuer` instances, demonstrating good identification in dynamic scenarios. However, challenges remain in low-light segments where detections can be missed or exhibit reduced confidence.
 
 [Video simulation notebook](./notebooks/simulation-video-yolo.ipynb)
 
-## Conclusions and recommendations by model
+## Conclusions and recommendations by family and model
 
 - **YOLOv26n:** Good performance with lower computational cost; suitable for drones and edge devices with resource constraints. Priority on speed and energy efficiency.
 - **YOLOv26s:** Significant improvement over Nano. Inference times suitable for real-time applications on drones and smart urban cameras.
 - **YOLOv26m:** Superior metrics and better generalization; recommended for production and critical applications requiring high precision.
 - **YOLOv26l:** Maximum precision among variants; compatible with environments that have robust infrastructure.
+- **RF-DETR Nano:** A compact Transformer-based alternative, suitable when lower cost is needed within the RF-DETR family.
+- **RF-DETR Medium:** Best result among the trained RF-DETR models (**91.97% mAP@0.5**); recommended when detection quality is the priority and more computational capacity is available.
 
 The analysis reinforces the role of augmentations, data balancing and temporal modeling to increase robustness. For extended training and more complex experiments, dedicated GPU infrastructure is recommended (e.g., Google Colab Pro, NVIDIA A100).
 
@@ -353,7 +402,7 @@ The application is available on **Hugging Face Spaces**. No installation require
 
 ### Features
 
-- **Model:** choose among YOLOv26n, YOLOv26s, YOLOv26m or YOLOv26l
+- **Family and model:** choose YOLOv26 (n, s, m or l) or RF-DETR (Nano or Medium)
 - **Upload:** images or videos
 - **Confidence:** adjust the _confidence threshold_ to filter detections
 - **Visualization:** _bounding boxes_ and labels by class (civilian, rescuer, dog, cat, horse, cow)
@@ -361,7 +410,7 @@ The application is available on **Hugging Face Spaces**. No installation require
 
 ### Technologies
 
-[Python](https://www.python.org/) · [Gradio](https://gradio.app/) · [Ultralytics YOLO](https://docs.ultralytics.com) · [PyTorch](https://pytorch.org/) · [OpenCV](https://opencv.org/) · [NumPy](https://numpy.org/)
+[Python](https://www.python.org/) · [Gradio](https://gradio.app/) · [Ultralytics YOLO](https://docs.ultralytics.com) · [RF-DETR](https://github.com/roboflow/rf-detr) · [PyTorch](https://pytorch.org/) · [OpenCV](https://opencv.org/) · [NumPy](https://numpy.org/)
 
 ### Run locally
 
@@ -410,16 +459,6 @@ python app.py
 | [![](https://github.com/jagaldino.png?size=80)](https://github.com/jagaldino) | [![](https://github.com/MariaCarolinass.png?size=80)](https://github.com/MariaCarolinass) |
 | :---------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 |                           **João Galdino**                           |                             **Carolina Soares**                | 
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=MariaCarolinass%2Furban-disaster-monitor&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=MariaCarolinass/urban-disaster-monitor&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=MariaCarolinass/urban-disaster-monitor&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=MariaCarolinass/urban-disaster-monitor&type=date&legend=top-left" />
- </picture>
-</a>
 
 ## License
 
