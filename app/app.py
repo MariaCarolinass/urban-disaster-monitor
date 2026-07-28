@@ -282,7 +282,6 @@ with gr.Blocks() as app:
             outputs=[output_image, output_predictions],
         )
 
-        # Toggle visibility of variant dropdowns depending on selected backend
         def _toggle_variants(selected):
             return (gr.update(visible=selected == "YOLOv26"), gr.update(visible=selected != "YOLOv26"))
 
@@ -354,7 +353,6 @@ with gr.Blocks() as app:
             outputs=[output_video, output_predictions],
         )
 
-        # Toggle visibility of variant dropdowns depending on selected backend (video tab)
         def _toggle_variants_video(selected):
             return (gr.update(visible=selected == "YOLOv26"), gr.update(visible=selected != "YOLOv26"))
 
