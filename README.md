@@ -352,22 +352,22 @@ The custom model outperforms the pre-trained one in recall and in both mAP metri
 
 ### Video simulation
 
-A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used to simulate a real urban disaster scenario, with scenes of firefighters (`rescuer`) in flood areas. The video also contains an animal (goat) not included in the model's classes and therefore not identified.
+A [public YouTube video](https://youtube.com/shorts/6PuaEPbOhJU?is=ZqVyJ1tB-tI3sHXP) was used to simulate a real urban disaster scenario, with scenes of firefighters (`rescuer`) in flood areas. The video also contains an animal (goat) not included in the model's classes and therefore not identified.
 
-**YOLOv26m** was applied to the video with a minimum confidence of **0.75**, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
+**YOLOv26m** was applied to the video, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
 
 <div align="center">
 <img src="static/gif/rescuer_simulation_yolo26m.gif" alt="Training video example" width="600"/>
 </div><br>
 
-**Results:** Performance was satisfactory; most `rescuers` were correctly identified, demonstrating the effectiveness of Urban Disaster Monitor in dynamic scenarios. At times the model did not detect all rescuers, possibly due to partial occlusions or unfavorable angles. Occasional false positives were observed (e.g., object classified as `dog` with confidence up to 0.8), indicating the need to diversify the dataset and refine hyperparameters for greater robustness in video.
+**Results:** In the new video, `YOLOv26` correctly detects most `civilian` and `rescuer` instances, demonstrating good identification in dynamic scenarios. However, challenges remain in low-light segments where detections can be missed or exhibit reduced confidence.
 
 [Video simulation notebook](./notebooks/simulation-video-yolo.ipynb)
 
 ## Conclusions and recommendations by family and model
 
 - **YOLOv26n:** Good performance with lower computational cost; suitable for drones and edge devices with resource constraints. Priority on speed and energy efficiency.
-- **YOLOv26s:** Significant improvement over Nano, especially in learning stability and F1 score (~0.83). Inference times suitable for real-time applications on drones and smart urban cameras.
+- **YOLOv26s:** Significant improvement over Nano. Inference times suitable for real-time applications on drones and smart urban cameras.
 - **YOLOv26m:** Superior metrics and better generalization; recommended for production and critical applications requiring high precision.
 - **YOLOv26l:** Maximum precision among variants; compatible with environments that have robust infrastructure.
 - **RF-DETR Nano:** A compact Transformer-based alternative, suitable when lower cost is needed within the RF-DETR family.
