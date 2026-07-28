@@ -37,6 +37,7 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 │   ├── metrics-and-comparison-yolo-models.ipynb
 │   ├── yolo11-vs-yolo26-comparison.ipynb
 │   ├── simulation-video-yolo.ipynb
+│   ├── training-rfdetr-dataset.ipynb
 │   └── training-yolo-dataset.ipynb
 ├── dataset
 │   ├── test
@@ -266,6 +267,7 @@ A avaliação do modelo foi realizada com métricas padrão de detecção de obj
 - [Notebook de comparação de modelos](./notebooks/metrics-and-comparison-yolo-models.ipynb)
 - [Notebook de comparação YOLOv11 vs YOLOv26](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
 - [Notebook de comparação de modelo vs. COCO](./notebooks/coco-vs-yolo-comparison.ipynb)
+- [Notebook de treinamento e avaliação no conjunto de testes com RF-DETR](./notebooks/pt-br/training-rfdetr-dataset.ipynb)
 - [Resultados dos modelos treinados](./models)
 
 ### RF-DETR: Nano vs. Medium
@@ -317,7 +319,7 @@ Melhor resultado geral: **YOLOv26l** com **89,19% de mAP@0.5**.
 
 ### Resultados por variante (mAP@0.5)
 
-As quatro variantes treinadas (nano, small, medium, large) apresentam desempenho próximo: YOLOv26n alcançou 85,27%, YOLOv26s 86,88%, YOLOv26m 86,18% e YOLOv26l 86,12%. A diferença entre o melhor (small) e o pior (nano) não ultrapassou 1,61%, indicando que mesmo a versão mais compacta mantém boa acurácia, relevante para cenários com restrição de hardware.
+Considerando o melhor `mAP@0.5` registrado em cada `results.csv`, as quatro variantes treinadas apresentam os seguintes resultados: YOLOv26n 82,67%, YOLOv26s 86,67%, YOLOv26m 87,74% e YOLOv26l 89,19%. A variante large obteve a maior acurácia, enquanto a nano permanece como alternativa compacta para cenários com restrição de hardware.
 
 <div align="center">
 <img src="static/images/yolo26map05.png" alt="mAP@0.5 por variante" width="700"/>
