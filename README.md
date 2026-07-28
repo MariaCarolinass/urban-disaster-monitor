@@ -310,7 +310,7 @@ A [public YouTube video](https://www.youtube.com/watch?v=QnFwDqzCwRU) was used t
 **YOLOv26m** was applied to the video with a minimum confidence of **0.75**, to evaluate detection and classification of individuals in motion under different lighting conditions and camera angles.
 
 <div align="center">
-<img src="static/gif/rescue_simulation_yolo26m.gif" alt="Training video example" width="600"/>
+<img src="static/gif/rescuer_simulation_yolo26m.gif" alt="Training video example" width="600"/>
 </div><br>
 
 **Results:** Performance was satisfactory; most `rescuers` were correctly identified, demonstrating the effectiveness of Urban Disaster Monitor in dynamic scenarios. At times the model did not detect all rescuers, possibly due to partial occlusions or unfavorable angles. Occasional false positives were observed (e.g., object classified as `dog` with confidence up to 0.8), indicating the need to diversify the dataset and refine hyperparameters for greater robustness in video.

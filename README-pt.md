@@ -310,7 +310,7 @@ Um [vídeo público do YouTube](https://www.youtube.com/watch?v=QnFwDqzCwRU) foi
 O **YOLOv26m** foi aplicado ao vídeo com confiança mínima de **0,75**, para avaliar a detecção e classificação de indivíduos em movimento sob diferentes condições de iluminação e ângulos de câmera.
 
 <div align="center">
-<img src="static/gif/rescue_simulation_yolo26m.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
+<img src="static/gif/rescuer_simulation_yolo26m.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
 </div><br>
 
 **Resultados:** O desempenho foi satisfatório, a maioria dos `rescuers` foi corretamente identificada, demonstrando a eficácia do Urban Disaster Monitor em cenários dinâmicos. Em alguns momentos, o modelo não detectou todos os socorristas, possivelmente por oclusões parciais ou ângulos desfavoráveis. Foram observados falsos positivos ocasionais (ex.: objeto classificado como `dog` com confiança até 0,8), indicando a necessidade de diversificar o dataset e refinar hiperparâmetros para maior robustez em vídeo.
