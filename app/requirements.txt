@@ -1,6 +1,7 @@
 gradio>=6.30.0,<7
 opencv-python>=5.0.0.93,<6
 numpy>=2.2.6,<3
+pillow>=12.3.0,<13
 huggingface-hub>=2.2.0,<3
 ultralytics>=8.4.183,<9
 rfdetr>=1.11.2,<2
