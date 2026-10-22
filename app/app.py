@@ -22,22 +22,26 @@ RFDETR_REPO_MAP = {
 RFDETR_CHECKPOINT_FILE = "checkpoint_best_total.pth"
 
 CLASS_COLORS = {
-    0: (255, 0, 0),      # vermelho
-    1: (255, 255, 0),    # amarelo
-    2: (0, 255, 0),      # verde
-    3: (0, 0, 255),      # azul
-    4: (255, 0, 255),    # magenta
-    5: (0, 255, 255),    # ciano
+    "cat": (255, 0, 0),         # vermelho
+    "civilian": (255, 255, 0),  # amarelo
+    "cow": (0, 255, 0),         # verde
+    "dog": (0, 0, 255),         # azul
+    "horse": (255, 0, 255),     # magenta
+    "rescuer": (0, 255, 255),   # ciano
 }
 
 FONT_COLORS = {
-    0: (255, 255, 255),  # branco
-    1: (0, 0, 0),        # preto
-    2: (0, 0, 0),        # preto
-    3: (255, 255, 255),  # branco
-    4: (255, 255, 255),  # branco
-    5: (0, 0, 0),        # preto
+    "cat": (255, 255, 255),
+    "civilian": (0, 0, 0),
+    "cow": (0, 0, 0),
+    "dog": (255, 255, 255),
+    "horse": (255, 255, 255),
+    "rescuer": (0, 0, 0),
 }
+
+def _get_class_colors(class_name):
+    name = str(class_name).strip().casefold()
+    return CLASS_COLORS.get(name, (255, 255, 255)), FONT_COLORS.get(name, (0, 0, 0))
 
 def get_model_path(model_variant):
     os.makedirs("models", exist_ok=True)
@@ -74,9 +78,9 @@ def costum_bounding_box(image, results):
 
     for box in results[0].boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
-        box_color = CLASS_COLORS.get(int(box.cls[0]), (255, 255, 255))  # fallback: branco
-        text_color = FONT_COLORS.get(int(box.cls[0]), (0, 0, 0))        # fallback: preto
-        label = f"{class_names[int(box.cls[0])]} {float(box.conf[0]):.2f}"
+        class_name = class_names[int(box.cls[0])]
+        box_color, text_color = _get_class_colors(class_name)
+        label = f"{class_name} {float(box.conf[0]):.2f}"
 
         (text_w, text_h), _ = cv2.getTextSize(label, font, font_scale, thickness)
 
@@ -115,18 +119,14 @@ def rfdetr_bounding_box(image, detections):
 
     boxes = getattr(detections, "xyxy", None)
     confidences = getattr(detections, "confidence", None)
-    class_ids = getattr(detections, "class_id", None)
 
     if boxes is None or len(boxes) == 0:
         return annotated_image
 
     for index, box in enumerate(boxes):
         x1, y1, x2, y2 = map(int, box)
-        class_id = int(class_ids[index]) if class_ids is not None else None
-        box_color = CLASS_COLORS.get(class_id, (255, 255, 255))
-        text_color = FONT_COLORS.get(class_id, (0, 0, 0))
-
         class_name = _get_rfdetr_class_name(detections, index)
+        box_color, text_color = _get_class_colors(class_name)
         if confidences is not None:
             label = f"{class_name} {float(confidences[index]):.2f}"
         else:
@@ -217,15 +217,15 @@ def video_detection(video_path, conf_threshold, backend, yolo_variant, rfdetr_va
             break
 
         if frame_count % frame_skip == 0:
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             if backend == "YOLOv26":
                 results = model_video(frame, conf=conf_threshold)
-                annotated_frame = costum_bounding_box(frame, results)
+                annotated_frame = costum_bounding_box(frame_rgb, results)
 
                 for c in results[0].boxes.cls:
                     class_name = results[0].names[int(c)]
                     all_classes.add(class_name)
             else:
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 detections = model_video.predict(frame_rgb, threshold=conf_threshold)
                 annotated_frame = rfdetr_bounding_box(frame_rgb, detections)
 
@@ -239,7 +239,7 @@ def video_detection(video_path, conf_threshold, backend, yolo_variant, rfdetr_va
                         for class_id in class_ids:
                             all_classes.add(str(int(class_id)))
 
-                annotated_frame = cv2.cvtColor(annotated_frame, cv2.COLOR_RGB2BGR)
+            annotated_frame = cv2.cvtColor(annotated_frame, cv2.COLOR_RGB2BGR)
 
             last_annotated_frame = annotated_frame
         else:
