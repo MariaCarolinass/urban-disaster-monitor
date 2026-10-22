@@ -268,6 +268,7 @@ Model evaluation was performed with standard object detection metrics: **mAP@0.5
 - [YOLOv11 vs YOLOv26 comparison notebook](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
 - [Model vs. COCO comparison notebook](./notebooks/coco-vs-yolo-comparison.ipynb)
 - [RF-DETR training and test evaluation notebook](./notebooks/training-rfdetr-dataset.ipynb)
+- [Model training and inference times notebook](./notebooks/model-training-inference-times.ipynb)
 - [Trained model results](./models)
 
 ### RF-DETR: Nano vs. Medium
@@ -420,37 +421,38 @@ Clone the repository:
 git clone https://github.com/MariaCarolinass/urban-disaster-monitor.git
 ```
 
-Navigate to the `app` folder:
+Navigate to the project root:
 
 ```bash
-cd urban-disaster-monitor/app
+cd urban-disaster-monitor
 ```
 
-Create a virtual environment with venv:
+Create one virtual environment for the app and notebooks:
 
 ```bash
-python3 -m venv venv
+python3 -m venv .venv
 ```
 
 Activate the virtual environment (Linux/macOS or Windows):
 
 ```bash
 # Linux/macOS
-source venv/bin/activate
+source .venv/bin/activate
 
 # Windows
-venv\Scripts\activate
+.venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+Install the app and notebook dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r app/requirements.txt -r notebooks/requirements.txt
 ```
 
 Run the project:
 
 ```bash
+cd app
 python app.py
 ```
 

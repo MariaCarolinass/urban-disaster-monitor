@@ -420,37 +420,38 @@ Baixe o repositório:
 git clone https://github.com/MariaCarolinass/urban-disaster-monitor.git
 ```
 
-Acesse a pasta `app`:
+Acesse a raiz do projeto:
 
 ```bash
-cd urban-disaster-monitor/app
+cd urban-disaster-monitor
 ```
 
-Crie o ambiente virtual venv:
+Crie um ambiente virtual para o app e os notebooks:
 
 ```bash
-python3 -m venv venv
+python3 -m venv .venv
 ```
 
 Ative o ambiente virtual (Linux/macOS ou Windows):
 
 ```bash
 # Linux/macOS
-source venv/bin/activate
+source .venv/bin/activate
 
 # Windows
-venv\Scripts\activate
+.venv\Scripts\Activate.ps1
 ```
 
-Instale as bibliotecas:
+Instale as bibliotecas do app e dos notebooks:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r app/requirements.txt -r notebooks/requirements.txt
 ```
 
 Execute o projeto:
 
 ```bash
+cd app
 python app.py
 ```
 
