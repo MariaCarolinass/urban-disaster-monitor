@@ -77,7 +77,7 @@ def _remove_old_video_outputs():
             pass
 
 
-def video_detection(video_path, conf_threshold, backend, yolo_variant, rfdetr_variant, frame_skip=3):
+def video_detection(video_path, conf_threshold, backend, yolo_variant, rfdetr_variant, frame_skip=1):
     if not video_path:
         raise gr.Error("Upload a video before processing.")
     if frame_skip < 1:

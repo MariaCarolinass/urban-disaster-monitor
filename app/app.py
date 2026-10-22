@@ -83,25 +83,35 @@ with gr.Blocks(delete_cache=(3600, 86400)) as app:
                 video_conf_threshold = gr.Slider(
                     label="Confidence Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.30
                 )
+                frame_skip = gr.Radio(
+                    choices=[
+                        ("Every frame (more consistent boxes)", 1),
+                        ("Every 2 frames", 2),
+                        ("Every 3 frames (faster)", 3),
+                    ],
+                    label="Frame sampling",
+                    value=1,
+                    info="Skipped frames stay in the video without annotations.",
+                )
                 video_backend, video_yolo_variant, video_rfdetr_variant = _model_selectors()
                 video_button = gr.Button("Process Video", variant="primary")
+
+                rescue_example = gr.Button("Load rescue simulation")
+                rescue_example.click(fn=lambda: load_example_video("rescue_simulation.mp4"), outputs=video)
+                
             with gr.Column():
                 output_video = gr.Video(label="Processed Video", autoplay=True)
                 video_predictions = gr.Textbox(
                     label="Predictions", placeholder="Predictions will appear here..."
                 )
-
+        
         video_button.click(
             fn=video_detection,
-            inputs=[video, video_conf_threshold, video_backend, video_yolo_variant, video_rfdetr_variant],
+            inputs=[video, video_conf_threshold, video_backend, video_yolo_variant, video_rfdetr_variant, frame_skip],
             outputs=[output_video, video_predictions],
             concurrency_id="model_inference",
             concurrency_limit=1,
         )
-
-        with gr.Row():
-            rescue_example = gr.Button("Load rescue simulation")
-        rescue_example.click(fn=lambda: load_example_video("rescue_simulation.mp4"), outputs=video)
         
 app.queue(max_size=10, api_open=False)
 
