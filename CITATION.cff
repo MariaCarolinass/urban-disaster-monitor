@@ -3,6 +3,7 @@ message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Maria Carolina de Sousa"
   given-names: "Soares"
+  orcid: "https://orcid.org/0009-0000-4547-1082"
 - family-names: "João Arthur Galdino"
   given-names: "das Neves"
 title: "urban-disaster-monitor"
