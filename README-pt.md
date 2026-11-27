@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="static/images/logo1.png" alt="Logo projeto" width="600"/><br>
+<img src="static/images/branding/urban-disaster-monitor.png" alt="Logotipo do projeto" width="600"/><br>
 
 [![YOLOv26](https://img.shields.io/badge/YOLOv26-ultralytics-red)](https://docs.ultralytics.com/) [![RF--DETR](https://img.shields.io/badge/RF--DETR-Roboflow-6C47FF)](https://github.com/roboflow/rf-detr) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MariaCarolinass/urban-disaster-monitor/blob/main/LICENSE.txt)
 
-[Dataset](./dataset) | [Models](./models) | [Notebooks](./notebooks) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
+[Dataset](./dataset) | [Modelos](./models) | [Notebooks](./notebooks/README.md) | [Kaggle](https://www.kaggle.com/datasets/mariacsoares/urban-disaster-object-detection-dataset/data) | [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor) | [App](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)
 
 Português | [English](./README.md)
 
@@ -12,58 +12,44 @@ Português | [English](./README.md)
 
 # Urban Disaster Monitor
 
-### Detecção e classificação de civis, animais e socorristas em cenários de desastre urbano, utilizando YOLOv26 e RF-DETR
-
-Em situações de desastre urbano, cada segundo importa. Este projeto oferece uma ferramenta de visão computacional para ajudar equipes de resgate a agir com mais precisão e velocidade.
+Detecção de civis, socorristas e animais em imagens e vídeos de inundações com YOLOv26 e RF-DETR.
 
 <div align="center">
 
-<img src="static/images/capa1.webp" alt="Pessoas em inundação" width="700"/> 
+<img src="static/images/qualitative/external-image-detections.png" alt="Predições do YOLOv26m para pessoas e cães em uma área inundada" width="720"/><br>
+<sub>Predições do YOLOv26m em uma inundação. Foto publicada pelo <a href="./static/images/README.md#sources">Jornal Gazeta Regional</a>.</sub>
 
 </div><br>
 
 ## Estrutura de Pastas
 
-```
+```text
 .
-├── app
-│   ├── examples
-│   ├── app.py
-│   ├── README.md
-│   └── requirements.txt
-├── notebooks
-│   ├── coco-vs-yolo-comparison.ipynb
-│   ├── generative-images-synthetic-gemini.ipynb
-│   ├── metrics-and-comparison-yolo-models.ipynb
-│   ├── yolo11-vs-yolo26-comparison.ipynb
-│   ├── simulation-video-yolo.ipynb
-│   ├── training-rfdetr-dataset.ipynb
-│   └── training-yolo-dataset.ipynb
-├── dataset
-│   ├── test
-│   │   ├── images
-│   │   └── labels
-│   ├── train
-│   │   ├── images
-│   │   └── labels
-│   ├── valid
-│   │   ├── images
-│   │   └── labels
-│   ├── data.yaml
-│   ├── README.dataset.txt
-│   └── README.roboflow.txt
-├── models
-│   ├── yolov26l
-│   ├── yolov26m
-│   ├── yolov26n
-│   ├── yolov26s
-│   ├── rfdetrmedium
-│   └── rfdetrnano
-└── static
-    ├── gif
-    ├── images
-    └── video
+├── app/                     # Interface Gradio
+├── dataset/                 # Imagens, anotações e créditos
+├── models/                  # Pesos, históricos e resultados de comparação
+│   └── comparisons/
+├── notebooks/
+│   ├── data-generation/
+│   ├── training/
+│   ├── evaluation/
+│   │   ├── accuracy/
+│   │   ├── performance/
+│   │   └── qualitative/
+│   └── video/
+├── src/
+│   └── evaluation/          # Código de avaliação e geração de gráficos
+└── static/
+    ├── images/
+    │   ├── branding/
+    │   ├── dataset/
+    │   ├── evaluation/
+    │   ├── interface/
+    │   └── qualitative/
+    └── video/
 ```
+
+Consulte o [guia dos notebooks](./notebooks/README.md) para configurar o ambiente e o [guia de avaliação](./src/evaluation/README.md) para reproduzir os gráficos.
 
 ## Sumário
 
@@ -71,7 +57,7 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
   - [Funcionalidades](#funcionalidades)
   - [Contexto institucional](#contexto-institucional)
 - [Dataset](#dataset)
-  - [Pré-processamento e augmentations](#pré-processamento-e-augmentations)
+  - [Pré-processamento e aumento de dados](#pré-processamento-e-aumento-de-dados)
   - [Composição por classe](#composição-por-classe)
   - [Por que dataset customizado?](#por-que-dataset-customizado)
   - [Aquisição de dados](#aquisição-de-dados)
@@ -81,20 +67,18 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
   - [Classes (Roboflow)](#classes-roboflow)
   - [Arquiteturas](#arquiteturas)
   - [Fluxo de treinamento](#fluxo-de-treinamento)
-  - [Ambiente de treinamento (Colab + GPU T4)](#ambiente-de-treinamento-colab--gpu-t4)
+  - [Ambiente de treinamento](#ambiente-de-treinamento)
 - [Métricas e resultados](#métricas-e-resultados)
-  - [RF-DETR: Nano vs. Medium](#rf-detr-nano-vs-medium)
-  - [RF-DETR Medium vs. YOLOv26m](#rf-detr-medium-vs-yolov26m)
-  - [Comparação YOLOv11 vs. YOLOv26](#comparação-yolov11-vs-yolov26)
-  - [Resultados por variante](#resultados-por-variante-map05)
-  - [Resultados por classe](#resultados-por-classe)
-  - [Treino customizado vs. COCO pré-treinado](#treino-customizado-vs-coco-pré-treinado)
-  - [Simulação em vídeo](#simulação-em-vídeo)
-- [Conclusões e recomendações por família e modelo](#conclusões-e-recomendações-por-família-e-modelo)
+  - [YOLOv11 e YOLOv26](#yolov11-e-yolov26)
+  - [RF-DETR e YOLOv26m](#rf-detr-e-yolov26m)
+  - [YOLOv26m customizado vs. COCO no conjunto de teste](#yolov26m-customizado-vs-coco-no-conjunto-de-teste)
+  - [Tempo de treinamento e inferência em CPU](#tempo-de-treinamento-e-inferência-em-cpu)
+  - [Exemplos de detecção e vídeo de resgate](#exemplos-de-detecção-e-vídeo-de-resgate)
+- [Conclusões e limitações](#conclusões-e-limitações)
   - [Trabalhos futuros](#trabalhos-futuros)
 - [Interface Interativa](#interface-interativa)
   - [Testar online](#testar-online)
-  - [Funcionalidades](#funcionalidades)
+  - [Controles e limites](#controles-e-limites)
   - [Tecnologias](#tecnologias)
   - [Executar localmente](#executar-localmente)
 - [Equipe](#equipe)
@@ -103,38 +87,36 @@ Em situações de desastre urbano, cada segundo importa. Este projeto oferece um
 
 ## Sobre o projeto
 
-O **Urban Disaster Monitor** é um sistema de visão computacional para detecção e classificação de **indivíduos** (Civis e Socorristas) e **animais** (Vacas, Cavalos, Cachorros e Gatos) em cenários de desastres urbanos. Em situações de colapso estrutural, inundações ou deslizamentos, identificar rapidamente civis e socorristas em tempo real é crucial para otimizar recursos e reduzir fatalidades. O sistema disponibiliza as famílias **YOLOv26** e **RF-DETR**, permitindo equilibrar velocidade, custo computacional e qualidade de detecção conforme o cenário operacional.
+**Urban Disaster Monitor** detecta civis, socorristas, cães, gatos, cavalos e bovinos em imagens e vídeos. Os experimentos se concentram em inundações urbanas e rurais e avaliam variantes do YOLOv11, YOLOv26 e RF-DETR.
 
 ### Funcionalidades
 
 - Detecção e classificação de **Civis**, **Socorristas**, **Vacas**, **Cavalos**, **Cachorros** e **Gatos**
-- Visualização de **métricas** e **bounding boxes**
-- Interface interativa via **Gradio** para upload e teste de imagens e vídeos
+- Visualização de caixas delimitadoras, rótulos e valores de confiança no app
+- Consulta de métricas e comparação de modelos nos notebooks de avaliação
 - Seleção entre YOLOv26 (Nano, Small, Medium e Large) e RF-DETR (Nano e Medium)
 
 ### Contexto institucional
 
-O projeto teve início durante a disciplina de Visão Computacional ministrada pelo **Prof. Dr. [Helton Maia](https://heltonmaia.com/)** na **ECT/UFRN**. Foi desenvolvido voluntariamente para o **Smart Metropolis** (IMD/UFRN) no âmbito do **Projeto SPICI (Segurança Pública Integrada em Cidades Inteligentes)**, consistindo uma plataforma inteligente de coleta, processamento e análise de imagens em tempo real para gestão de crises e desastres.
+O projeto teve início durante a disciplina de Visão Computacional ministrada pelo **Prof. Dr. [Helton Maia](https://heltonmaia.com/)** na **ECT/UFRN**. Foi desenvolvido como contribuição voluntária ao **Smart Metropolis** (IMD/UFRN) no âmbito do **Projeto SPICI (Segurança Pública Integrada em Cidades Inteligentes)**.
 
-<a href="https://smlab.imd.ufrn.br/"><img src="static/images/smartmetropolislab.png" alt="Logo Smart Metropolis" width="150"/></a> <a href="https://smlab.imd.ufrn.br/projeto-spici/"><img src="static/images/spici.png" alt="Logo SPICI" width="100"/></a> <a href="https://imd.ufrn.br/"><img src="static/images/imd-logo.7784f1db.webp" alt="Logo IMD/UFRN" width="150"/></a> <a href="https://www.ect.ufrn.br/"><img src="static/images/cet.png" alt="Logo ECT/UFRN" width="100"/></a>
+<a href="https://smlab.imd.ufrn.br/"><img src="static/images/branding/smart-metropolis.png" alt="Logo Smart Metropolis" width="150"/></a> <a href="https://smlab.imd.ufrn.br/spici/"><img src="static/images/branding/spici.png" alt="Logo SPICI" width="100"/></a> <a href="https://imd.ufrn.br/"><img src="static/images/branding/imd-ufrn.webp" alt="Logo IMD/UFRN" width="150"/></a> <a href="https://www.ect.ufrn.br/"><img src="static/images/branding/ect-ufrn.png" alt="Logo ECT/UFRN" width="100"/></a>
 
 ## Dataset
 
-O dataset foi desenvolvido para **detecção e contagem de sobreviventes** (civis, socorristas e animais) em cenários de emergência, incluindo inundações, deslizamentos, colapsos estruturais e regiões rurais alagadas. O conjunto inicial contava com 1.903 imagens; após pré-processamento e augmentations, o dataset final totaliza **3.240 imagens**, distribuídas em **6 classes** selecionadas com base em demandas operacionais reais, em particular no contexto brasileiro. O dataset segue distribuição **multi-label** (uma mesma imagem pode conter múltiplas classes simultaneamente).
+O conjunto reúne imagens reais e sintéticas de inundações urbanas e rurais. As **1.903 imagens originais** foram divididas em 1.337 para treino, 383 para validação e 183 para teste. Cada imagem de treino ganhou uma versão modificada, chegando a **3.240 imagens** no total. As partições de validação e teste conservam suas imagens originais.
 
-### Pré-processamento e augmentations
+### Pré-processamento e aumento de dados
 
-- **Auto-orientação:** alinhamento consistente das imagens
-- **Redimensionamento:** 640×640 px (stretch)
-- **Contraste:** stretching para melhorar detalhes em cenas de baixa visibilidade
-- **Augmentations:** 2 variantes geradas por amostra original
-  - Rotação: ±15°
-  - Shear: ±10° horizontal e vertical
-  - Tons de cinza: 15% das imagens
-  - Saturação: ±25%
-  - Ruído esparso: até 0,89% dos pixels
+O pré-processamento corrigiu a orientação, redimensionou as imagens para 640 × 640 px e ajustou o contraste. O aumento de dados foi aplicado apenas ao treino, com uma versão modificada por imagem original. O processo usou rotação de até ±15°, cisalhamento horizontal e vertical de até ±10°, conversão para tons de cinza em 15% das imagens, variação de saturação de até ±25% e ruído em até 0,89% dos pixels.
+
+<div align="center">
+<img src="static/images/dataset/dataset-augmentations.png" alt="Exemplos de aumento de dados aplicados às imagens de treino" width="760"/>
+</div>
 
 ### Composição por classe
+
+As contagens abaixo se referem ao conjunto antes do aumento de dados.
 
 | Classe | Objetos anotados | Imagens contendo a classe |
 |--------|------------------|---------------------------|
@@ -145,36 +127,30 @@ O dataset foi desenvolvido para **detecção e contagem de sobreviventes** (civi
 | horse | 811 | 279 |
 | cow | 749 | 180 |
 
-*Objetos anotados* indica o total de bounding boxes por classe; *imagens contendo a classe* indica em quantas imagens distintas cada classe aparece. A classe **rescuer** foi introduzida para evitar alertas em áreas ocupadas apenas por equipes de emergência, reduzindo falsos positivos. O critério de distinção entre socorristas e civis baseia-se em atributos visuais como capacetes, coletes refletivos ou uniformes vermelho-amarelos típicos de equipes de resgate.
+Os totais de objetos correspondem às caixas delimitadoras. Uma imagem pode conter mais de uma classe. A seleção de socorristas priorizou fardas laranja ou vermelho chamativo, e a anotação exigiu indícios visuais da função. Pessoas sem indícios suficientes foram anotadas como `civilian`.
 
 - **Anotação:** [Roboflow](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor/)
-- **Particionamento:** 83% treino (2.674) / 12% validação (383) / 6% teste (183) 
+- **Particionamento:** 82,5% treino (2.674) / 11,8% validação (383) / 5,6% teste (183)
 - **Dataset particionado:** [dataset](./dataset)
 - **Licença:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
+- **Créditos das imagens:** [Fontes e atribuição do dataset](./dataset/SOURCES.md) (13 projetos do Roboflow Universe)
 
 ### Por que dataset customizado?
 
-Datasets em larga escala como **COCO** não atendem bem a cenários de desastre. O COCO não diferencia *rescuer* de *civilian* e representa todos como "person", o que compromete sistemas de alerta, áreas exclusivamente ocupadas por equipes de resgate gerariam falsos positivos. Além disso, modelos pré-treinados em COCO têm dificuldade em cenários pouco representados, como pessoas ou animais parcialmente submersos em água. Um dataset específico de domínio era necessário.
+O COCO usa a classe `person` para pessoas. O conjunto do projeto distingue `civilian` de `rescuer` com base nos indícios visuais disponíveis e inclui cenas de inundação com pessoas e animais parcialmente submersos.
 
 ### Aquisição de dados
 
-O dataset combina **imagens em cenários reais de repositórios públicos** e **imagens sintéticas geradas por IA**, mitigando a escassez de dados reais de alta qualidade em ambientes de desastre.
+Antes do aumento de dados, o treino tinha 762 imagens reais e 575 sintéticas, a validação tinha 211 reais e 172 sintéticas e o teste tinha 98 reais e 85 sintéticas. Os resultados agregam as duas origens.
 
 #### Imagens públicas
 
-Coletadas de fontes com licença aberta ou compartilhável:
+As imagens reais vieram de repositórios públicos e de buscas. As condições de uso são específicas de cada fonte.
 
 - [Wikimedia Commons](https://commons.wikimedia.org/)
 - [Flickr](https://www.flickr.com/)
 - [Google Images](https://images.google.com)
 - [Roboflow Universe](https://universe.roboflow.com/)
-
-<div align="center">
-
-<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0.jpg" alt="People rescuing flooded cows" width="400"/> 
-<img src="static/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0_annotated.webp" alt="People rescuing flooded cows - annotated" width="400"/> 
-
-</div>
 
 #### Imagens sintéticas (Gemini 2.5 Flash Image)
 
@@ -190,13 +166,12 @@ Foram geradas **832 imagens sintéticas** com o modelo [Gemini 2.5 Flash Image](
 Cada imagem foi revisada manualmente. As amostras sintéticas complementam as reais e ampliam a variabilidade intraclasse de *dog*, *cat*, *cow* e *horse*.
 
 <div align="center">
+<img src="static/images/dataset/synthetic-flood-example.jpg" alt="Exemplo de inundação gerado com Gemini" width="420"/><br>
+<sub>Imagem sintética de inundação gerada com Gemini 2.5 Flash Image.</sub>
+</div>
 
-<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini.jpg" alt="Generated image" width="400"/>
-<img src="static/images/536b176558764282b5dcfb33115db7bb_png.rf.0b1dfb32c8b26ed9520324d7e0123683_gemini_result.webp" alt="Generated image classified" width="400"/>
-
-</div><br>
-
-Exemplos de prompts:
+<details>
+<summary>Exemplos de prompts</summary>
 
 1. "Authentic documentary photo of a brown horse standing in a flooded street after heavy rain, realistic proportions, clear body visible, imperfect disaster photo"
 
@@ -210,45 +185,49 @@ Exemplos de prompts:
 
 6. "Realistic low-resolution documentary photo of a cow isolated in floodwater reflecting sunset colors, authentic disaster photo"
 
-[Notebook de geração de imagens sintéticas](./notebooks/generative-images-synthetic-gemini.ipynb)
+</details>
+
+[Notebook de geração de imagens sintéticas](./notebooks/data-generation/generative-images-synthetic-gemini.ipynb)
 
 ## Anotações e modelos
 
-As anotações foram realizadas na plataforma **Roboflow**. As duas famílias de detectores são treinadas para as seis classes abaixo, com validação contínua e avaliação em conjunto independente. Os artefatos de cada experimento — configuração, métricas e visualizações — estão em [`models/`](./models).
+As anotações foram realizadas na plataforma **Roboflow**. As duas famílias de detectores usam as seis classes abaixo e foram avaliadas a cada época na validação. A comparação do YOLOv26m com os pesos pré-treinados no COCO usa o conjunto de teste. Os artefatos de cada experimento estão em [`models/`](./models).
 
 ### Classes (Roboflow)
 
 | Classe | Descrição |
 |--------|-----------|
-| `civilian` | Indivíduos não identificados como equipes de resgate |
-| `rescuer` | Equipes de emergência com uniformes, EPI (capacetes, coletes) |
-| `cat`, `dog` | Animais domésticos em cenários urbanos |
-| `cow`, `horse` | Animais de grande porte em áreas rurais/urbanas periféricas |
+| `civilian` | Pessoa sem indícios visuais suficientes de atuação no resgate |
+| `rescuer` | Pessoa com indícios visuais de atuação no resgate |
+| `cat`, `dog` | Gatos e cães |
+| `cow`, `horse` | Bovinos e cavalos |
 
 ### Arquiteturas
 
 O projeto compara duas abordagens complementares de detecção de objetos:
 
-- **YOLOv26** (Ultralytics): detector de estágio único orientado a inferência em tempo real. Foram treinadas as variantes YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) e YOLOv26l (large).
+- **YOLOv26** (Ultralytics): detector de estágio único. Foram treinadas as variantes YOLOv26n (nano), YOLOv26s (small), YOLOv26m (medium) e YOLOv26l (large).
 - **RF-DETR** (Roboflow): detector baseado em Transformer. Foram treinadas as variantes RF-DETR Nano e RF-DETR Medium, ambas com as mesmas classes do dataset.
 
-A interface permite escolher a família e a variante antes de processar uma imagem ou vídeo; os pesos são obtidos automaticamente dos repositórios do projeto no Hugging Face.
+O app baixa os pesos da variante selecionada do Hugging Face no primeiro uso e os mantém em cache local.
 
 ### Fluxo de treinamento
 
 1. **Preparação:** exportação das anotações do Roboflow e organização das seis classes do projeto.
-2. **Treino por variante:** YOLOv26n/s/m/l e RF-DETR Nano/Medium com seus respectivos parâmetros.
+2. Treinar as variantes do YOLOv11, YOLOv26 e RF-DETR com suas respectivas configurações.
 3. **Validação contínua:** métricas por época, curvas de perda e análise de *overfitting*.
-4. **Avaliação final:** métricas globais, resultados por classe e inspeção qualitativa das detecções.
+4. Comparar as métricas de validação e os exemplos qualitativos. Usar o conjunto de teste para a comparação de cinco classes com o COCO.
 
-### Ambiente de treinamento (Colab + GPU T4)
+### Ambiente de treinamento
 
-Os experimentos de YOLOv26 foram realizados no **Google Colab** utilizando GPUs **NVIDIA T4**. Os treinos de RF-DETR registram 50 épocas, *batch* efetivo 16 por acumulação de gradientes e resolução de 384 px (Nano) ou 576 px (Medium). Exemplo de chamada com Ultralytics:
+O YOLOv26 foi treinado no Google Colab com uma GPU NVIDIA T4. O RF-DETR Nano usou aceleração MPS, e o Medium usou CUDA no Colab. Ambos foram configurados para 50 épocas e lote efetivo de 16 por acumulação de gradientes. As resoluções de entrada foram 384 px para Nano e 576 px para Medium.
+
+O exemplo abaixo inicia o treino da variante Nano do YOLOv26 com os pesos oficiais pré-treinados.
 
 ```python
 from ultralytics import YOLO
 
-model = YOLO('yolov26n.pt')
+model = YOLO('yolo26n.pt')
 model.train(
     data='dataset/data.yaml',
     epochs=50,
@@ -258,135 +237,115 @@ model.train(
 )
 ```
 
-[Notebook de treinamento](./notebooks/training-yolo-dataset.ipynb)
+[Notebook de treinamento do YOLOv26](./notebooks/training/training-yolo-dataset.ipynb) · [Notebook de treinamento do RF-DETR](./notebooks/training/training-rfdetr-dataset.ipynb)
 
 ## Métricas e resultados
 
-A avaliação do modelo foi realizada com métricas padrão de detecção de objetos: **mAP@0.5** (precisão média com IoU 0,5), **mAP@0.5:0.95** (IoU múltiplos, mais rigoroso), **Precision**, **Recall** e **matriz de confusão** para análise de erros por classe.
+As principais comparações entre modelos usam o **conjunto de validação com seis classes**. Para cada treino, as métricas vêm da época com o maior mAP@0.5 de validação registrado. A comparação com o COCO usa o conjunto de teste e um protocolo separado de cinco classes.
 
-- [Notebook de comparação de modelos](./notebooks/metrics-and-comparison-yolo-models.ipynb)
-- [Notebook de comparação YOLOv11 vs YOLOv26](./notebooks/yolo11-vs-yolo26-comparison.ipynb)
-- [Notebook de comparação de modelo vs. COCO](./notebooks/coco-vs-yolo-comparison.ipynb)
-- [Notebook de treinamento e avaliação no conjunto de testes com RF-DETR](./notebooks/pt-br/training-rfdetr-dataset.ipynb)
-- [Resultados dos modelos treinados](./models)
+- [Resultados dos modelos](./models/comparisons/)
+- [Pacote de avaliação e comandos de reprodução](./src/evaluation/README.md)
+- [Notebooks de avaliação](./notebooks/README.md#workflow)
 
-### RF-DETR: Nano vs. Medium
+### YOLOv11 e YOLOv26
 
-As variantes RF-DETR foram treinadas por 50 épocas no mesmo problema de seis classes. A tabela reúne o melhor resultado de validação registrado nos arquivos de métricas; o Medium superou o Nano em todas as métricas globais.
+| Variante | YOLOv11 mAP@0.5 | YOLOv26 mAP@0.5 | YOLOv26 mAP@0.5:0.95 | Tempo de treino do YOLOv26 |
+| --- | ---: | ---: | ---: | ---: |
+| Nano | 0,8606 | 0,8267 | 0,4872 | 47,6 min |
+| Small | 0,8755 | 0,8667 | 0,5024 | 56,3 min |
+| Medium | 0,8642 | 0,8774 | 0,5154 | 108,4 min |
+| Large | 0,8621 | 0,8919 | 0,5247 | 133,1 min |
 
-| Variante | Precisão | Recall | F1 | mAP@0.5 |
-|----------|---------:|-------:|---:|--------:|
-| RF-DETR Nano | 91,15% | 81,95% | 84,16% | 86,85% |
-| RF-DETR Medium | **92,88%** | **86,61%** | **88,95%** | **91,97%** |
+O YOLOv11 teve vantagem nas variantes Nano e Small. O YOLOv26 teve vantagem nas variantes Medium e Large, com o **YOLOv26l** registrando o maior mAP@0.5 entre os treinos da família YOLO.
 
 <div align="center">
-<img src="static/images/internal_comparison_rfdetr.png" alt="Comparação de precisão, recall, F1 e mAP@0.5 entre RF-DETR Nano e Medium" width="900"/>
+<img src="static/images/evaluation/yolo11-vs-yolo26-validation-map50.png" alt="Maior mAP de validação em IoU 0,5 por variante do YOLOv11 e do YOLOv26" width="760"/>
 </div>
 
-Na análise por classe, o Medium também obteve os maiores valores de mAP@0.5. `horse` e `rescuer` foram as classes com os resultados mais altos; `civilian`, `cat` e `dog` permanecem como oportunidades para ampliar os dados e a diversidade de cenários.
+[Resultados do YOLOv26 por variante](./static/images/evaluation/yolo26-validation-map50.png) · [Curvas de validação do YOLOv11](./static/images/evaluation/yolo11-validation-curves.png) · [Curvas de validação do YOLOv26](./static/images/evaluation/yolo26-validation-curves.png)
+
+O gráfico por classe vem da avaliação dos pesos selecionados nas 383 imagens de validação. A classe `dog` apresentou, de forma geral, o menor AP@0.5.
 
 <div align="center">
-<img src="static/images/internal_map_class_comparison.png" alt="Comparação de mAP@0.5 por classe entre RF-DETR Nano e Medium" width="900"/>
+<img src="static/images/evaluation/yolo26-validation-ap50-by-class.png" alt="AP de validação em IoU 0,5 por classe e variante do YOLOv26" width="850"/>
 </div>
 
-Os gráficos de treinamento, matriz de confusão e comparações detalhadas podem ser consultados em [`models/rfdetrnano`](./models/rfdetrnano) e [`models/rfdetrmedium`](./models/rfdetrmedium).
+### RF-DETR e YOLOv26m
 
-### RF-DETR Medium vs. YOLOv26m
+Os registros do RF-DETR preservam as métricas de validação das épocas 40 a 49. A tabela usa a época com o maior mAP@0.5 disponível para cada variante e inclui o YOLOv26m para comparação.
 
-Na comparação registrada para as variantes Medium, o **RF-DETR Medium** supera o **YOLOv26m** nas métricas globais avaliadas. O ganho é mais expressivo em `mAP@0.5:0.95` (56,27% contra 51,90%), métrica mais rigorosa para a qualidade de localização das caixas.
+| Modelo | Época | Precisão | Recall | mAP@0.5 | mAP@0.5:0.95 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| RF-DETR Nano | 40 | 0,9115 | 0,7787 | 0,8685 | 0,5182 |
+| RF-DETR Medium | 43 | 0,9159 | 0,8661 | **0,9197** | **0,5590** |
+| YOLOv26m | 35 | 0,8950 | 0,7924 | 0,8774 | 0,5154 |
+
+O RF-DETR Medium registrou o maior mAP@0.5 de validação dos experimentos. As famílias usam resoluções e implementações de avaliação diferentes, então os resultados descrevem as configurações testadas. Dentro da família RF-DETR, o F1 registrado foi 0,8366 para Nano e 0,8895 para Medium.
 
 <div align="center">
-<img src="models/rfdetrmedium/comparison_map.png" alt="Comparação de mAP entre RF-DETR Medium e YOLOv26m" width="700"/>
+<img src="static/images/evaluation/rfdetr-medium-vs-yolo26m-validation-map.png" alt="Comparação de mAP de validação entre RF-DETR Medium e YOLOv26m" width="720"/>
 </div>
 
-Também apresenta maior precisão (92,88% vs. 89,64%), recall (86,61% vs. 81,05%) e F1 (88,95% vs. 84,40%). Esses resultados indicam o RF-DETR Medium como a opção de maior acurácia entre as duas variantes Medium comparadas.
+[Métricas globais do RF-DETR](./static/images/evaluation/rfdetr-validation-metrics.png) · [AP@0.5:0.95 do RF-DETR por classe](./static/images/evaluation/rfdetr-validation-ap-by-class.png) · [Curvas de validação do RF-DETR](./static/images/evaluation/rfdetr-validation-curves.png) · [Variantes Medium: precisão e recall](./static/images/evaluation/rfdetr-medium-vs-yolo26m-validation-precision-recall.png)
+
+### YOLOv26m customizado vs. COCO no conjunto de teste
+
+Os dois modelos foram avaliados nas mesmas **183 imagens e 702 anotações**. As cinco categorias comuns foram `person`, `cat`, `dog`, `horse` e `cow`. As anotações e predições de civis e socorristas foram agrupadas em `person` antes da supressão de não máximos compartilhada. Precisão e recall usam agregação micro, confiança de 0,25 e IoU de correspondência de 0,50.
+
+| Métrica | YOLOv26m customizado | YOLOv26m pré-treinado no COCO |
+| --- | ---: | ---: |
+| Precisão micro | **0,803** | 0,765 |
+| Recall micro | **0,808** | 0,718 |
+| mAP@0.5 | **0,884** | 0,791 |
+| mAP@0.5:0.95 | **0,542** | 0,413 |
 
 <div align="center">
-<img src="models/rfdetrmedium/comparison_prf1.png" alt="Comparação de precisão, recall e F1 entre RF-DETR Medium e YOLOv26m" width="800"/>
+<img src="static/images/evaluation/coco-vs-custom-yolo26m-test.png" alt="Comparação em teste de cinco classes entre YOLOv26m customizado e pré-treinado no COCO" width="820"/>
 </div>
 
-> **Nota de reprodutibilidade:** a comparação foi realizada no mesmo conjunto de testes, com modelos treinados para as mesmas seis classes do Urban Disaster Monitor. Os valores correspondem à melhor época registrada de cada variante; as configurações, curvas e resultados completos estão em [`models/rfdetrmedium`](./models/rfdetrmedium) e [`models/yolov26m`](./models/yolov26m).
+Os resultados descrevem a detecção de pessoas e animais no protocolo comum. Uma revisão posterior encontrou no treino cópias de pelo menos **14 das 183 imagens de teste** e **33 das 383 de validação**. Essa sobreposição pode elevar as métricas e favorecer o modelo customizado. [Resultados completos no teste](./models/comparisons/coco-vs-custom-yolo26m-common-test.json)
 
-### Comparação YOLOv11 vs. YOLOv26
+### Tempo de treinamento e inferência em CPU
 
-Para comparar as duas gerações de treino em igualdade de condições, o gráfico abaixo usa o melhor `mAP@0.5` obtido por cada variante no respectivo `results.csv`, a partir das tags `yolo11-v1.0.0` e `yolo26-v1.0.0`. O YOLOv26 lidera nas versões medium e large, enquanto o YOLOv11 fica levemente à frente nas versões nano e small.
+Os treinos de YOLOv26 levaram **47,6–133,1 minutos** ao longo de 50 épocas. Os registros disponíveis do RF-DETR não incluem a duração do treino. A medição em CPU usou dez imagens de validação e três repetições por modelo após aquecimento. O YOLOv26n registrou a menor latência média, **73,0 ms/imagem**, enquanto o RF-DETR Medium registrou **643,8 ms/imagem**. Os tempos incluem pré-processamento, execução da rede e pós-processamento. A medição exclui carregamento de imagens e pesos, aquecimento e desenho das caixas.
 
 <div align="center">
-<img src="static/images/yolo11-vs-yolo26-map-comparison.png" alt="Comparação YOLOv11 vs YOLOv26" width="700"/>
+<img src="static/images/evaluation/cpu-inference-latency.png" alt="Latência média de inferência em CPU das variantes YOLOv26 e RF-DETR" width="820"/>
 </div>
 
-Melhor resultado geral: **YOLOv26l** com **89,19% de mAP@0.5**.
+[Gráfico de duração do treino do YOLOv26](./static/images/evaluation/yolo26-training-duration.png) · [Amostras do benchmark em CPU](./models/comparisons/model-inference-times.json)
 
-### Resultados por variante (mAP@0.5)
+### Exemplos de detecção e vídeo de resgate
 
-Considerando o melhor `mAP@0.5` registrado em cada `results.csv`, as quatro variantes treinadas apresentam os seguintes resultados: YOLOv26n 82,67%, YOLOv26s 86,67%, YOLOv26m 87,74% e YOLOv26l 89,19%. A variante large obteve a maior acurácia, enquanto a nano permanece como alternativa compacta para cenários com restrição de hardware.
+Os mosaicos mostram as mesmas quatro imagens de validação antes e depois da inferência com o YOLOv26m, usando confiança de 0,70. As caixas mostram as predições do modelo.
 
 <div align="center">
-<img src="static/images/yolo26map05.png" alt="mAP@0.5 por variante" width="700"/>
+<img src="static/images/qualitative/validation-image-mosaic.png" alt="Quatro imagens originais do conjunto de validação" width="410"/>
+<img src="static/images/qualitative/validation-detection-mosaic.png" alt="As mesmas imagens de validação com predições do YOLOv26m" width="410"/>
 </div>
 
-### Resultados por classe
-
-O gráfico abaixo compara o mAP@0.5 por classe nas diferentes variantes. A classe `dog` obteve o menor desempenho entre todas, mas permaneceu acima de 70% com o modelo small. As classes de pessoas (`civilian`, `rescuer`) e animais de grande porte (`cow`, `horse`) tendem a performar melhor, possivelmente por maior visibilidade e área ocupada na imagem. 
+O YOLOv26m também processou uma foto externa de inundação e um vídeo de resgate com confiança de 0,25. Na primeira passagem pelo vídeo, houve detecções em **352 de 384 quadros**. A inspeção visual encontrou objetos sem caixas e rochas classificadas como animais. Os exemplos não têm anotações de referência, então essa contagem indica a frequência com que o detector produziu caixas.
 
 <div align="center">
-<img src="static/images/metricasclasseyolo26.png" alt="mAP@0.5 por classe" width="900"/>
+<img src="static/images/qualitative/rescue-video-frame-240.png" alt="Bote de resgate na área inundada com detecções do YOLOv26m" width="320"/>
+<img src="static/images/qualitative/rescue-video-frame-336.png" alt="Bote de resgate próximo da margem com detecções do YOLOv26m" width="320"/>
 </div>
 
-### Treino customizado vs. COCO pré-treinado
+[Imagem externa original](./static/images/qualitative/external-disaster.jpg) · [Imagem externa com detecções](./static/images/qualitative/external-image-detections.png) · [Vídeo original do Corpo de Bombeiros Militar de Santa Catarina](https://www.youtube.com/shorts/6PuaEPbOhJU) · [Medições de inferência externa](./models/comparisons/external-inference.json) · [Créditos das imagens](./static/images/README.md)
 
-Para validar o impacto do treino específico de domínio, comparou-se o **YOLOv26m customizado** com a versão **pré-treinada em COCO**. A avaliação do COCO foi restrita às 4 classes de animais do nosso dataset mais uma classe agregada *person* (civilian + rescuer):
+## Conclusões e limitações
 
-| Metric | Custom | COCO pre-trained |
-|---------|-------------|-------------------|
-| Precision | 0.861 | 0.881 |
-| Recall | 0.800 | 0.701 |
-| mAP@0.5 | 0.865 | 0.798 |
-| mAP@0.5–0.95 | 0.520 | 0.402 |
-
-O modelo customizado supera o pré-treinado em recall e em ambas as métricas mAP, destacando o ganho em qualidade de localização (IoU mais rígidos) e na detecção de pessoas e animais em cenários de inundação. A análise qualitativa aponta gargalos como confusão entre `civilian` e `background` e dificuldade em animais menores (`dog`, `cat`).
-
-<div align="center">
-<img src="static/images/customyolo26.png" alt="Resultado do modelo customizado" width="700"/>
-</div>
-
-### Simulação em vídeo
-
-Um [vídeo público do YouTube](https://youtube.com/shorts/6PuaEPbOhJU?is=ZqVyJ1tB-tI3sHXP) do Corpo de Bombeiros Militar de Santa Catarina foi utilizado para simular um cenário real de desastre urbano, com cenas de bombeiros (`rescuer`) em áreas de inundação regastando uma pessoa.
-
-O **YOLOv26m** foi aplicado ao vídeo, para avaliar a detecção e classificação de indivíduos em movimento sob diferentes condições de iluminação e ângulos de câmera.
-
-<div align="center">
-<img src="static/gif/rescuer_simulation_yolo26m.gif" alt="Exemplo de vídeo de treinamento" width="600"/>
-</div><br>
-
-**Resultados:** No novo vídeo, o `YOLOv26` detecta corretamente a maioria de `civilian` e `rescuer`, demonstrando boa capacidade de identificação em cenários dinâmicos. Ainda assim, persistem dificuldades em trechos com baixa luminosidade, onde detecções podem ser perdidas ou apresentar confiança reduzida.
-
-[Notebook de simulação em vídeo](./notebooks/simulation-video-yolo.ipynb)
-
-## Conclusões e recomendações por família e modelo
-
-- **YOLOv26n:** Boa performance com menor custo computacional; adequado para drones e edge devices com restrições de recursos. Prioridade em rapidez e eficiência energética.
-- **YOLOv26s:** Melhoria significativa em relação ao Nano, sobretudo em estabilização do aprendizado. Tempos de inferência adequados para aplicações em tempo real em drones e câmeras urbanas inteligentes.
-- **YOLOv26m:** Métricas superiores e melhor generalização; indicado para produção e aplicações críticas que demandam alta precisão.
-- **YOLOv26l:** Máxima precisão entre as variantes; compatível com ambientes que dispõem de infraestrutura robusta.
-- **RF-DETR Nano:** Alternativa compacta baseada em Transformer, adequada quando se busca menor custo dentro da família RF-DETR.
-- **RF-DETR Medium:** Melhor resultado entre os RF-DETR treinados (**91,97% de mAP@0.5**); recomendado quando a prioridade é a qualidade de detecção e há mais capacidade computacional.
-
-A análise reforça o papel de augmentations, balanceamento de dados e modelagem temporal para aumentar a robustez. Para treinos estendidos e experimentos mais complexos, recomenda-se infraestrutura dedicada com GPU (ex.: Google Colab Pro, NVIDIA A100).
+O RF-DETR Medium registrou o maior mAP@0.5 de validação, e o YOLOv26n teve o menor tempo médio de predição no benchmark local em CPU. A mesma validação foi usada para selecionar épocas e comparar as famílias. A presença de imagens repetidas entre partições, a mistura de imagens reais e sintéticas e a ausência de treinos repetidos limitam a generalização dos resultados.
 
 ### Trabalhos futuros
 
-- **Modelagem temporal:** ConvLSTM e Transformers para estabilidade em vídeo
-- **Embedded:** otimização em drones e câmeras urbanas para detecção em tempo real
-- **Novas classes:** destroços, veículos de resgate, barreiras
-- **Dataset diversificado:** cenas noturnas, baixa visibilidade, fumaça, chuva
-- **Mais épocas e hiperparâmetros:** treino estendido em ambiente dedicado; ajuste fino para vídeo
-- **Aprendizado contínuo:** pipeline de adaptação a novos cenários e classes
+- Remover duplicatas por conteúdo visual e por imagem de origem antes de refazer as partições.
+- Ampliar a diversidade de fotos reais e uniformes de socorristas e avaliar imagens reais e sintéticas separadamente.
+- Repetir os treinos com sementes diferentes e medir o desempenho completo em vídeo e o consumo de memória nos dispositivos de interesse.
 
 ## Interface Interativa
 
-A interface foi desenvolvida com **Gradio** para permitir testar os modelos treinados sem configurar ambiente de treino. É possível enviar imagens ou vídeos e visualizar as detecções (civis, socorristas e animais) com _bounding boxes_ e rótulos em tempo real.
+A interface foi desenvolvida com **Gradio** para permitir testar os modelos treinados sem configurar ambiente de treino. É possível enviar imagens ou vídeos e visualizar as detecções (civis, socorristas e animais) com _bounding boxes_ e rótulos após o processamento.
 
 ### Testar online
 
@@ -395,18 +354,18 @@ A aplicação está disponível no **Hugging Face Spaces**. Não é necessário 
 **👉 [Abrir Urban Disaster Monitor](https://huggingface.co/spaces/carolinasoares/urban-disaster-monitor-v2)**
 
 <div align="center">
-<img src="static/images/app_gradio.png" alt="Interface do app no Gradio" width="900"/>
+<img src="static/images/interface/gradio-image-inference.png" alt="Interface do app no Gradio" width="900"/>
 </div>
 
-*Interface hospedada em [Hugging Face](https://huggingface.co).*
+*Captura da interface local com YOLOv26m e limiar de confiança de 0,30.*
 
-### Funcionalidades
+### Controles e limites
 
 - **Família e modelo:** escolha YOLOv26 (n, s, m ou l) ou RF-DETR (Nano ou Medium)
-- **Upload:** imagens ou vídeos
-- **Confiança:** ajuste do _confidence threshold_ para filtrar detecções
-- **Visualização:** _bounding boxes_ e rótulos por classe (civilian, rescuer, dog, cat, horse, cow)
-- **Download:** imagens ou vídeos processados com as detecções
+- Aceita imagens JPEG, PNG ou WebP de até 10 MiB e 12 megapixels.
+- Aceita vídeos de até 50 MiB, 60 segundos, 1280×720 px (ou 720×1280 px), 60 FPS e 1.800 quadros. Por padrão, o app processa todos os quadros. Se você escolher processar a cada dois ou três quadros, os quadros pulados aparecem no vídeo sem anotações.
+- Ajuste o limiar de confiança para filtrar as detecções.
+- Veja as caixas delimitadoras e os rótulos e baixe a imagem ou o vídeo processado.
 
 ### Tecnologias
 
@@ -414,46 +373,35 @@ A aplicação está disponível no **Hugging Face Spaces**. Não é necessário 
 
 ### Executar localmente
 
-Baixe o repositório:
+O app foi verificado com Python 3.12. É necessário acesso à internet para baixar os pesos do modelo no primeiro uso.
 
 ```bash
 git clone https://github.com/MariaCarolinass/urban-disaster-monitor.git
-```
-
-Acesse a raiz do projeto:
-
-```bash
 cd urban-disaster-monitor
 ```
 
-Crie um ambiente virtual para o app e os notebooks:
+No Linux ou macOS, crie e ative o ambiente virtual.
 
 ```bash
 python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-Ative o ambiente virtual (Linux/macOS ou Windows):
+No Windows PowerShell, use estes comandos.
 
-```bash
-# Linux/macOS
-source .venv/bin/activate
-
-# Windows
+```powershell
+py -3.12 -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
 
-Instale as bibliotecas do app e dos notebooks:
+Na raiz do repositório, instale as dependências do app e inicie a interface. Abra o endereço local exibido no terminal.
 
 ```bash
-python -m pip install -r app/requirements.txt -r notebooks/requirements.txt
+python -m pip install -r app/requirements.txt
+python app/app.py
 ```
 
-Execute o projeto:
-
-```bash
-cd app
-python app.py
-```
+Para executar os experimentos, instale também as dependências descritas no [guia dos notebooks](./notebooks/README.md#local-setup).
 
 ## Equipe
 
@@ -463,19 +411,31 @@ python app.py
 
 ## Licença
 
-- Código: MIT License
-- Base de dados: CC BY 4.0
+- O código do projeto usa a [licença MIT](./LICENSE.txt).
+- O conjunto de dados publicado indica a licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt). Consulte os [créditos do dataset](./dataset/SOURCES.md) e das [imagens e vídeos de demonstração](./static/images/README.md).
 
 ## Referências Bibliográficas
 
-- T.-Y. Lin, M. Maire, S. Belongie, J. Hays, P. Perona, D. Ramanan, P. Doll´ar, C. L. Zitnick, Microsoft COCO: Common Objects in Context, in: D. Fleet, T. Pajdla, B. Schiele, T. Tuytelaars (Eds.), Computer Vision – ECCV 2014, Vol. 8693 of Lecture Notes in Computer Science, Springer Cham, Switzerland, 2014, pp. 740–755. [doi:10.1007/978-3-319-10602-1_48](https://doi.org/10.1007/978-3-319-10602-1_48).
+### Modelos e avaliação
 
-- J. Redmon, S. Divvala, R. Girshick, A. Farhadi, You Only Look Once: Unified, real-time object detection, in: 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), IEEE, USA, 2016, pp. 779–788. [doi:10.1109/CVPR.2016.91](https://doi.org/10.1109/CVPR.2016.91).
+- Redmon, J., Divvala, S., Girshick, R., & Farhadi, A. (2016). [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640). CVPR, 779–788.
+- Carion, N., et al. (2020). [End-to-End Object Detection with Transformers](https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/832_ECCV_2020_paper.php). ECCV, 213–229.
+- Ultralytics. (2024). [Lançamento do YOLO11 no Ultralytics v8.3.0](https://github.com/ultralytics/ultralytics/releases/tag/v8.3.0).
+- Jocher, G., et al. (2026). [Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models](https://arxiv.org/abs/2606.03748). arXiv:2606.03748.
+- Robinson, I., Robicheaux, P., Popov, M., Ramanan, D., & Peri, N. (2026). [RF-DETR: Neural Architecture Search for Real-Time Detection Transformers](https://proceedings.iclr.cc/paper_files/paper/2026/hash/5bed8703db85ab27dc32f6a42f8fbdb6-Abstract-Conference.html). ICLR.
+- Padilla, R., Passos, W. L., Dias, T. L. B., Netto, S. L., & da Silva, E. A. B. (2021). [A Comparative Analysis of Object Detection Metrics with a Companion Open-Source Toolkit](https://www.mdpi.com/2079-9292/10/3/279). *Electronics*, 10(3), 279.
 
-- M. S. Z. Pattankudi, S. Uppin, A. R. Attar, K. Bhoomaraddi, R. Kolhar, S. Varur, Human detection in disaster scenarios for enhanced emergency response using YOLO11, in: Proceedings of the 3rd International Conference on Futuristic Technology, Vol. 2, SciTePress, Portugal, 2025, pp. 739–746. [doi:10.5220/0013601000004664](https://doi.org/10.5220/0013601000004664).
+### Conjuntos de dados e ferramentas
 
-- D. H. Sai, K. Vidhya, K. A. Jenefa, C. R. Joy, T. M. Thiyagu, S. S. Kirubakaran, Enhancing emergency response with real-time video analytics for natural disaster management, in: 2025 Fourth International Conference on Smart Technologies, Communication and Robotics (STCR), IEEE, USA, 2025. [doi:10.1109/stcr62650.2025.11018905](https://doi.org/10.1109/stcr62650.2025.11018905).
+- Lin, T.-Y., et al. (2014). [Microsoft COCO: Common Objects in Context](https://link.springer.com/chapter/10.1007/978-3-319-10602-1_48). ECCV, 740–755.
+- Rahnemoonfar, M., et al. (2021). [FloodNet: A High Resolution Aerial Imagery Dataset for Post Flood Scene Understanding](https://arxiv.org/abs/2012.02951). *IEEE Access*, 9, 89644–89654.
+- Torralba, A., & Efros, A. A. (2011). [Unbiased Look at Dataset Bias](https://people.csail.mit.edu/torralba/research/bias/). CVPR, 1521–1528.
+- UFRNProjects. [Conjunto Urban Disaster Monitor no Roboflow Universe](https://universe.roboflow.com/ufrnprojects-xlut9/urban-disaster-monitor).
+- Google. (2025). [Anúncio do Gemini 2.5 Flash Image](https://developers.googleblog.com/introducing-gemini-2-5-flash-image/).
 
-- S. S. Vibhuti, S. Sutar, B. Marigoudar, A. Gopal, S. Varur, C. Muttal, YOLO11: Flood victim detection and rescue alert system, in: Proceedings of the 3rd International Conference on Futuristic Technology, Vol. 2, SciTePress, Portugal, 2025, pp. 804–811. [doi:10.5220/0013603000004664](https://doi.org/10.5220/0013603000004664).
+### Trabalhos sobre inundações e resposta a desastres
 
-- B. V. B. Prabhu, R. Lakshmi, R. Ankitha, M. S. Prateeksha, N. C. Priya, RescueNet: YOLO-based object detection model for detection and counting of flood survivors, Modeling Earth Systems and Environment 8 (4) (2022) 4509–4516. [doi:10.1007/s40808-022-01414-6](https://doi.org/10.1007/s40808-022-01414-6).
+- Prabhu, B. V. B., Lakshmi, R., Ankitha, R., Prateeksha, M. S., & Priya, N. C. (2022). [RescueNet: YOLO-based object detection model for detection and counting of flood survivors](https://doi.org/10.1007/s40808-022-01414-6). *Modeling Earth Systems and Environment*, 8(4), 4509–4516.
+- Pattankudi, M. S. Z., et al. (2025). [Human Detection in Disaster Scenarios for Enhanced Emergency Response Using YOLO11](https://www.scitepress.org/PublishedPapers/2025/136010/). INCOFT, 2, 739–746.
+- Vibhuti, S. S., et al. (2025). [YOLO11: Flood Victim Detection and Rescue Alert System](https://www.scitepress.org/PublishedPapers/2025/136030/). INCOFT, 2, 804–811.
+- Sai, D. H., et al. (2025). [Enhancing Emergency Response with Real-Time Video Analytics for Natural Disaster Management](https://ieeexplore.ieee.org/abstract/document/11018905). STCR.
