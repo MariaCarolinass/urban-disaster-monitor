@@ -1,0 +1,262 @@
+{
+  "protocol": "Ultralytics val; validation split; imgsz=640. YOLO26 per-class values reused from yolov26-per-class-map50.json; YOLO11 and COCO comparisons reevaluated with batch=16 on CPU.",
+  "ultralytics_version": "8.4.183",
+  "dataset_images": 383,
+  "class_order": [
+    "cat",
+    "civilian",
+    "cow",
+    "dog",
+    "horse",
+    "rescuer"
+  ],
+  "coco_class_ids": [
+    0,
+    15,
+    16,
+    17,
+    19
+  ],
+  "models": {
+    "yolo11n": {
+      "precision": 0.8712132723624872,
+      "recall": 0.7661057990423105,
+      "map50": 0.86118436978506,
+      "map50_95": 0.4942575250596984,
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ap50": [
+        0.8712878357088522,
+        0.818207604889289,
+        0.8927212288337468,
+        0.8107509876328725,
+        0.9399183286617211,
+        0.8342202329838777
+      ],
+      "weights": "yolo11-v1.0.0:models/yolov11n/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "7ee9002a9a18ebc81492ebb691649218a1d924124f6cd1d0e80c562db02eb5e2"
+    },
+    "yolo26n": {
+      "ap50": [
+        0.8708382136933052,
+        0.8438584706434278,
+        0.8848704665575841,
+        0.7228270378859409,
+        0.9291785594697498,
+        0.9060816934215139
+      ],
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "map50": 0.8596090736119203,
+      "weights": "models/yolov26n/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "271e27caa26fa683455129b469dd0654b2ef408fb14d6cadf49b2410f4b0e1ce",
+      "source": "models/comparisons/yolov26-per-class-map50.json"
+    },
+    "yolo11s": {
+      "precision": 0.8828431697590419,
+      "recall": 0.7943352558682175,
+      "map50": 0.8653913915295596,
+      "map50_95": 0.5132790875919365,
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ap50": [
+        0.8746562895364137,
+        0.8213391182183638,
+        0.8949886446466412,
+        0.7724922724760943,
+        0.9258018979959106,
+        0.9030701263039339
+      ],
+      "weights": "yolo11-v1.0.0:models/yolov11s/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "e6dca432450474b16e9f36dddf0400d7336bf5d065e945c77a2bc76e0cb16d00"
+    },
+    "yolo26s": {
+      "ap50": [
+        0.9057089047002994,
+        0.8471422388187104,
+        0.9027858649226846,
+        0.8299952368486381,
+        0.934393721545195,
+        0.9070980920351687
+      ],
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "map50": 0.8878540098117828,
+      "weights": "models/yolov26s/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "9e5fd922a83c3f1d559b34edf19b68fa9932423a33fe776f992ad71c75b23707",
+      "source": "models/comparisons/yolov26-per-class-map50.json"
+    },
+    "yolo11m": {
+      "precision": 0.8739290580978306,
+      "recall": 0.772200021973603,
+      "map50": 0.8552428564631235,
+      "map50_95": 0.5024704118497223,
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ap50": [
+        0.8734395361576668,
+        0.7989979152559403,
+        0.8798660120463786,
+        0.7627934213880891,
+        0.9303517510185043,
+        0.8860085029121616
+      ],
+      "weights": "yolo11-v1.0.0:models/yolov11m/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "a6f51d2cc3084d07e93d100410c4943125884c42badafb424688499f1b40df01"
+    },
+    "yolo26m": {
+      "ap50": [
+        0.9387974288919755,
+        0.8552014862399779,
+        0.9107321858476617,
+        0.7914063205132853,
+        0.938484267485043,
+        0.903084172812926
+      ],
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "map50": 0.8896176436318116,
+      "weights": "models/yolov26m/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "a60353bf39390e5f300a369320799dbe59696346cdc69cd5661866e225166854",
+      "source": "models/comparisons/yolov26-per-class-map50.json"
+    },
+    "yolo11l": {
+      "precision": 0.8852233492382577,
+      "recall": 0.7790950425404647,
+      "map50": 0.8557491100502336,
+      "map50_95": 0.5037768290306366,
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ap50": [
+        0.9047849371489776,
+        0.825233015509848,
+        0.8681488687645043,
+        0.7187769762778133,
+        0.9300087372051614,
+        0.887542125395097
+      ],
+      "weights": "yolo11-v1.0.0:models/yolov11l/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "e590e2b486623e3e018f92f5ad3d9d7a54df82385d80ce30a06e917a0624c819"
+    },
+    "yolo26l": {
+      "ap50": [
+        0.9326563970502385,
+        0.8665311513871243,
+        0.9125666430266485,
+        0.8378607866714796,
+        0.9455917149919002,
+        0.9240021064694441
+      ],
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "map50": 0.9032014665994725,
+      "weights": "models/yolov26l/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "1925b46d9ab5c642f6c8cac9ac09832ae0946dbdfa388ca59ea698c1986f798d",
+      "source": "models/comparisons/yolov26-per-class-map50.json"
+    },
+    "custom_yolo26m": {
+      "precision": 0.8946305345239253,
+      "recall": 0.8172219298339197,
+      "map50": 0.8896176436318116,
+      "map50_95": 0.5368137733130146,
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "ap50": [
+        0.9387974288919755,
+        0.8552014862399779,
+        0.9107321858476617,
+        0.7914063205132853,
+        0.938484267485043,
+        0.903084172812926
+      ],
+      "weights": "models/yolov26m/weights/best.pt",
+      "data": "dataset/data.yaml",
+      "checkpoint_sha256": "a60353bf39390e5f300a369320799dbe59696346cdc69cd5661866e225166854"
+    },
+    "coco_pretrained": {
+      "precision": 0.8628250155551962,
+      "recall": 0.7343469293908799,
+      "map50": 0.8153733862149644,
+      "map50_95": 0.40660522283308187,
+      "classes": [
+        0,
+        15,
+        16,
+        17,
+        19
+      ],
+      "ap50": [
+        0.8027405675064004,
+        0.800202065905052,
+        0.7326926648461274,
+        0.9065429393335769,
+        0.834688693483665
+      ],
+      "weights": "notebooks/generated/weights/yolo26m.pt",
+      "data": "notebooks/generated/dataset_filtered/data_filtered.yaml",
+      "checkpoint_sha256": "401cea9ab23ad19246ff7744859816bc599f350e93c9dd30367b6f0a0745d0b7"
+    }
+  }
+}

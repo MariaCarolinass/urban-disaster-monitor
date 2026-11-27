@@ -1,0 +1,31 @@
+{
+  "dataset_split": "valid",
+  "protocol": "Ultralytics 8.4.183 val, imgsz=640, batch=16; same 383 images, distinct class taxonomies",
+  "custom": {
+    "source": "models/yolov26m/weights/best.pt",
+    "selection": "independent validation of saved checkpoint on dataset/data.yaml",
+    "checkpoint_sha256": "a60353bf39390e5f300a369320799dbe59696346cdc69cd5661866e225166854",
+    "imgsz": 640,
+    "precision": 0.8946305345239253,
+    "recall": 0.8172219298339197,
+    "map50": 0.8896176436318116,
+    "map50_95": 0.5368137733130146
+  },
+  "coco_pretrained": {
+    "source": "notebooks/generated/weights/yolo26m.pt",
+    "checkpoint_sha256": "401cea9ab23ad19246ff7744859816bc599f350e93c9dd30367b6f0a0745d0b7",
+    "evaluation_data": "notebooks/generated/dataset_filtered/data_filtered.yaml",
+    "class_ids": [
+      0,
+      15,
+      16,
+      17,
+      19
+    ],
+    "imgsz": 640,
+    "precision": 0.8628250155551962,
+    "recall": 0.7343469293908799,
+    "map50": 0.8153733862149644,
+    "map50_95": 0.40660522283308187
+  }
+}

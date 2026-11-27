@@ -1,0 +1,42 @@
+{
+  "metric": "metrics/mAP50(B)",
+  "selection": "highest recorded validation mAP@0.5 in results.csv",
+  "models": {
+    "yolov11": {
+      "n": {
+        "map50": 0.86062,
+        "source": "yolo11-v1.0.0:models/yolov11n/results.csv"
+      },
+      "s": {
+        "map50": 0.87554,
+        "source": "yolo11-v1.0.0:models/yolov11s/results.csv"
+      },
+      "m": {
+        "map50": 0.86423,
+        "source": "yolo11-v1.0.0:models/yolov11m/results.csv"
+      },
+      "l": {
+        "map50": 0.86212,
+        "source": "yolo11-v1.0.0:models/yolov11l/results.csv"
+      }
+    },
+    "yolov26": {
+      "n": {
+        "map50": 0.82672,
+        "source": "yolo26-v1.0.0:models/yolov26n/results.csv"
+      },
+      "s": {
+        "map50": 0.86674,
+        "source": "yolo26-v1.0.0:models/yolov26s/results.csv"
+      },
+      "m": {
+        "map50": 0.87736,
+        "source": "yolo26-v1.0.0:models/yolov26m/results.csv"
+      },
+      "l": {
+        "map50": 0.89192,
+        "source": "yolo26-v1.0.0:models/yolov26l/results.csv"
+      }
+    }
+  }
+}

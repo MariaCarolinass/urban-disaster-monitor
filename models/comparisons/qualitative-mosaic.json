@@ -1,0 +1,177 @@
+{
+  "model": "models/yolov26m/weights/best.pt",
+  "model_sha256": "a60353bf39390e5f300a369320799dbe59696346cdc69cd5661866e225166854",
+  "split": "valid",
+  "seed": 14170893132125166831,
+  "sample_count": 12,
+  "preview_paths": [
+    "dataset/valid/images/b6a5af0b96ffcc2b928a10703285ca36_jpg.rf.2ef6adb3c5321b278d1815695e71db6e.jpg",
+    "dataset/valid/images/320_jpg.rf.ebecc3edd07ff8f46cd72372acfb4312.jpg",
+    "dataset/valid/images/dog-flood-preparedness-1_jpg.rf.5f71c257b72944a500940606c3253c50.jpg",
+    "dataset/valid/images/AAA1342_jpg.rf.e775ab85daf2470a321acd576a20556e.jpg",
+    "dataset/valid/images/1015_jpg.rf.a4250654e0a28ee00d40371659e62672.jpg",
+    "dataset/valid/images/flood-india_jpg.rf.9511a1e8b24ffe17c6df0e6f68ab3717.jpg",
+    "dataset/valid/images/AAA960_jpg.rf.b9ffd8b412c44e2ba9488f9cc66118d4.jpg",
+    "dataset/valid/images/images238_jpg.rf.efd6679e4f7e35dcf257eb3e6dd93b99.jpg",
+    "dataset/valid/images/224_jpg.rf.d1de8a46523dfd047a903d4b975df585.jpg",
+    "dataset/valid/images/images118_jpg.rf.5705559894b0ae3afec8f1aff0bb344c.jpg",
+    "dataset/valid/images/230714-india-flooding-mb-0831-d3a66d_jpg.rf.3e607c4f8f121834224f95ab0d44ddd6.jpg",
+    "dataset/valid/images/596_jpg.rf.9a5cb912913a32cb8e7f9f7ec5e67fb3.jpg"
+  ],
+  "sampled_paths": [
+    "dataset/valid/images/b6a5af0b96ffcc2b928a10703285ca36_jpg.rf.2ef6adb3c5321b278d1815695e71db6e.jpg",
+    "dataset/valid/images/320_jpg.rf.ebecc3edd07ff8f46cd72372acfb4312.jpg",
+    "dataset/valid/images/dog-flood-preparedness-1_jpg.rf.5f71c257b72944a500940606c3253c50.jpg",
+    "dataset/valid/images/AAA1342_jpg.rf.e775ab85daf2470a321acd576a20556e.jpg",
+    "dataset/valid/images/1015_jpg.rf.a4250654e0a28ee00d40371659e62672.jpg",
+    "dataset/valid/images/flood-india_jpg.rf.9511a1e8b24ffe17c6df0e6f68ab3717.jpg",
+    "dataset/valid/images/AAA960_jpg.rf.b9ffd8b412c44e2ba9488f9cc66118d4.jpg",
+    "dataset/valid/images/images238_jpg.rf.efd6679e4f7e35dcf257eb3e6dd93b99.jpg",
+    "dataset/valid/images/224_jpg.rf.d1de8a46523dfd047a903d4b975df585.jpg",
+    "dataset/valid/images/images118_jpg.rf.5705559894b0ae3afec8f1aff0bb344c.jpg",
+    "dataset/valid/images/230714-india-flooding-mb-0831-d3a66d_jpg.rf.3e607c4f8f121834224f95ab0d44ddd6.jpg",
+    "dataset/valid/images/596_jpg.rf.9a5cb912913a32cb8e7f9f7ec5e67fb3.jpg"
+  ],
+  "chosen_indices": [],
+  "selection_cycle": 1,
+  "selection_history": [
+    "dataset/valid/images/imagem_002_1332_png.rf.d4003ca968cbd3a340ec952753cb2a96.jpg",
+    "dataset/valid/images/image_2d402afa0296407d953e3fb2a46167a7_png.rf.f1aea2fc84dcf5428764241fe5843d53.jpg",
+    "dataset/valid/images/image_38_1_png.rf.b31366f2b965712fa71892bb008e2fe6.jpg",
+    "dataset/valid/images/1019715_jpg.rf.58a43da4e0959d4e75f1eceb0d288bd0.jpg",
+    "dataset/valid/images/image_9b860f3a5eec4f3aa1d84429d27968bb_png.rf.e1a4c4bd68029fb7be0dd1d76a4352e7.jpg",
+    "dataset/valid/images/imagem_040_131_png.rf.6b5a5045559aa08b01efaa5eb9023a17.jpg",
+    "dataset/valid/images/imagem_065-copia-_png.rf.f9090ddd4de6f29214f5f811175c870d.jpg",
+    "dataset/valid/images/Gemini_Generated_Image_97ro3w97ro3w97ro_png.rf.d4f24aa0e28a8ee058128744d1ad8f5c.jpg",
+    "dataset/valid/images/image29_jpeg.rf.a2ed63e2d5234bfc7de2803aff1b4b70.jpg",
+    "dataset/valid/images/image_31e94f7652884a15a4d92ece0dac768f_png.rf.4f7a141c4138a9bcdf73ad33aceeb38a.jpg",
+    "dataset/valid/images/NDRF-safely-evacuates-51-residents-from-villages-affected-by-cloudburst-in-Himachal_V_jpg-442x260-4g_webp.rf.b4e53873671bd308a3311c1dd8e8f668.jpg",
+    "dataset/valid/images/image_4098f73306194f6695157341e899dd6e_png.rf.99656d514a129eac0d263fdf65b51557.jpg",
+    "dataset/valid/images/image_c50232f4405e47fa9824fedbdb111fc5_png.rf.5bd5062924188de748141bf4865a0d68.jpg",
+    "dataset/valid/images/imagem_012_1_png.rf.27667da9c4e2bee08cb848315fb4a1d2.jpg",
+    "dataset/valid/images/2675_jpg.rf.aca9642ee05662099645796cc4f1645e.jpg",
+    "dataset/valid/images/freepik__the-style-is-candid-image-photography-with-natural__62381_png.rf.ba3e4a35bf7117bbbc3237eb99e92399.jpg",
+    "dataset/valid/images/image_238866e2b4bc4605997d3b35f20a3f96_png.rf.10fe8b0d272c91c730f9e179a98645a0.jpg",
+    "dataset/valid/images/403916_114977_620_414_jpg_jpg.rf.bcc39a6ad69788cb8b1d005c24b10a75.jpg",
+    "dataset/valid/images/image_fa200738c1294c7f81e1111380645ed2_png.rf.e4ee984878081779472e1ace443f0a5f.jpg",
+    "dataset/valid/images/20220307SN22_kuala_lumpur_kl_floods_malaysia-JPG_jpg.rf.d36001c4054894212c14b50f7a9e7146.jpg",
+    "dataset/valid/images/images9_jpg.rf.ec8bf517d6f3232dd5868717cee62d12.jpg",
+    "dataset/valid/images/3115_jpg.rf.1088b9ab4819da712d4bc2bdda2af612.jpg",
+    "dataset/valid/images/20220112-153408-news-220112-misspits-rescue-1_jpg.rf.9b305b285c4f9cafb73767aed24d7228.jpg",
+    "dataset/valid/images/AAA255_jpg.rf.10df8ab9ed95d4dc35abad4d4b0e1d05.jpg",
+    "dataset/valid/images/1015_jpg.rf.a4250654e0a28ee00d40371659e62672.jpg",
+    "dataset/valid/images/dog-flood-preparedness-1_jpg.rf.5f71c257b72944a500940606c3253c50.jpg",
+    "dataset/valid/images/224_jpg.rf.d1de8a46523dfd047a903d4b975df585.jpg",
+    "dataset/valid/images/flood-india_jpg.rf.9511a1e8b24ffe17c6df0e6f68ab3717.jpg"
+  ],
+  "excluded_images": [
+    "imagem_012_1_png.rf.27667da9c4e2bee08cb848315fb4a1d2.jpg"
+  ],
+  "excluded_filename_prefixes": [
+    "gemini_",
+    "freepik",
+    "imagem_",
+    "image_",
+    "20250924_"
+  ],
+  "mosaic_confidence_threshold": 0.7,
+  "external_video_confidence_threshold": 0.25,
+  "selection": "four illustrative candidates with high-confidence detections agreeing with dataset labels at IoU >= 0.45; diversity prioritized",
+  "selected": [
+    {
+      "path": "dataset/valid/images/1015_jpg.rf.a4250654e0a28ee00d40371659e62672.jpg",
+      "image_sha256": "1a99c63f39d62c0ecc4094b1c9009c3f369e35fdc0ae0b32e600ccaaaba69d26",
+      "detections": [
+        {
+          "class": "rescuer",
+          "confidence": 0.8438,
+          "bbox_xyxy": [
+            348.4,
+            215.7,
+            483.7,
+            466.9
+          ],
+          "annotation_iou": 0.795
+        },
+        {
+          "class": "rescuer",
+          "confidence": 0.8008,
+          "bbox_xyxy": [
+            237.2,
+            237.4,
+            336.5,
+            443.4
+          ],
+          "annotation_iou": 0.865
+        }
+      ],
+      "matched_classes": [
+        "rescuer"
+      ],
+      "score": 0.8938
+    },
+    {
+      "path": "dataset/valid/images/dog-flood-preparedness-1_jpg.rf.5f71c257b72944a500940606c3253c50.jpg",
+      "image_sha256": "e91c9661b7f6cbf8823a502b6edb9a5b2e42864515f5f88035514e09377c486d",
+      "detections": [
+        {
+          "class": "dog",
+          "confidence": 0.8424,
+          "bbox_xyxy": [
+            124.8,
+            241.7,
+            336.2,
+            499.5
+          ],
+          "annotation_iou": 0.808
+        }
+      ],
+      "matched_classes": [
+        "dog"
+      ],
+      "score": 0.8674
+    },
+    {
+      "path": "dataset/valid/images/224_jpg.rf.d1de8a46523dfd047a903d4b975df585.jpg",
+      "image_sha256": "d978bb04df8fc8da5bd1faa67ba5464b7bfb6248c8f2113e4db4799de5c820c6",
+      "detections": [
+        {
+          "class": "civilian",
+          "confidence": 0.7958,
+          "bbox_xyxy": [
+            147.5,
+            174.6,
+            308.4,
+            640.0
+          ],
+          "annotation_iou": 0.679
+        }
+      ],
+      "matched_classes": [
+        "civilian"
+      ],
+      "score": 0.8208
+    },
+    {
+      "path": "dataset/valid/images/flood-india_jpg.rf.9511a1e8b24ffe17c6df0e6f68ab3717.jpg",
+      "image_sha256": "b895979515a8284361b164a3b6412aa12d5fbf2f4346bc07c76796dad23b6a29",
+      "detections": [
+        {
+          "class": "civilian",
+          "confidence": 0.754,
+          "bbox_xyxy": [
+            248.3,
+            262.2,
+            329.3,
+            518.4
+          ],
+          "annotation_iou": 0.698
+        }
+      ],
+      "matched_classes": [
+        "civilian"
+      ],
+      "score": 0.779
+    }
+  ]
+}
