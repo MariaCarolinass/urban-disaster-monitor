@@ -1,0 +1,10 @@
+# Install with app/requirements.txt in the project-root .venv.
+ipykernel>=7.3.0,<8
+jupyter>=1.1.1,<2
+matplotlib>=3.10.9,<4
+pandas>=2.3.3,<4
+google-genai>=2.32.0,<3
+pillow>=12.3.0,<14
+tqdm>=4.70.1,<5
+PyYAML>=6.0.3,<7
+rfdetr[train]>=1.11.2,<2

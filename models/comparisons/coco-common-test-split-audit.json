@@ -1,0 +1,10 @@
+{
+  "method": "SHA-256 of original image file bytes; no perceptual or source-scene deduplication",
+  "image_counts": {
+    "train": 2674,
+    "valid": 383,
+    "test": 183
+  },
+  "test_train_exact_matches": 0,
+  "test_validation_exact_matches": 0
+}

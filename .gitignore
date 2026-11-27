@@ -196,3 +196,6 @@ cython_debug/
 .vscode/
 
 app/models/
+
+notebooks/generated/
+runs/

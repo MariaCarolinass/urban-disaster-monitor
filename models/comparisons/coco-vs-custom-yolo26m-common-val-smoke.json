@@ -1,0 +1,126 @@
+{
+  "protocol": "common five-class evaluation; max class-score merge before shared class-aware NMS",
+  "measured_at_utc": "2026-10-30T03:45:19.136695+00:00",
+  "ultralytics_version": "8.4.183",
+  "torch_version": "2.14.1+cu130",
+  "python_version": "3.12.3",
+  "class_names": {
+    "0": "person",
+    "1": "cat",
+    "2": "dog",
+    "3": "horse",
+    "4": "cow"
+  },
+  "parameters": {
+    "split": "val",
+    "imgsz": 640,
+    "batch": 2,
+    "device": "cpu",
+    "workers": 0,
+    "conf": 0.001,
+    "iou": 0.7,
+    "max_det": 300,
+    "rect": false,
+    "nms": true,
+    "augment": false,
+    "quantize": 32,
+    "channels_last": false,
+    "plots": false,
+    "save_json": false,
+    "save_txt": false,
+    "single_cls": false,
+    "agnostic_nms": false,
+    "classes": null,
+    "exist_ok": true,
+    "verbose": false
+  },
+  "dataset": {
+    "split": "val",
+    "image_count": 4,
+    "annotation_count": 4,
+    "annotations_per_class": {
+      "person": 4
+    },
+    "images": [
+      {
+        "image": "dataset/valid/images/-november-victims-in-massive-floods-at-bang-khae-district-bangkok-1523081813_jpg.rf.818b038b113d19d0a233af3db8c0c530.jpg",
+        "image_sha256": "57e2dbe5206334856487462c6dbde5581818cb330e67c049df5afe18be272111",
+        "source_label_sha256": "e958e18669d6405561079585a775dabe7e11a479569ec4d02f7fd98cf1975e66",
+        "mapped_label_sha256": "3d59bedf9ecc7613cbbf410b97f34adc216f8a73e680aa1a00f66dbabe6d673b",
+        "boxes": 1
+      },
+      {
+        "image": "dataset/valid/images/-november-victims-in-massive-floods-at-bang-khae-district-bangkok-1523081813_jpg.rf.b63ba66b7e1ed1c7efbe9c865854a577.jpg",
+        "image_sha256": "440f2034eac4154cb28691ea2043b6806b6f93f21b4a78340912a85ca763b915",
+        "source_label_sha256": "8d521f502665feb6b2a3a5f875fe70f90957dcd8870573db49a6c11150b09445",
+        "mapped_label_sha256": "185b06b5e6ebb05911e362049f22e2a65de620c9c22ac8c3f64be2db8f0e3503",
+        "boxes": 1
+      },
+      {
+        "image": "dataset/valid/images/0x0_jpg.rf.132cb06016af4ba1d070bc4ab3213100.jpg",
+        "image_sha256": "e9616737d586766dba75292eab80bd1984382786ea8e4869c8c2e0e18470ae11",
+        "source_label_sha256": "0b4eb3b81575201151564cf990d2156284632681f79896179a4eacfb16914638",
+        "mapped_label_sha256": "a14686e8183788e870acc548fcc828a99b4752bff8296f95d39f2a7601311da6",
+        "boxes": 1
+      },
+      {
+        "image": "dataset/valid/images/100_jpg.rf.a1d30110d2a9f76f1821bdc8a02d62a8.jpg",
+        "image_sha256": "38e4c0074006c3bd231310edc9598ab73ae08ec0505e6506de086cc300135321",
+        "source_label_sha256": "759f3847b3415b2b89ba6e71af2c7c55d915550014e6a709c5ea3c6289234d48",
+        "mapped_label_sha256": "42bad0aa70200a266f93069cdebfee06e8d6d8e20d68d5b7f3ac049d227b3ba8",
+        "boxes": 1
+      }
+    ],
+    "smoke_test": true
+  },
+  "models": {
+    "coco_pretrained": {
+      "precision_macro_best_f1": 1.0,
+      "recall_macro_best_f1": 0.9977528395138281,
+      "map50": 0.995,
+      "map50_95": 0.472,
+      "ap50_per_class": {
+        "person": 0.995
+      },
+      "ap50_95_per_class": {
+        "person": 0.472
+      },
+      "fixed_operating_point": {
+        "confidence": 0.25,
+        "matching_iou": 0.5,
+        "aggregation": "micro",
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "checkpoint": "notebooks/generated/weights/yolo26m.pt",
+      "checkpoint_sha256": "401cea9ab23ad19246ff7744859816bc599f350e93c9dd30367b6f0a0745d0b7"
+    },
+    "custom": {
+      "precision_macro_best_f1": 0.9813446780879246,
+      "recall_macro_best_f1": 1.0,
+      "map50": 0.995,
+      "map50_95": 0.7705,
+      "ap50_per_class": {
+        "person": 0.995
+      },
+      "ap50_95_per_class": {
+        "person": 0.7705
+      },
+      "fixed_operating_point": {
+        "confidence": 0.25,
+        "matching_iou": 0.5,
+        "aggregation": "micro",
+        "precision": 1.0,
+        "recall": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "checkpoint": "models/yolov26m/weights/best.pt",
+      "checkpoint_sha256": "a60353bf39390e5f300a369320799dbe59696346cdc69cd5661866e225166854"
+    }
+  }
+}
